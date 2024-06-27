@@ -62,4 +62,16 @@ public class Chat {
                 .imageUrl(imageUrl)
                 .build();
     }
+
+    /**
+     * 채팅 생성 (이미지 없이)
+     * @param room 채팅 방
+     * @param sender 보낸이
+     * @param senderEmail 보낸이 이메일
+     * @param message 내용
+     * @return Chat Entity
+     */
+    public static Chat createChat(ChatRoom room, String sender, String senderEmail, String message) {
+        return createChat(room, sender, senderEmail, message, null);
+    }
 }
