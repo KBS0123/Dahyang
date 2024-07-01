@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spring_Dahyang.user.repository.UserMapper">
 	
-	    <resultMap type="User" id="userResultMap">
+	<resultMap type="User" id="userResultMap">
 	    <result property="uid" column="USER_ID" />
 		<result property="email" column="EMAIL" />
 		<result property="pwd" column="PASSWORD" />
@@ -38,5 +38,6 @@
 	<!-- 이메일로 회원 선택 -->
 	<select id="selectByEmail" parameterType="string" resultMap="userResultMap">
 		select * from duser where EMAIL = #{email}
-	</select>		
+	</select>
+		
 </mapper>

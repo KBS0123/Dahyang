@@ -12,6 +12,8 @@
 	</settings>
 	
 	<typeAliases>
-		<package name=""/>
+		<package name="spring_Dahyang.user.model"/>
+		<package name="spring_Dahyang.club.model"/>
 	</typeAliases>
+
 </configuration>

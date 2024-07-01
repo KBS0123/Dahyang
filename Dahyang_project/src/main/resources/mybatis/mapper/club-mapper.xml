@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring_Dahyang.club.repository.ClubMapper">
+	
+	<resultMap type="Club" id="clubResultMap">
+		<result property="clid" column="CLUB_ID" />
+		<result property="uid" column="USER_ID" />
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="notice" column="NOTICE" />
+		<result property="img" column="IMAGES" />
+	</resultMap>
+	
+	<!-- 모임방 등록 -->
+	<insert id="insert" parameterType="Club">
+		insert into dclub values (dclub_seq.nextval, #{uid}, #{title}, #{content}, #{notice}, #{img, jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 모임방 수정 -->
+	<update id="update" parameterType="Club">
+		update dclub set title=#{title}, content=#{content}, notice=#{notice}, img=#{img, jdbcType=VARCHAR} where club_id=#{clid}
+	</update>
+	
+	<!-- 모임방 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from dclub where club_id=#{clid}
+	</delete>
+	
+	<!-- 모임방 선택 -->
+	<select id="selectById" parameterType="int" resultMap="clubResultMap">
+		select * from dclub where club_id=#{clid}
+	</select>
+	
+	<!-- 사용자의 uid에 해당하는 모임방 삭제 -->
+	<delete id="deleteByUid" parameterType="int">
+	    delete from dclub where user_id=#{uid}
+	</delete>
+	
+</mapper>
