@@ -14,6 +14,7 @@
 	<typeAliases>
 		<package name="spring_Dahyang.user.model"/>
 		<package name="spring_Dahyang.club.model"/>
+		<package name="spring_Dahyang.apply.dto"/>
 	</typeAliases>
 
 </configuration>

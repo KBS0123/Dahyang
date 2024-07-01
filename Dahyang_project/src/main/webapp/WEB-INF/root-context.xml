@@ -24,7 +24,8 @@
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="spring_Dahyang.user.repository, spring_Dahyang.club.repository"/>
+		<property name="basePackage" value="spring_Dahyang.user.repository, spring_Dahyang.club.repository,
+											spring_Dahyang.apply.repository"/>
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">

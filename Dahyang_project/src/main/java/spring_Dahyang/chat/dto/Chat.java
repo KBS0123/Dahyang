@@ -1,6 +1,8 @@
-package domain;
+package spring_Dahyang.chat.dto;
 
 import lombok.*;
+import spring_Dahyang.chat_room.dto.ChatRoom;
+
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;

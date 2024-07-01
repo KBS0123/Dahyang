@@ -1,4 +1,4 @@
-package domain;
+package spring_Dahyang.chat_room.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;

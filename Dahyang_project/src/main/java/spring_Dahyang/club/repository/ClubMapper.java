@@ -20,6 +20,8 @@ public interface ClubMapper {
 	
 	public Club selectById(int clid);
 	
+	public Club selectUserId(int uid);
+	
 	public int deleteByUid(int uid);
 	
 }
