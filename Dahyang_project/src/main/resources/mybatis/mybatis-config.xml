@@ -12,6 +12,7 @@
 	</settings>
 	
 	<typeAliases>
-		<package name=""/>
+		<package name="spring_Dahyang.user.model"/>
 	</typeAliases>
+
 </configuration>
