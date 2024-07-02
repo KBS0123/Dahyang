@@ -1,9 +1,9 @@
-package service;
+package spring_Dahyang.chat.service;
 
-import domain.Chat;
-import domain.ChatRepository;
-import domain.ChatRoom;
-import domain.ChatRoomRepository;
+import spring_Dahyang.chat.dto.Chat;
+import spring_Dahyang.chat.repository.ChatRepository;
+import spring_Dahyang.chat_room.dto.ChatRoom;
+import spring_Dahyang.chat_room.repository.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

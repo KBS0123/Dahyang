@@ -1,8 +1,8 @@
-package controller;
+package spring_Dahyang.web.control;
 
-import domain.Chat;
-import domain.ChatRoom;
-import service.ChatService;
+import spring_Dahyang.chat.dto.Chat;
+import spring_Dahyang.chat_room.dto.ChatRoom;
+import spring_Dahyang.chat.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
