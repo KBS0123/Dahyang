@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xmlns:beans="http://www.springframework.org/schema/beans" 
-             xmlns:context="http://www.springframework.org/schema/context"
-             xmlns:websocket="http://www.springframework.org/schema/websocket"
-             xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-                                 http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
-                                 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    
-    <annotation-driven />
-    
-    <context:component-scan base-package="spring_Dahyang" />
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:beans="http://www.springframework.org/schema/beans" 
+			 xmlns:context="http://www.springframework.org/schema/context"
+			 xmlns:websocket="http://www.springframework.org/schema/websocket"
+			 
+			 xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+			 		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+					http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<annotation-driven />
+	
+	<context:component-scan base-package="Dahyang_project.*" />
 
-    <resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/resources/**" location="/resources/" />
 
-    <!-- View Resolver : 접두어, 접미어로 컨트롤러가 리턴하는 뷰의 이름을 해석 -->
-    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <beans:property name="prefix" value="/WEB-INF/views/" />
-        <beans:property name="suffix" value=".jsp" />
-    </beans:bean>
-    
-    <!-- 파일 등록 설정 -->
-    <!-- multipartResolver 빈 설정 -->    
-    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <beans:property name="maxUploadSize" value="1073741824" /> <!-- 1GB로 설정 -->
-        <beans:property name="defaultEncoding" value="utf-8" />
-    </beans:bean>
+	<!-- ViewResilver : 접두어, 접미어로  컨트롤러가 리턴하는 뷰의 이름을 해석 -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 파일 등록 설정 -->
+	<!-- multipartResolver 빈 설정 -->	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="1073741824" /> <!-- 1GB로 설정 -->
+		<beans:property name="defaultEncoding" value="utf-8" />
+	</beans:bean>
 
 </beans:beans>
