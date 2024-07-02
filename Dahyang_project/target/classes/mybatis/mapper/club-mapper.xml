@@ -33,6 +33,11 @@
 		select * from dclub where club_id=#{clid}
 	</select>
 	
+	<!-- 방장 선택 -->
+	<select id="findUserId" parameterType="int" resultMap="clubResultMap">
+		select * from dclub where user_id=#{uid}
+	</select>
+	
 	<!-- 사용자의 uid에 해당하는 모임방 삭제 -->
 	<delete id="deleteByUid" parameterType="int">
 	    delete from dclub where user_id=#{uid}
