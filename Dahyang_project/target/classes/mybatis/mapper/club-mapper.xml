@@ -28,6 +28,10 @@
 		delete from dclub where club_id=#{clid}
 	</delete>
 	
+	<select id="findClub" parameterType="int">
+		select * from dclub where club_id=#{clid}
+	</select>
+	
 	<!-- 모임방 선택 -->
 	<select id="selectById" parameterType="int" resultMap="clubResultMap">
 		select * from dclub where club_id=#{clid}

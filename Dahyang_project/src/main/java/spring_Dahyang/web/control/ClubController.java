@@ -1,6 +1,7 @@
 package spring_Dahyang.web.control;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import spring_Dahyang.file.FileServiceImpl;
 import spring_Dahyang.user.model.User;
 import spring_Dahyang.club.model.Club;
 import spring_Dahyang.club.repository.ClubMapper;
+import spring_Dahyang.club.repository.MemberMapper;
 
 @Controller
 @RequestMapping("/club")
@@ -32,9 +34,29 @@ public class ClubController {
 	private ClubMapper clubMapper;
 	
 	@GetMapping("/{clid}")
-	public String getClubView(@PathVariable int clid, HttpSession session, Model model) {
+	public String getClubView(@PathVariable int clid, HttpServletRequest request, HttpSession session, Model model) {
 		Club club = clubMapper.selectById(clid);
+		User user = (User) session.getAttribute("user");
+		int memid = Integer.parseInt(request.getParameter("memid"));
 		model.addAttribute("club", club);
+		
+		List<Club> clubs = clubMapper.findClub(clid);
+		Club leaderId = clubMapper.selectById(clid);
+		
+		// 모임 신청
+		if (request.getMethod().equals("GET")) {
+			Club clubb = clubs.get(0);
+			request.setAttribute("club", clubb);			
+		} else {
+			if(user != null && leaderId.equals(user.getUid())) {
+				return "club_view";
+			} else {
+				MemberMapper.insert(memid, clid, user.getUid());
+				List<Club> clubss = clubMapper.selectAll();
+				request.setAttribute("clubList", clubss);
+				return "redirect:/views/test";
+			}
+		}
 		
 		return "club_view";
 	}

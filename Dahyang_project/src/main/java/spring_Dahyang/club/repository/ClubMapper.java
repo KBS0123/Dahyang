@@ -15,8 +15,10 @@ public interface ClubMapper {
 	@Select("select count(*) from dclub")
 	public int count();
 	
-	@Select("select * from dclub order by club_id desc")
+	@Select("select * from dclub")
 	public List<Club> selectAll();
+	
+	public List<Club> findClub(int clid);
 	
 	public Club selectById(int clid);
 	
