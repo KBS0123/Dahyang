@@ -24,4 +24,12 @@ public class Club {
 	@ManyToOne
 	private User creator;
 	
+	public Club(int uid, String title, String content, String notice, String img) {
+		this.uid = uid;
+		this.title = title;
+		this.content = content;
+		this.notice = notice;
+		this.img = img;
+	}
+	
 }

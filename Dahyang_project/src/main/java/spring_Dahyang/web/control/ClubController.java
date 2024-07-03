@@ -45,16 +45,36 @@ public class ClubController {
 		
 		// 모임 신청
 		if (request.getMethod().equals("GET")) {
-			Club clubb = clubs.get(0);
-			request.setAttribute("club", clubb);			
+			Club applyClub = clubs.get(0);
+			request.setAttribute("club", applyClub);			
 		} else {
 			if(user != null && leaderId.equals(user.getUid())) {
 				return "club_view";
 			} else {
 				MemberMapper.insert(memid, clid, user.getUid());
-				List<Club> clubss = clubMapper.selectAll();
-				request.setAttribute("clubList", clubss);
+				List<Club> clubList = clubMapper.selectAll();
+				request.setAttribute("clubList", clubList);
 				return "redirect:/views/test";
+			}
+		}
+		
+		// 모임 가입 기능
+		if(user != null && leaderId.equals(user.getUid())) {
+			Club registClub = new Club(user.getUid(), request.getParameter("title"), 
+					request.getParameter("context"), request.getParameter("notice"),
+					request.getParameter("img"));
+			
+			clubMapper.insert(registClub);
+			List<Club> clubList = clubMapper.selectAll();
+			request.setAttribute("clubList", clubList);
+			
+			return "club_view";
+		}
+		
+		// 모임 탈퇴 기능
+		if(user != null && leaderId.equals(user.getUid())) {
+			if (MemberMapper.deleteClub(clid)) {
+				return "club_view";
 			}
 		}
 		

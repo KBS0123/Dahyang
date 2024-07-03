@@ -20,6 +20,11 @@
 		delete from dclub_members where member_level=#{memid} and club_id=#{clid} and user_id=#{uid}
 	</delete>
 	
+	<!-- 모임방 멤버 탈퇴 -->
+	<delete id="deleteMember" parameterType="int">
+		delete from dclub_members where club_id=#{clid}
+	</delete>
+	
 	<select id="findMember" parameterType="boolean">
 		select * from dclub_members where club_id=#{clid} and user_id=#{uid}
 	</select>
