@@ -71,13 +71,6 @@ public class ClubController {
 			return "club_view";
 		}
 		
-		// 모임 탈퇴 기능
-		if(user != null && leaderId.equals(user.getUid())) {
-			if (MemberMapper.deleteClub(clid)) {
-				return "club_view";
-			}
-		}
-		
 		return "club_view";
 	}
 	
@@ -189,6 +182,22 @@ public class ClubController {
 				return "redirect:/views/test";
 			}
 		}
+		
+		return session.getServletContext().getContextPath() + "/views/test";
+	}
+	
+	// 모임 탈퇴 기능
+	@GetMapping("/remove/{uid}")
+	public String getRemoveMember(@PathVariable int clid, HttpSession session, Model model) {
+		User user = (User)session.getAttribute("user");
+		Club leaderId = clubMapper.selectById(clid);
+		
+		if(user != null && leaderId.equals(user.getUid())) {
+			if (MemberMapper.deleteClub(clid)) {
+				return "club_view";
+			}
+		}
+				
 		
 		return session.getServletContext().getContextPath() + "/views/test";
 	}
