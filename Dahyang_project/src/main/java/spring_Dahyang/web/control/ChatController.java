@@ -1,52 +1,55 @@
 package spring_Dahyang.web.control;
 
-import spring_Dahyang.chat.dto.Chat;
-import spring_Dahyang.chat_room.dto.ChatRoom;
-import spring_Dahyang.chat.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import spring_Dahyang.chat.model.Chat; // Chat 클래스로 변경
+import spring_Dahyang.chat.service.ChatService; 
 
-import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-@RestController
-@RequestMapping("/chats")
+@Controller
+@RequestMapping("/chat")
 public class ChatController {
 
     @Autowired
     private ChatService chatService;
 
-    @PostMapping("/create")
-    public Chat createChat(@RequestParam("room_id") Long roomId,
-                           @RequestParam("sender") String sender,
-                           @RequestParam("senderEmail") String senderEmail,
-                           @RequestParam("message") String message,
-                           @RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
-        if (image != null && !image.isEmpty()) {
-            return chatService.createChat(roomId, sender, senderEmail, message, image);
-        } else {
-            return chatService.createChat(roomId, sender, senderEmail, message);
+    private final List<Chat> chatQueue = new CopyOnWriteArrayList<>();
+
+    @GetMapping("/room/{clubId}")
+    public String chatRoom(@PathVariable Long clubId, Model model) {
+        model.addAttribute("clubId", clubId);
+        return "chatRoom";
+    }
+
+    @GetMapping("/chats/{clubId}")
+    @ResponseBody
+    public List<Chat> getChats(@PathVariable Long clubId) {
+        Club club = new Club();
+        club.setClid(clubId);
+        return chatService.getChatsForClub(club);
+    }
+
+    @PostMapping("/chats")
+    @ResponseBody
+    public Chat sendChat(@RequestBody Chat chat) {
+        chat = chatService.saveChat(chat);
+        chatQueue.add(chat);
+        return chat;
+    }
+
+    @GetMapping("/poll/{clubId}")
+    @ResponseBody
+    public List<Chat> pollChats(@PathVariable Long clubId) throws InterruptedException {
+        while (chatQueue.isEmpty()) {
+            Thread.sleep(1000);
         }
-    }
 
-    @GetMapping("/rooms")
-    public List<ChatRoom> findAllRooms() {
-        return chatService.findAllRoom();
-    }
-
-    @GetMapping("/rooms/{roomId}")
-    public ChatRoom findRoomById(@PathVariable Long roomId) {
-        return chatService.findRoomById(roomId);
-    }
-
-    @GetMapping("/rooms/{roomId}/chats")
-    public List<Chat> findAllChatByRoomId(@PathVariable Long roomId) {
-        return chatService.findAllChatByRoomId(roomId);
-    }
-
-    @PostMapping("/rooms")
-    public ChatRoom createRoom(@RequestBody ChatRoom room) {
-        return chatService.createRoom(room.getName());
+        List<Chat> chatsToSend = new CopyOnWriteArrayList<>(chatQueue);
+        chatQueue.clear();
+        return chatsToSend;
     }
 }

@@ -77,16 +77,6 @@
 	    <version>2.4</version>
 	</dependency>	
 	<dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>stomp-websocket</artifactId>
-        <version>2.3.4</version>
-    </dependency>
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-websocket</artifactId>
-	    <version>5.3.10</version>
-	</dependency>
-	<dependency>
     	<groupId>org.springframework.boot</groupId>
     	<artifactId>spring-boot-starter-data-jpa</artifactId>
     	<version>2.7.0</version>

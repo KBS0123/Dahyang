@@ -1,79 +1,34 @@
-package spring_Dahyang.chat.dto;
+package spring_Dahyang.chat.model;
 
-import lombok.*;
-import spring_Dahyang.chat_room.dto.ChatRoom;
-
-import org.springframework.data.annotation.CreatedDate;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+import spring_Dahyang.club.model.Club;
+import spring_Dahyang.user.model.User;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name = "chats") // 테이블 이름을 "chats"로 변경
 public class Chat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "chat_id")
-    private Long id;
+    private Long id; // 메시지 ID
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "room_id")
-    private ChatRoom room;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    private String sender;
+    @ManyToOne
+    @JoinColumn(name = "club_id")
+    private Club club;
 
-    private String senderEmail;
-
-    @Column(columnDefinition = "TEXT")
-    private String message;
-
-    @Column(columnDefinition = "TEXT")
-    private String imageUrl;
-
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime sendDate;
-
-    @Builder
-    public Chat(ChatRoom room, String sender, String senderEmail, String message, String imageUrl) {
-        this.room = room;
-        this.sender = sender;
-        this.senderEmail = senderEmail;
-        this.message = message;
-        this.imageUrl = imageUrl;
-        this.sendDate = LocalDateTime.now();
-    }
-
-    /**
-     * 채팅 생성
-     * @param room 채팅 방
-     * @param sender 보낸이
-     * @param senderEmail 보낸이 이메일
-     * @param message 내용
-     * @param imageUrl 이미지 URL
-     * @return Chat Entity
-     */
-    public static Chat createChat(ChatRoom room, String sender, String senderEmail, String message, String imageUrl) {
-        return Chat.builder()
-                .room(room)
-                .sender(sender)
-                .senderEmail(senderEmail)
-                .message(message)
-                .imageUrl(imageUrl)
-                .build();
-    }
-
-    /**
-     * 채팅 생성 (이미지 없이)
-     * @param room 채팅 방
-     * @param sender 보낸이
-     * @param senderEmail 보낸이 이메일
-     * @param message 내용
-     * @return Chat Entity
-     */
-    public static Chat createChat(ChatRoom room, String sender, String senderEmail, String message) {
-        return createChat(room, sender, senderEmail, message, null);
-    }
+    private String content;
+    private LocalDateTime timestamp;
 }
