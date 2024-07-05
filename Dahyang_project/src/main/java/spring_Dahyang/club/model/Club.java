@@ -1,35 +1,34 @@
 package spring_Dahyang.club.model;
 
 import lombok.Data;
-
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import lombok.AllArgsConstructor; //모든 멤버변수를 입력받는 생성자
-import lombok.NoArgsConstructor; //디폴트 생성자 처리
-
 import spring_Dahyang.user.model.User;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Club {
-	
-	private int clid;		// 모임방 번호
-	private int uid;		// 사용자 번호
-	private String title;	// 글제목
-	private String content;	// 글내용
-	private String notice;	// 공지글
-	private String img;		// 이미지
-	
-	@ManyToOne
-	private User creator;
-	
-	public Club(int uid, String title, String content, String notice, String img) {
-		this.uid = uid;
-		this.title = title;
-		this.content = content;
-		this.notice = notice;
-		this.img = img;
-	}
-	
+    @Id
+    private int clid;
+    private int uid;
+    private String title;
+    private String content;
+    private String notice;
+    private String img;
+
+    @ManyToOne
+    private User creator;
+
+    public Club(int uid, String title, String content, String notice, String img) {
+        this.uid = uid;
+        this.title = title;
+        this.content = content;
+        this.notice = notice;
+        this.img = img;
+    }
 }

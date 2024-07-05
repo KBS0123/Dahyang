@@ -1,55 +1,48 @@
 package spring_Dahyang.web.control;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import spring_Dahyang.chat.model.Chat; // Chat 클래스로 변경
-import spring_Dahyang.chat.service.ChatService; 
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+import spring_Dahyang.chat.model.ChatMessage;
+import spring_Dahyang.chat.service.ChatService;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Controller
-@RequestMapping("/chat")
 public class ChatController {
+    private final ChatService chatService;
+    private final CopyOnWriteArrayList<SseEmitter> emitters = new CopyOnWriteArrayList<>();
 
-    @Autowired
-    private ChatService chatService;
-
-    private final List<Chat> chatQueue = new CopyOnWriteArrayList<>();
-
-    @GetMapping("/room/{clubId}")
-    public String chatRoom(@PathVariable Long clubId, Model model) {
-        model.addAttribute("clubId", clubId);
-        return "chatRoom";
+    public ChatController(ChatService chatService) {
+        this.chatService = chatService;
     }
 
-    @GetMapping("/chats/{clubId}")
+    @PostMapping("/chat/send")
     @ResponseBody
-    public List<Chat> getChats(@PathVariable Long clubId) {
-        Club club = new Club();
-        club.setClid(clubId);
-        return chatService.getChatsForClub(club);
+    public void sendMessage(@RequestBody ChatMessage message) {
+        chatService.addMessage(message);
+        emitters.forEach(emitter -> {
+            try {
+                emitter.send(message, MediaType.APPLICATION_JSON);
+            } catch (IOException e) {
+                emitters.remove(emitter);
+            }
+        });
     }
 
-    @PostMapping("/chats")
-    @ResponseBody
-    public Chat sendChat(@RequestBody Chat chat) {
-        chat = chatService.saveChat(chat);
-        chatQueue.add(chat);
-        return chat;
+    @GetMapping("/chat/stream")
+    public SseEmitter streamMessages() {
+        SseEmitter emitter = new SseEmitter();
+        emitters.add(emitter);
+        emitter.onCompletion(() -> emitters.remove(emitter));
+        emitter.onTimeout(() -> emitters.remove(emitter));
+        return emitter;
     }
 
-    @GetMapping("/poll/{clubId}")
-    @ResponseBody
-    public List<Chat> pollChats(@PathVariable Long clubId) throws InterruptedException {
-        while (chatQueue.isEmpty()) {
-            Thread.sleep(1000);
-        }
-
-        List<Chat> chatsToSend = new CopyOnWriteArrayList<>(chatQueue);
-        chatQueue.clear();
-        return chatsToSend;
+    @GetMapping("/chat")
+    public String chatPage() {
+        return "chat"; // 이 부분이 InternalResourceViewResolver의 prefix와 suffix를 통해 /WEB-INF/views/chat.jsp로 매핑됩니다.
     }
 }

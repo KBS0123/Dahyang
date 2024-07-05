@@ -1,115 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Application</title>
+    <title>Chat Room</title>
+    <style>
+        /* 스타일링은 간단하게 */
+        .chat-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            height: 300px;
+            overflow-y: scroll;
+        }
+        .chat-message {
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Chat Application</h1>
-
-    <div>
-        <h2>Create Chat Room</h2>
-        <input type="text" id="roomName" placeholder="Room Name">
-        <button onclick="createRoom()">Create Room</button>
+    <h2>Chat Room</h2>
+    <div class="chat-container" id="chatContainer">
+        <!-- 서버에서 전달된 채팅 메시지 표시 -->
+        <c:forEach var="message" items="${messages}">
+            <div class="chat-message">${message.sender}: ${message.content}</div>
+        </c:forEach>
     </div>
-
-    <div>
-        <h2>Chat Rooms</h2>
-        <ul id="roomList">
-            <!-- JSP 코드로 반복문을 사용하여 채팅방 목록을 출력 -->
-            <c:forEach items="${rooms}" var="room">
-                <li onclick="loadChatRoom(${room.id}, '${room.name}')">${room.name}</li>
-            </c:forEach>
-        </ul>
-    </div>
-
-    <div id="chatSection" style="display:none;">
-        <h2>Chat Room: <span id="roomTitle"></span></h2>
-        <div id="chatMessages">
-            <!-- JSP 코드로 반복문을 사용하여 채팅 메시지 출력 -->
-            <c:forEach items="${messages}" var="message">
-                <div>${message.sender}: ${message.message}</div>
-                <c:if test="${message.imageUrl ne null}">
-                    <img src="${message.imageUrl}" style="width:100px;">
-                </c:if>
-            </c:forEach>
-        </div>
-        <form id="sendMessageForm" enctype="multipart/form-data">
-            <input type="hidden" id="roomTitleHidden" name="roomTitle" value="">
-            <input type="text" id="sender" name="sender" placeholder="Sender">
-            <input type="email" id="senderEmail" name="senderEmail" placeholder="Sender Email">
-            <input type="text" id="message" name="message" placeholder="Message">
-            <input type="file" id="image" name="image">
-            <button type="button" onclick="sendMessage()">Send Message</button>
-        </form>
-    </div>
+    <form id="chatForm" action="${pageContext.request.contextPath}/chat/send" method="post">
+        <input type="text" name="sender" placeholder="Your Name">
+        <input type="text" name="content" placeholder="Type your message">
+        <button type="submit">Send</button>
+    </form>
 
     <script>
-        async function createRoom() {
-            const roomName = document.getElementById('roomName').value;
-            const response = await fetch('/chats/rooms', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name: roomName })
-            });
-            if (response.ok) {
-                loadRooms();
+        const chatContainer = document.getElementById('chatContainer');
+        const chatForm = document.getElementById('chatForm');
+
+        // 채팅 메시지가 추가될 때마다 화면에 표시
+        function displayMessage(sender, content) {
+            const div = document.createElement('div');
+            div.classList.add('chat-message');
+            div.textContent = `${sender}: ${content}`;
+            chatContainer.appendChild(div);
+            chatContainer.scrollTop = chatContainer.scrollHeight; // 맨 아래로 스크롤
+        }
+
+        // 폼 제출 시 새로운 메시지 서버로 전송하지 않고, 페이지 리로딩
+        chatForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const sender = chatForm.sender.value.trim();
+            const content = chatForm.content.value.trim();
+            if (sender && content) {
+                displayMessage(sender, content);
+                chatForm.reset();
             }
-        }
-
-        async function loadRooms() {
-            const response = await fetch('/chats/rooms');
-            const rooms = await response.json();
-            const roomList = document.getElementById('roomList');
-            roomList.innerHTML = '';
-            rooms.forEach(room => {
-                const li = document.createElement('li');
-                li.textContent = room.name;
-                li.onclick = () => loadChatRoom(room.id, room.name);
-                roomList.appendChild(li);
-            });
-        }
-
-        async function loadChatRoom(roomId, roomName) {
-            document.getElementById('chatSection').style.display = 'block';
-            document.getElementById('roomTitle').textContent = roomName;
-            document.getElementById('roomTitleHidden').value = roomName;
-
-            const response = await fetch(`/chats/rooms/${roomId}/chats`);
-            const messages = await response.json();
-            const chatMessages = document.getElementById('chatMessages');
-            chatMessages.innerHTML = '';
-            messages.forEach(message => {
-                const div = document.createElement('div');
-                div.textContent = `${message.sender}: ${message.message}`;
-                if (message.imageUrl) {
-                    const img = document.createElement('img');
-                    img.src = message.imageUrl;
-                    img.style.width = '100px';
-                    div.appendChild(img);
-                }
-                chatMessages.appendChild(div);
-            });
-        }
-
-        async function sendMessage() {
-            const formData = new FormData(document.getElementById('sendMessageForm'));
-            const response = await fetch('/chats/create', {
-                method: 'POST',
-                body: formData
-            });
-            if (response.ok) {
-                loadChatRoom(0, document.getElementById('roomTitleHidden').value);
-            }
-        }
-
-        loadRooms();
+        });
     </script>
 </body>
 </html>
