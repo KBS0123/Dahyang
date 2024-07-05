@@ -29,7 +29,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="<c:url value='/views/board'/>">커뮤니티</a>
+          <a class="nav-link text-light" href="<c:url value='/views/club/write'/>">방만들기</a>
         </li>        
       </ul>
     </div>

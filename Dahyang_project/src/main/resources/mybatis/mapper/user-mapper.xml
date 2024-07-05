@@ -15,8 +15,7 @@
 	
 	<!-- 회원 등록 -->
 	<insert id="insert" parameterType="User">
-		insert into duser (USER_ID, EMAIL, PASSWORD, NICKNAME, BIRTHDAY, IMAGES)
-		values (duser_seq.nextval, #{email}, #{pwd}, #{nickname}, to_date(#{birthday}, 'yyyymmdd'), #{images})
+		insert into duser values (duser_seq.nextval, #{email}, #{pwd}, #{nickname}, to_date(#{birthday}, 'yyyymmdd'), #{images})
 	</insert>
 	
 	<!-- 회원 수정 -->
