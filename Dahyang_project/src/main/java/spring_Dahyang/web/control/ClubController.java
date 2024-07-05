@@ -24,7 +24,7 @@ import spring_Dahyang.club.repository.ClubMapper;
 import spring_Dahyang.club.repository.MemberMapper;
 
 @Controller
-@RequestMapping("/club")
+@RequestMapping("/views/club")
 public class ClubController {
 	
 	@Autowired
@@ -54,7 +54,7 @@ public class ClubController {
 				MemberMapper.insert(memid, clid, user.getUid());
 				List<Club> clubList = clubMapper.selectAll();
 				request.setAttribute("clubList", clubList);
-				return "redirect:/views/test";
+				return "redirect:/views/";
 			}
 		}
 		
@@ -86,11 +86,12 @@ public class ClubController {
 	public String postInsert(@RequestParam("img") MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
 	    // Board 객체 생성 및 필요한 데이터 설정
 		Club club = new Club();
+		club.setUid(Integer.parseInt(request.getParameter("uid")));
 		club.setTitle(request.getParameter("title"));
 		club.setContent(request.getParameter("content"));
-		club.setUid(Integer.parseInt(request.getParameter("uid")));
-	    
-	    // 파일 저장 및 파일명 설정
+		club.setNotice(request.getParameter("notice"));
+		
+		// 파일 저장 및 파일명 설정
 	    String imgFileName = null;
 	    if (file != null && !file.isEmpty()) {
 	        imgFileName = fileService.saveFile(file); // FileService의 구현체를 사용하여 파일 저장
@@ -100,12 +101,12 @@ public class ClubController {
 	    // 영화 정보를 데이터베이스에 저장
 	    int result = 0;
 	    try {
-	        result = clubMapper.insert(club); // boardMapper의 insert 메서드를 호출하여 저장
+	        result = clubMapper.insert(club);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
 	    
-	    return "redirect:/views/test";
+	    return "redirect:/views/";
 	}
 	
 	@GetMapping("/update/{clid}")
