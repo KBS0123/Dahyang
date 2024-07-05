@@ -21,7 +21,7 @@ import spring_Dahyang.user.model.User;
 import spring_Dahyang.user.repository.UserMapper;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/views/users")
 public class UserController { //유저정보를 가져와 실 정보인지 비교
 	@Autowired
 	private RegisterService registerService;
