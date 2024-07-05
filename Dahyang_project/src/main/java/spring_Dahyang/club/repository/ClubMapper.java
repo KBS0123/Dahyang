@@ -12,11 +12,17 @@ public interface ClubMapper {
 	public int update(Club club);
 	public int delete(int clid);
 	
+	public static int remove(int clid) {
+		return 0;
+	}
+	
 	@Select("select count(*) from dclub")
 	public int count();
 	
-	@Select("select * from dclub order by club_id desc")
+	@Select("select * from dclub")
 	public List<Club> selectAll();
+	
+	public List<Club> findClub(int clid);
 	
 	public Club selectById(int clid);
 	

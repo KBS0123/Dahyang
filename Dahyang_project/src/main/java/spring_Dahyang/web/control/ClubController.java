@@ -1,6 +1,7 @@
 package spring_Dahyang.web.control;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import spring_Dahyang.file.FileServiceImpl;
 import spring_Dahyang.user.model.User;
 import spring_Dahyang.club.model.Club;
 import spring_Dahyang.club.repository.ClubMapper;
+import spring_Dahyang.club.repository.MemberMapper;
 
 @Controller
 @RequestMapping("/club")
@@ -32,9 +34,42 @@ public class ClubController {
 	private ClubMapper clubMapper;
 	
 	@GetMapping("/{clid}")
-	public String getClubView(@PathVariable int clid, HttpSession session, Model model) {
+	public String getClubView(@PathVariable int clid, HttpServletRequest request, HttpSession session, Model model) {
 		Club club = clubMapper.selectById(clid);
+		User user = (User) session.getAttribute("user");
+		int memid = Integer.parseInt(request.getParameter("memid"));
 		model.addAttribute("club", club);
+		
+		List<Club> clubs = clubMapper.findClub(clid);
+		Club leaderId = clubMapper.selectById(clid);
+		
+		// 모임 신청
+		if (request.getMethod().equals("GET")) {
+			Club applyClub = clubs.get(0);
+			request.setAttribute("club", applyClub);			
+		} else {
+			if(user != null && leaderId.equals(user.getUid())) {
+				return "club_view";
+			} else {
+				MemberMapper.insert(memid, clid, user.getUid());
+				List<Club> clubList = clubMapper.selectAll();
+				request.setAttribute("clubList", clubList);
+				return "redirect:/views/test";
+			}
+		}
+		
+		// 모임 가입 기능
+		if(user != null && leaderId.equals(user.getUid())) {
+			Club registClub = new Club(user.getUid(), request.getParameter("title"), 
+					request.getParameter("context"), request.getParameter("notice"),
+					request.getParameter("img"));
+			
+			clubMapper.insert(registClub);
+			List<Club> clubList = clubMapper.selectAll();
+			request.setAttribute("clubList", clubList);
+			
+			return "club_view";
+		}
 		
 		return "club_view";
 	}
@@ -147,6 +182,22 @@ public class ClubController {
 				return "redirect:/views/test";
 			}
 		}
+		
+		return session.getServletContext().getContextPath() + "/views/test";
+	}
+	
+	// 모임 탈퇴 기능
+	@GetMapping("/remove/{uid}")
+	public String getRemoveMember(@PathVariable int clid, HttpSession session, Model model) {
+		User user = (User)session.getAttribute("user");
+		Club leaderId = clubMapper.selectById(clid);
+		
+		if(user != null && leaderId.equals(user.getUid())) {
+			if (MemberMapper.deleteClub(clid)) {
+				return "club_view";
+			}
+		}
+				
 		
 		return session.getServletContext().getContextPath() + "/views/test";
 	}
