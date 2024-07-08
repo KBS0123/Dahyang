@@ -1,78 +1,97 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<style>
-  .center-div {
-    max-width: 600px;
-    margin: 0 auto; /* ê°€ìš´ë° ì •ë ¬ */
-    padding: 20px; /* ë‚´ë¶€ ì—¬ë°± ì¶”ê°€ */
+<link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" type="text/css">
+<meta charset="EUC-KR">
+<title>signup</title>
+  <style>
+  h3 {
+    color: #75b64d;
   }
-</style>
-</head>
+   a {
+    text-decoration: none;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 8px 16px;
+    position: absolute; 
+    top: 40px; /* È­¸é »ó´Ü¿¡¼­ ¾Æ·¡·Î */
+    left: 680px; /* È­¸é ¿ŞÂÊ¿¡¼­¿À¸¥ÂÊÀ¸·Î */
+    z-index: 1000; /* ´Ù¸¥ ¿ä¼Òµéº¸´Ù À§¿¡ Ç¥½ÃµÇµµ·Ï ¼³Á¤ */
+    font-family: "Lucida Sans Unicode", "Arial Unicode MS";
+    font-size: 25px;
+    line-height: 30px;
+  }
 
-<body style="background-color:#2E2E2E">
-<c:import url="nav_top.jsp"></c:import>
-<div class="center-div">
-	<h5 align="center" class="mb-4">
-		<p class="text-white">íšŒì› ê°€ì…</p>
-	</h5>
-	<form style="align:center; " action="<c:url value='/views/users/register'/>" method="post">
-	  <div class="row mb-3">
-	    <label for="inputEmail3" class="col-sm-2 col-form-label"><p class="text-white">ì´ë©”ì¼</p></label>
-	    <div class="col-sm-10">
-	      <input type="email" class="form-control" id="email" name="email" placeholder="ì´ë©”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.">
-	    </div>
-	  </div>
-	  <div class="row mb-3">
-	    <label for="inputPassword3" class="col-sm-2 col-form-label"><p class="text-white">ë¹„ë°€ë²ˆí˜¸</p></label>
-	    <div class="col-sm-10">
-	      <input type="password" class="form-control" id="pwd" name="pwd" placeholder="ë¹„ë¹Œë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.">
-	    </div>
-	  </div>
-	  <div class="row mb-3">
-	    <label for="inputEmail3" class="col-sm-2 col-form-label"><p class="text-white">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</p></label>
-	    <div class="col-sm-10">
-	      <input type="password" class="form-control" id="repwd"  name="repwd" placeholder="ë¹„ë°€ë²ˆí˜¸ ì¬ì…ë ¥">
-	    </div>
-	  </div>
-	  <div class="row mb-3">
-	    <label for="inputEmail3" class="col-sm-2 col-form-label"><p class="text-white">ë‹‰ë„¤ì„</p></label>
-	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="nickname" name="nickname" placeholder="ë‹‰ë„¤ì„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.">
-	    </div>
-	  </div>
-	  <div class="row mb-3">
-	    <label for="inputEmail3" class="col-sm-2 col-form-label"><p class="text-white">ìƒë…„ì›”ì¼</p></label>
-	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="birthday" name="birthday" placeholder="ìƒë…„ì›”ì¼ 8ìë¦¬ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”. EX) 20000101">
-	    </div>
-	  </div>
-	  <c:if test="${not empty error }">
+  a:hover {
+    background-color: #ddd;
+    color: #75b64d;
+  }
+
+  .previous {
+    background-color: #fff;
+    color: #75b64d;
+  }
+
+  .round {
+    border-radius: 50%;
+  }
+  </style>
+</head>
+<body>
+	<div class="container">
+	
+	<!-- µÚ·Î°¡±â ¹öÆ°(À¯´ÏÄÚµå) -->
+	<a href="javascript:history.back()" class="previous round">&#8249;</a>
+	<!-- µÚ·Î°¡±â ¹öÆ°(À¯´ÏÄÚµå) -->
+	
+  <div class="screen">
+    <div class="screen__content">
+      <form class="login" action="<c:url value='/views/users/register'/>" method="post">
+       <h3>´Ù¾çÇÑ Ãë¹Ì, ´Ù¾çÇÑ ¸¸³².</h3>
+        <div class="login__field">
+          <i class="login__icon fas fa-user"></i>
+          <input type="email" class="login__input" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="login__field">
+          <i class="login__icon fas fa-lock"></i>
+          <input type="password" class="login__input" id="pwd" name="pwd" placeholder="Password" required>
+        </div>
+        <div class="login__field">
+          <i class="login__icon fas fa-lock"></i>
+          <input type="password" class="login__input" id="repwd" name="repwd" placeholder="Password Check" required>
+        </div>
+        <div class="login__field">
+          <i class="login__icon fas fa-user"></i>
+          <input type="text" class="login__input" id="nickname" name="nickname" placeholder="Nickname" required>
+        </div>
+        <div class="login__field">
+          <i class="login__icon fas fa-calendar-alt"></i>
+          <input type="text" class="login__input" id="birthday" name="birthday" placeholder="YYYYMMDD" required>
+        </div>
+        <input type="hidden" class="login__input" id="images" name="images">
+        <c:if test="${not empty error }">
 			<div align="center">
 	  			<span class="badge bg-danger" align="center" id="result">${error}</span>
 				<br><br>
 			</div>
 		</c:if>
-	  
-	  <div class="d-flex justify-content-between">
-	  	<a href="<c:url value='/views/login'/>">
-	    	<button type="submit" class="btn btn-success">íšŒì›ê°€ì…</button>
-	    </a>
-	    <div>
-			<a href="<c:url value='/views/login'/>">
-				<button type="button" class="btn btn-success">ì·¨ì†Œ</button>
-			</a>
-		</div>
-	  </div>
-	</form>
+        <button type="submit" class="button login__submit">
+          <span class="button__text">Sign Up</span>
+          <i class="button__icon fas fa-chevron-right"></i>
+        </button>
+      </form>
+    </div>
+    <div class="screen__background">
+      <span class="screen__background__shape screen__background__shape4"></span>
+      <span class="screen__background__shape screen__background__shape3"></span>    
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
+    </div>    
+  </div>
 </div>
-<c:import url="nav_bottom.jsp"></c:import>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
