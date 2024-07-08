@@ -45,7 +45,7 @@
 	<div class="container">
 	
 	<!-- 뒤로가기 버튼(유니코드) -->
-	<a href="javascript:history.back()" class="previous round">&#8249;</a>
+	<a href="<c:url value='/views/users/profile'/>" class="previous round">&#8249;</a>
 	<!-- 뒤로가기 버튼(유니코드) -->
 	
   <div class="screen">
