@@ -1,60 +1,84 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>login</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-	crossorigin="anonymous">
+<link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" type="text/css">
+<meta charset="EUC-KR">
+<title>Login</title>
+  <style>
+  h3 {
+    color: #75b64d;
+  }
+  a {
+    text-decoration: none;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 8px 16px;
+    position: absolute;
+    top: 40px; /* È­¸é »ó´Ü¿¡¼­ ¾Æ·¡*/
+    left: 680px; /* È­¸é ¿ŞÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î*/
+    z-index: 1000; /* ´Ù¸¥ ¿ä¼Òº¸´Ù À§¿¡ Ç¥½ÃµÇµµ·Ï ¼³Á¤ */
+    font-family: "Lucida Sans Unicode", "Arial Unicode MS";
+    font-size: 25px;
+    line-height: 30px;
+  }
+
+  a:hover {
+    background-color: #ddd;
+    color: #75b64d;
+  }
+
+  .previous {
+    background-color: #fff;
+    color: #75b64d;
+  }
+
+  .round {
+    border-radius: 50%;
+  }
+  </style>
 </head>
-<body style="background-color:#2E2E2E">
-	<c:import url="nav_top.jsp"></c:import>
-	<div class="container mb-4">
-		<div class="row justify-content-center mb-3">
-			<div class="col-md-6 mb-3">
-				<h4 class="text-white" align="center">ë¡œê·¸ì¸</h4>
-					<form class="login-form" action="<c:url value='/views/login'/>"
-						method="post">
-						<div class="mb-3">
-							<label for="email" class="form-label"><p class="text-white">ì•„ì´ë””</p></label>
-							<input type="text" class="form-control" name="email" id="email" placeholder="ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.">
-						</div>
-						<div class="mb-3">
-							<label for="password" class="form-label"><p class="text-white">ë¹„ë°€ë²ˆí˜¸</p></label> 
-							<input type="password" class="form-control" name="pwd" id="pwd" placeholder="ë¹„ë¹Œë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.">
-						</div>
-						<c:if test="${not empty error }">
-						<div align="center">
-							<span class="badge bg-danger" align="center" id="result">${error }</span>
-								<br><br>
-						</div>
-							
-						</c:if>
-						<div class="d-flex justify-content-between">						
-							<button type="submit" class="btn btn-success mr-2">ë¡œê·¸ì¸</button>
-							<div>
-								<p class="text-white">
-									ì•„ì§ íšŒì›ì´ ì•„ë‹Œê°€ìš”?
-									<a href="<c:url value='/views/users/register'/>">
-										<button type="button" class="btn btn-success mr-2">íšŒì›ê°€ì…</button>
-									</a>
-								</p>
-							</div>
-						</div>
-					</form>
-			</div>
-		</div>
-	</div>
-	<c:import url="nav_bottom.jsp"></c:import>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-		crossorigin="anonymous"></script>
+<body>
+	<div class="container">
+	
+	<!-- µÚ·Î°¡±â ¹öÆ°(À¯´ÏÄÚµå) -->
+	<a href="javascript:history.back()" class="previous round">&#8249;</a>
+	<!-- µÚ·Î°¡±â ¹öÆ°(À¯´ÏÄÚµå) -->
+	
+  <div class="screen">
+    <div class="screen__content">
+      <form class="login" action="<c:url value='/views/login'/>" method="post">
+       <h3>´Ù¾çÇÑ Ãë¹Ì, ´Ù¾çÇÑ ¸¸³².</h3>
+        <div class="login__field">
+          <i class="login__icon fas fa-user"></i>
+          <input type="email" class="login__input" name="email" id="email" placeholder="Email">
+        </div>
+        <div class="login__field">
+          <i class="login__icon fas fa-lock"></i>
+          <input type="password" class="login__input" name="pwd" id="pwd" placeholder="Password">
+        </div>
+        <c:if test="${not empty error }">
+			<div align="center">
+				<span class="badge bg-danger" align="center" id="result">${error }</span>
+					<br><br>
+			</div>					
+		</c:if>
+        <button type="submit" class="button login__submit">
+          <span class="button__text">LogIn</span>
+          <i class="button__icon fas fa-chevron-right"></i>
+        </button>       
+      </form>
+    </div>
+    <div class="screen__background">
+      <span class="screen__background__shape screen__background__shape4"></span>
+      <span class="screen__background__shape screen__background__shape3"></span>    
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
+    </div>
+  </div>
+</div>
 </body>
 </html>
