@@ -19,7 +19,7 @@
 	  </ul>
 	  <ul>
 	    <li>
-	      <a>
+	      <a class="active" href="<c:url value='/views/club/list'/>">
         <svg><use xlink:href="#bookmark-icon"></use></svg>
       </a>
     </li>
@@ -33,7 +33,7 @@
   </ul>
   <ul>
     <li>
-      <a href="<c:url value='/views/users/profile'/>">
+      <a class="active" href="<c:url value='/views/users/profile'/>">
     	<svg><use xlink:href="#user-icon"></use></svg>
 	  </a>
     </li>

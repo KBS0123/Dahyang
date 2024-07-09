@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import spring_Dahyang.file.FileService;
 import spring_Dahyang.file.FileServiceImpl;
@@ -33,45 +34,19 @@ public class ClubController {
 	@Autowired
 	private ClubMapper clubMapper;
 	
+	@GetMapping("/list")
+	public ModelAndView getClubView() {
+		ModelAndView mav = new ModelAndView("club_list");
+		mav.addObject("clubs", clubMapper.selectAll());
+		return mav;
+	}
+	
 	@GetMapping("/{clid}")
 	public String getClubView(@PathVariable int clid, HttpServletRequest request, HttpSession session, Model model) {
 		Club club = clubMapper.selectById(clid);
-		User user = (User) session.getAttribute("user");
-		int memid = Integer.parseInt(request.getParameter("memid"));
 		model.addAttribute("club", club);
 		
-		List<Club> clubs = clubMapper.findClub(clid);
-		Club leaderId = clubMapper.selectById(clid);
-		
-		// 모임 신청
-		if (request.getMethod().equals("GET")) {
-			Club applyClub = clubs.get(0);
-			request.setAttribute("club", applyClub);			
-		} else {
-			if(user != null && leaderId.equals(user.getUid())) {
-				return "club_view";
-			} else {
-				MemberMapper.insert(memid, clid, user.getUid());
-				List<Club> clubList = clubMapper.selectAll();
-				request.setAttribute("clubList", clubList);
-				return "redirect:/views/";
-			}
-		}
-		
-		// 모임 가입 기능
-		if(user != null && leaderId.equals(user.getUid())) {
-			Club registClub = new Club(user.getUid(), request.getParameter("title"), 
-					request.getParameter("context"), request.getParameter("notice"),
-					request.getParameter("img"));
-			
-			clubMapper.insert(registClub);
-			List<Club> clubList = clubMapper.selectAll();
-			request.setAttribute("clubList", clubList);
-			
-			return "club_view";
-		}
-		
-		return "club_view";
+		return "club";
 	}
 	
 	@GetMapping("/write")
@@ -195,7 +170,7 @@ public class ClubController {
 		
 		if(user != null && leaderId.equals(user.getUid())) {
 			if (MemberMapper.deleteClub(clid)) {
-				return "club_view";
+				return "club";
 			}
 		}
 				
