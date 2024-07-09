@@ -49,7 +49,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     <!--페이지 내용-->
     <div class="page">
       <div class="profile">
-      <c:if test="${empty kakaoId and empty user}">
+      <c:if test="${empty kakao_id and empty user}">
         <div class="profile-img">
           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
         </div>
@@ -79,11 +79,11 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 		</div>
 	  </c:if>
 	  
-      <c:if test="${not empty user or not empty kakaoId}">
+      <c:if test="${not empty user or not empty kakao_id}">
         <div class="profile-img">
           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
         </div>
-        <h2>${user.nickname}</h2>
+        <h2>${user.nickname}${kakao_nickname}</h2>
     
         <div id="container">
 		  <button class="learn-more">
@@ -107,7 +107,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 		<br/>
          <p>상세정보</p>
         <div class="profile-details">
-          <p><span>Email:</span> ${user.email}</p>
+          <p><span>Email:</span> ${user.email}${kakao_email}</p>
           <p><span>관심분야:</span> 코딩, 디자인, 여행</p>
         </div>
       </c:if>

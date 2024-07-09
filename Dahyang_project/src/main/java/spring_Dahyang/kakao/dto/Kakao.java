@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Kakao {
 	
-	private Long kakaoId;
-	private String nickname;
+	private Long kakao_id;
+	private String kakao_nickname;
+	private String kakao_email;
 
 }

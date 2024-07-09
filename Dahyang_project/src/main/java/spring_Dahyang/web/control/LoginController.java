@@ -84,14 +84,16 @@ public class LoginController {
     	System.out.println("accessToken: "+access_Token);
     	System.out.println("code:"+ code);
     	System.out.println("Common Controller:"+ userInfo);
-    	System.out.println("nickname: "+ userInfo.getNickname());
+    	System.out.println("nickname: "+ userInfo.getKakao_nickname());
+    	System.out.println("email: "+ userInfo.getKakao_email());
     	
     	
     	//세션에 담기
-    	if (userInfo.getNickname() != null) {
-    	     session.setAttribute("nickname", userInfo.getNickname());
+    	if (userInfo.getKakao_id() != null) {
+    	     session.setAttribute("kakao_nickname", userInfo.getKakao_nickname());
     	     session.setAttribute("access_Token", access_Token);
-    	     session.setAttribute("kakaoId", userInfo.getKakaoId());
+    	     session.setAttribute("kakao_id", userInfo.getKakao_id());
+    	     session.setAttribute("kakao_email", userInfo.getKakao_email());
     	}
             
         return "main";
