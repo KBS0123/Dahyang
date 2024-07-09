@@ -156,15 +156,19 @@ public class LoginService {
             //파싱된 json데이터를 string에 담기
             //properties
             String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+            String img = properties.getAsJsonObject().get("profile_image").getAsString();
             String email = kakao_account.getAsJsonObject().get("email").getAsString();
             
             System.out.println("id: " + id);
             System.out.println("nickname: " + nickname);
+            System.out.println("img: " + img);
+            System.out.println("email: " + email);
             
             //setter이용하여 KakaoVO에 담기 
             userInfo.setKakao_id(id);
             userInfo.setKakao_nickname(nickname);
             userInfo.setKakao_email(email);
+            userInfo.setKakao_img(img);
 
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

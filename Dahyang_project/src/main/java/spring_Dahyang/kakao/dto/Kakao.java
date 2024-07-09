@@ -12,5 +12,6 @@ public class Kakao {
 	private Long kakao_id;
 	private String kakao_nickname;
 	private String kakao_email;
+	private String kakao_img;
 
 }

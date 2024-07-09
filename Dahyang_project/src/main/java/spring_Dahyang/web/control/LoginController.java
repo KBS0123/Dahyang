@@ -86,6 +86,7 @@ public class LoginController {
     	System.out.println("Common Controller:"+ userInfo);
     	System.out.println("nickname: "+ userInfo.getKakao_nickname());
     	System.out.println("email: "+ userInfo.getKakao_email());
+    	System.out.println("img: "+ userInfo.getKakao_img());
     	
     	
     	//세션에 담기
@@ -94,6 +95,7 @@ public class LoginController {
     	     session.setAttribute("access_Token", access_Token);
     	     session.setAttribute("kakao_id", userInfo.getKakao_id());
     	     session.setAttribute("kakao_email", userInfo.getKakao_email());
+    	     session.setAttribute("kakao_img", userInfo.getKakao_img());
     	}
             
         return "main";
@@ -102,7 +104,7 @@ public class LoginController {
 	@GetMapping("/views/logout")
 	public String getLogout(HttpSession session) {
 		session.invalidate();
-		return "login";
+		return "profile";
 		
 	}
 

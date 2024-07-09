@@ -80,36 +80,80 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 	  </c:if>
 	  
       <c:if test="${not empty user or not empty kakao_id}">
-        <div class="profile-img">
-          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
-        </div>
-        <h2>${user.nickname}${kakao_nickname}</h2>
-    
-        <div id="container">
-		  <button class="learn-more">
-		    <span class="circle" aria-hidden="true">
-		      <span class="icon arrow"></span>
-		    </span>
-		    <span class="button-text">프로필 수정</span>
-		  </button>
-		</div>
-        
-        <div id="container">
-        <a href="<c:url value='/views/logout'/>">
-		  <button class="learn-more">
-		    <span class="circle" aria-hidden="true">
-		      <span class="icon arrow"></span>
-		    </span>
-		    <span class="button-text">로그아웃</span>
-		  </button>
-		</a>
-		</div>
-		<br/>
-         <p>상세정보</p>
-        <div class="profile-details">
-          <p><span>Email:</span> ${user.email}${kakao_email}</p>
-          <p><span>관심분야:</span> 코딩, 디자인, 여행</p>
-        </div>
+      	<c:if test="${not empty user}">
+			<c:choose>
+				<c:when test="${not empty user.images}">
+		        	<div class="profile-img">
+		          		<img src="${user.images}">
+		        	</div>
+	        	</c:when>
+	        	<c:otherwise>
+	        		<div class="profile-img">
+		          		<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+		        	</div>
+	        	</c:otherwise>
+	        </c:choose>
+	        <h2>${user.nickname}</h2>
+	    
+	        <div id="container">
+			  <button class="learn-more">
+			    <span class="circle" aria-hidden="true">
+			      <span class="icon arrow"></span>
+			    </span>
+			    <span class="button-text">프로필 수정</span>
+			  </button>
+			</div>
+	        
+	        <div id="container">
+	        <a href="<c:url value='/views/logout'/>">
+			  <button class="learn-more">
+			    <span class="circle" aria-hidden="true">
+			      <span class="icon arrow"></span>
+			    </span>
+			    <span class="button-text">로그아웃</span>
+			  </button>
+			</a>
+			</div>
+			<br/>
+	         <p>상세정보</p>
+	        <div class="profile-details">
+	          <p><span>Email:</span> ${user.email}</p>
+	          <p><span>관심분야:</span> 코딩, 디자인, 여행</p>
+	        </div>
+	    </c:if>
+	    
+	    <c:if test="${not empty kakao_id}">
+	        <div class="profile-img">
+	          <img src="${kakao_img}">
+	        </div>
+	        <h2>${kakao_nickname}</h2>
+	    
+	        <div id="container">
+			  <button class="learn-more">
+			    <span class="circle" aria-hidden="true">
+			      <span class="icon arrow"></span>
+			    </span>
+			    <span class="button-text">프로필 수정</span>
+			  </button>
+			</div>
+	        
+	        <div id="container">
+	        <a href="<c:url value='/views/logout'/>">
+			  <button class="learn-more">
+			    <span class="circle" aria-hidden="true">
+			      <span class="icon arrow"></span>
+			    </span>
+			    <span class="button-text">로그아웃</span>
+			  </button>
+			</a>
+			</div>
+			<br/>
+	         <p>상세정보</p>
+	        <div class="profile-details">
+	          <p><span>Email:</span> ${kakao_email}</p>
+	          <p><span>관심분야:</span> 코딩, 디자인, 여행</p>
+	        </div>
+	    </c:if>
       </c:if>
       </div>
     </div>
