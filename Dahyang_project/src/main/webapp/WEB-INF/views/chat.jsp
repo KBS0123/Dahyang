@@ -9,54 +9,50 @@
     <title>Chat Room</title>
     <style>
         /* 스타일링은 간단하게 */
-        .chat-container {
+        .chat-box {
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 10px;
-            height: 300px;
-            overflow-y: scroll;
-        }
-        .chat-message {
-            margin-bottom: 5px;
+            max-width: 500px;
         }
     </style>
 </head>
 <body>
-    <h2>Chat Room</h2>
-    <div class="chat-container" id="chatContainer">
-        <!-- 서버에서 전달된 채팅 메시지 표시 -->
-        <c:forEach var="message" items="${messages}">
-            <div class="chat-message">${message.sender}: ${message.content}</div>
-        </c:forEach>
+    <h1>Chat Room</h1>
+    <div id="chat-box">
+        <!-- 여기에 채팅 메시지 출력 -->
     </div>
-    <form id="chatForm" action="${pageContext.request.contextPath}/chat/send" method="post">
-        <input type="text" name="sender" placeholder="Your Name">
-        <input type="text" name="content" placeholder="Type your message">
-        <button type="submit">Send</button>
+    
+    <!-- 채팅 입력 폼 -->
+    <form id="chat-form">
+        <input type="text" id="content" name="content" placeholder="채팅을 입력하세요">
+        <input type="submit" value="전송">
     </form>
-
+    
+    <!-- SSE 스크립트 -->
     <script>
-        const chatContainer = document.getElementById('chatContainer');
-        const chatForm = document.getElementById('chatForm');
-
-        // 채팅 메시지가 추가될 때마다 화면에 표시
-        function displayMessage(sender, content) {
-            const div = document.createElement('div');
-            div.classList.add('chat-message');
-            div.textContent = `${sender}: ${content}`;
-            chatContainer.appendChild(div);
-            chatContainer.scrollTop = chatContainer.scrollHeight; // 맨 아래로 스크롤
-        }
-
-        // 폼 제출 시 새로운 메시지 서버로 전송하지 않고, 페이지 리로딩
-        chatForm.addEventListener('submit', function(event) {
+        var eventSource = new EventSource('/chat/stream');
+        
+        eventSource.onmessage = function(event) {
+            var message = JSON.parse(event.data);
+            var chatBox = document.getElementById('chat-box');
+            var chatMessageElement = document.createElement('div');
+            chatMessageElement.classList.add('chat-box');
+            chatMessageElement.textContent = message.nickname + ": " + message.content;
+            chatBox.appendChild(chatMessageElement);
+        };
+        
+        document.getElementById('chat-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            const sender = chatForm.sender.value.trim();
-            const content = chatForm.content.value.trim();
-            if (sender && content) {
-                displayMessage(sender, content);
-                chatForm.reset();
-            }
+            var content = document.getElementById('content').value;
+            var senderId = 1; // 임시로 1번 사용자로 설정
+            var clubId = 1; // 임시로 1번 모임방으로 설정
+            
+            fetch('/chat/send?senderId=' + senderId + '&clubId=' + clubId + '&content=' + content, {
+                method: 'POST'
+            }).then(function(response) {
+                document.getElementById('content').value = '';
+            });
         });
     </script>
 </body>
