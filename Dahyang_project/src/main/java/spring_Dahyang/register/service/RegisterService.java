@@ -14,10 +14,10 @@ public class RegisterService {
 	private UserMapper userMapper;
 	
 	public void authenticate(Register reg) {
-		// 아이디가 이미 존재하는지 확인
-	    User user = userMapper.selectByUid(reg.getUid());
+		// 이메일이 이미 존재하는지 확인
+	    User user = userMapper.selectByEmail(reg.getEmail());
 	    if (user != null) {
-	        reg.setError("아이디가 이미 존재합니다.");
+	        reg.setError("이메일이 이미 존재합니다.");
 	        return;
 	    }
 
@@ -27,9 +27,9 @@ public class RegisterService {
 	        return;
 	    }
 		
-	    // 아이디가 비어있는지 확인하고, 비어있으면 에러 설정
-	    if (reg.getUid() ==0) {
-	        reg.setError("아이디를 입력하세요.");
+	    // 이메일이 비어있는지 확인하고, 비어있으면 에러 설정
+	    if (reg.getEmail().isEmpty()) {
+	        reg.setError("이메일을 입력하세요.");
 	        return;
 	    }
 
@@ -48,12 +48,6 @@ public class RegisterService {
 	    // 닉네임이 비어있는지 확인하고, 비어있으면 에러 설정
 	    if (reg.getNickname().isEmpty()) {
 	        reg.setError("닉네임을 입력하세요.");
-	        return;
-	    }
-
-	    // 이메일이 비어있는지 확인하고, 비어있으면 에러 설정
-	    if (reg.getEmail().isEmpty()) {
-	        reg.setError("이메일을 입력하세요.");
 	        return;
 	    }
 
