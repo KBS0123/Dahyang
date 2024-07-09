@@ -49,7 +49,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     <!--페이지 내용-->
     <div class="page">
       <div class="profile">
-      <c:if test="${empty user}">
+      <c:if test="${empty kakaoId and empty user}">
         <div class="profile-img">
           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
         </div>
@@ -79,7 +79,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 		</div>
 	  </c:if>
 	  
-      <c:if test="${islogin == true && not empty user}">
+      <c:if test="${not empty user or not empty kakaoId}">
         <div class="profile-img">
           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
         </div>
