@@ -105,6 +105,7 @@
 		         </c:forEach>
 	        </div>
         </div>
+        <c:import url="navbar.jsp"></c:import>
     </div>
 </body>
 </html>

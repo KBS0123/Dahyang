@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +12,16 @@
 <body>
     <div class="container">
         <div class="navbar">
-            <span class="back-arrow">&lt;</span>
+        	<a href="<c:url value='/views/club/list'/>">
+            	<span class="back-arrow">&lt;</span>
+            </a>
             <span class="group-name">${club.title}</span>
         </div>
         
         <div class="content">
-            <div class="image-placeholder"></div>
+            <div class="image-placeholder">
+            	<img src="${club.img}">
+            </div>
             <h2 class="group-title">${club.title}</h2>
             <p class="status">현재 멤버를 모집 중인 모임입니다.</p>
             
