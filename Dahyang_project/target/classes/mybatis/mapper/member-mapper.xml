@@ -17,7 +17,7 @@
 	
 	<!-- 모임방 멤버 삭제 -->
 	<delete id="delete" parameterType="Member">
-		delete from dclub_members where member_level=#{memid} and club_id=#{clid} and user_id=#{uid}
+		delete from dclub_members where memeber_level=#{memid} and club_id=#{clid} and user_id=#{uid}
 	</delete>
 	
 	<!-- 모임방 멤버 탈퇴 -->
@@ -25,8 +25,12 @@
 		delete from dclub_members where club_id=#{clid}
 	</delete>
 	
-	<select id="findMember" parameterType="boolean">
+	<select id="findMember" parameterType="boolean" resultMap="memberResultMap">
 		select * from dclub_members where club_id=#{clid} and user_id=#{uid}
+	</select>
+	
+	<select id="findMembers" parameterType="int" resultMap="memberResultMap">
+		select user_id from dclub_members where club_id=#{clid}
 	</select>
 	
 	<!-- 모임방 멤버 리스트 -->

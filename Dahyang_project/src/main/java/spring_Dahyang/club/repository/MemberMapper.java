@@ -20,6 +20,8 @@ public interface MemberMapper {
 		return false;
 	}
 	
+	public List<Member> findMembers(int clid);
+	
 	public static boolean deleteClub(int clid) {
 		if (deleteMember(clid) > 0) {
 			if (ClubMapper.remove(clid) > 0) {
