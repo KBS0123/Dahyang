@@ -43,8 +43,27 @@
                 </div>
             </div>
         </div>
-        
-        <button class="apply-button">신청하기</button>
+        <c:choose>
+	        <c:when test="${empty user}">
+		        <a href="<c:url value='/views/users/profile'/>">
+		        	<button class="apply-button">신청하기</button>
+		        </a>
+		    </c:when>
+		    <c:when test="${not empty user}">
+		        <c:forEach var="m" items="${member}">
+			        <c:if test="${m.uid == user.uid}">
+			            <form action="<c:url value='/views/club/${club.clid}'/>" method="post">
+			                <button type="submit" class="apply-button">신청하기</button>
+			            </form>
+			        </c:if>
+			    </c:forEach>
+		    </c:when>
+		    <c:otherwise>
+	        	<div class="profile-img">
+		          	<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+		        </div>
+	        </c:otherwise>
+	    </c:choose>
     </div>
 </body>
 </html>

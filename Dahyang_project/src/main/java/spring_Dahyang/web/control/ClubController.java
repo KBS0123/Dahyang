@@ -47,10 +47,32 @@ public class ClubController {
 	
 	@GetMapping("/{clid}")
 	public String getClubView(@PathVariable int clid, HttpServletRequest request, HttpSession session, Model model) {
+		User user = (User)session.getAttribute("user");
 		Club club = clubMapper.selectById(clid);
+		List<Member> member = memberMapper.findMembers(clid);
 		model.addAttribute("club", club);
+		model.addAttribute("member", member);
 		
 		return "club";
+	}
+	
+	@PostMapping("/{clid}")
+	public String postClubMember(@PathVariable int clid, HttpServletRequest request, HttpSession session, Model model) {
+		User user = (User)session.getAttribute("user");
+		
+		try {
+	        Member member = new Member();
+	        member.setClid(clid);
+	        member.setUid(user.getUid());
+	        
+	        memberMapper.insert(member);
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return "redirect:/views/";
+		
 	}
 	
 	@GetMapping("/write")
