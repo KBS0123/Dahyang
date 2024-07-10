@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring_Dahyang.feed.repository.FeedMapper">
+	
+	<resultMap type="Feed" id="feedResultMap">
+		<result property="fid" column="PHEED_ID" />
+		<result property="clid" column="CLUB_ID" />
+		<result property="uid" column="USER_ID" />
+		<result property="writer" column="WRITER" />
+		<result property="content" column="CONTENT" />
+		<result property="img" column="IMAGES" />
+	</resultMap>
+	
+	<!-- 피드 등록 -->
+	<insert id="insert" parameterType="Feed">
+		insert into dpheed values (dpheed_seq.nextval, #{fid}, #{clid}, #{uid}, #{writer}, #{content}, #{img})
+	</insert>
+	
+	<!-- 피드 수정 -->
+	<update id="update" parameterType="Feed">
+		update dpheed set content=#{content}, images=#{img} where pheed_id=#{fid}
+	</update>
+	
+	<!-- 피드 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from dpheed where pheed_id=#{fid}
+	</delete>
+	
+	<select id="selectAll" parameterType="int" resultMap="feedResultMap">
+		select * from dpheed where club_id=#{clid}
+	</select>
+	
+	<!-- 피드 선택 -->
+	<select id="selectById" parameterType="int" resultMap="feedResultMap">
+		select * from dpheed where pheed_id=#{fid}
+	</select>
+	
+</mapper>

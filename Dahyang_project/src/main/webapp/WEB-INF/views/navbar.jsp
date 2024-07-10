@@ -40,7 +40,7 @@
   </ul>
   <ul>
     <li>
-      <a>
+      <a class="active" href="<c:url value='/views/club/${club.clid}/feed'/>">
         <svg><use xlink:href="#settings-icon"></use></svg>
       </a>
     </li>
