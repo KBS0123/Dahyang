@@ -3,32 +3,23 @@ package spring_Dahyang.chat.model;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
-
 import spring_Dahyang.club.model.Club;
-import spring_Dahyang.user.model.User;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "chats") // 테이블 이름을 "chats"로 변경
 public class Chat {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 메시지 ID
+    private int chatId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "club_id")
+    @JoinColumn(name = "club_id", nullable = false)
     private Club club;
 
-    private String content;
-    private LocalDateTime timestamp;
+    @OneToMany(mappedBy = "chat")
+    private List<ChatMessage> messages;
 }

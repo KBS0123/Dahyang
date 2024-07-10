@@ -1,63 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Room</title>
-    <style>
-        /* 스타일링은 간단하게 */
-        .chat-container {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-            height: 300px;
-            overflow-y: scroll;
-        }
-        .chat-message {
-            margin-bottom: 5px;
-        }
-    </style>
+    <title>Chat</title>
 </head>
 <body>
-    <h2>Chat Room</h2>
-    <div class="chat-container" id="chatContainer">
-        <!-- 서버에서 전달된 채팅 메시지 표시 -->
-        <c:forEach var="message" items="${messages}">
-            <div class="chat-message">${message.sender}: ${message.content}</div>
-        </c:forEach>
+    <div>
+        <input type="text" id="message" placeholder="Enter message" />
+        <button onclick="sendMessage()">Send</button>
     </div>
-    <form id="chatForm" action="${pageContext.request.contextPath}/chat/send" method="post">
-        <input type="text" name="sender" placeholder="Your Name">
-        <input type="text" name="content" placeholder="Type your message">
-        <button type="submit">Send</button>
-    </form>
+    <div id="messages"></div>
 
     <script>
-        const chatContainer = document.getElementById('chatContainer');
-        const chatForm = document.getElementById('chatForm');
+        const contextPath = '<%= request.getContextPath() %>';
+        const userId = <%= request.getAttribute("userId") %>;
+        const clid = <%= request.getAttribute("clid") %>;
 
-        // 채팅 메시지가 추가될 때마다 화면에 표시
-        function displayMessage(sender, content) {
-            const div = document.createElement('div');
-            div.classList.add('chat-message');
-            div.textContent = `${sender}: ${content}`;
-            chatContainer.appendChild(div);
-            chatContainer.scrollTop = chatContainer.scrollHeight; // 맨 아래로 스크롤
+        function connectSSE(clid) {
+            const eventSource = new EventSource(contextPath + '/chat/stream/' + clid);
+            eventSource.onmessage = function(event) {
+                showMessage(JSON.parse(event.data).content);
+            };
+            eventSource.onerror = function(event) {
+                console.error('EventSource failed:', event);
+                eventSource.close();
+            };
         }
 
-        // 폼 제출 시 새로운 메시지 서버로 전송하지 않고, 페이지 리로딩
-        chatForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const sender = chatForm.sender.value.trim();
-            const content = chatForm.content.value.trim();
-            if (sender && content) {
-                displayMessage(sender, content);
-                chatForm.reset();
+        function sendMessage() {
+            const messageContent = document.getElementById('message').value;
+            if (!messageContent.trim()) {
+                return; // 내용이 비어있으면 전송하지 않음
             }
-        });
+
+            fetch(contextPath + '/chat/send?userId=' + userId + '&clid=' + clid + '&content=' + encodeURIComponent(messageContent), {
+                method: 'POST'
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('message').value = ''; // 메시지 전송 후 입력란 비우기
+                } else {
+                    console.error('Message send failed:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Error sending message:', error);
+            });
+        }
+
+        function showMessage(message) {
+            const messages = document.getElementById('messages');
+            const messageElement = document.createElement('div');
+            messageElement.innerText = message;
+            messages.appendChild(messageElement);
+        }
+
+        connectSSE(clid);
     </script>
 </body>
 </html>

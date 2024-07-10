@@ -15,6 +15,7 @@
 		<package name="spring_Dahyang.user.model"/>
 		<package name="spring_Dahyang.club.model"/>
 		<package name="spring_Dahyang.feed.model"/>
+		<package name="spring_Dahyang.chat.model"/>
 	</typeAliases>
 
 </configuration>

@@ -1,5 +1,7 @@
 package spring_Dahyang.user.repository;
 import java.util.List;
+import java.util.Optional;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -20,4 +22,5 @@ public interface UserMapper {
 	public int delete(int uid);
 	public User selectByUid(int uid);
 	public User selectByEmail(String email);
+	public Optional<User> findById(int uid);
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring_Dahyang.chat.repository.ChatRepository">
+	
+	<resultMap type="Chat" id="chatResultMap">
+		<result property="clid" column="CLUB_ID" />
+		<result property="chatId" column="CHAT_ID" />
+	</resultMap>
+	
+	<!-- 모임방 등록 -->
+	<insert id="insert" parameterType="Chat">
+		insert into dchat values (dchat_seq.nextval, #{clid})
+	</insert>
+	
+	<!-- 모임방 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from dchat where chat_id=#{clid}
+	</delete>
+	
+	<delete id="remove" parameterType="int">
+		delete from dchat where chat_id=#{clid}
+	</delete>
+	
+	<select id="findChat" parameterType="int">
+		select * from dchat where chat_id=#{chatId}
+	</select>
+	
+	<!-- 모임방 선택 -->
+	<select id="selectById" parameterType="int" resultMap="chatResultMap">
+		select * from dchat where chat_id=#{clid}
+	</select>
+	
+</mapper>
