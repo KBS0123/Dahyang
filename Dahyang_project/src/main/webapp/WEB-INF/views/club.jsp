@@ -46,23 +46,34 @@
         <c:choose>
 	        <c:when test="${empty user}">
 		        <a href="<c:url value='/views/users/profile'/>">
-		        	<button class="apply-button">신청하기</button>
+		        	<button class="apply-button">가입하기</button>
 		        </a>
 		    </c:when>
-		    <c:when test="${not empty user}">
-		        <c:forEach var="m" items="${member}">
-			        <c:if test="${m.uid == user.uid}">
-			            <form action="<c:url value='/views/club/${club.clid}'/>" method="post">
-			                <button type="submit" class="apply-button">신청하기</button>
-			            </form>
-			        </c:if>
-			    </c:forEach>
-		    </c:when>
 		    <c:otherwise>
-	        	<div class="profile-img">
-		          	<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
-		        </div>
-	        </c:otherwise>
+		        <!-- 기본적으로 버튼을 표시하도록 설정 -->
+		        <c:set var="showButton" value="true" />
+		
+		        <c:forEach var="m" items="${member}">
+		            <!-- 만약 회원의 uid가 사용자의 uid와 일치한다면 버튼을 표시하지 않음 -->
+		            <c:if test="${m.uid == user.uid}">
+		                <c:set var="showButton" value="false" />
+		            </c:if>
+		        </c:forEach>
+		
+		        <!-- showButton 변수가 true일 때만 버튼을 표시 -->
+		        <c:if test="${showButton}">
+		            <form action="<c:url value='/views/club/${club.clid}'/>" method="post">
+		                <button type="submit" class="apply-button">가입하기</button>
+		            </form>
+		        </c:if>
+		
+		        <!-- 로그인된 사용자의 uid가 member 리스트에 포함된 경우 프로필 이미지 표시 -->
+		        <c:forEach var="m" items="${member}">
+		            <c:if test="${m.uid == user.uid}">
+		                <c:import url="navbar.jsp"></c:import>
+		            </c:if>
+		        </c:forEach>
+		    </c:otherwise>
 	    </c:choose>
     </div>
 </body>

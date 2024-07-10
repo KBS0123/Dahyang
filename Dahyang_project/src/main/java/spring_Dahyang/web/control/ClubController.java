@@ -71,7 +71,7 @@ public class ClubController {
 	        e.printStackTrace();
 	    }
 	    
-	    return "redirect:/views/";
+	    return "redirect:/views/club/{clid}";
 		
 	}
 	
