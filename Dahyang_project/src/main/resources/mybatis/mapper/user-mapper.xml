@@ -38,5 +38,10 @@
 	<select id="selectByEmail" parameterType="string" resultMap="userResultMap">
 		select * from duser where EMAIL = #{email}
 	</select>
+	
+	<!-- 회원 번호로 회원 선택 -->
+	<select id="findById" parameterType="int" resultMap="userResultMap">
+		select * from duser where USER_ID = #{uid}
+	</select>
 		
 </mapper>

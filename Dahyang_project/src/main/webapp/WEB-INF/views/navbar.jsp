@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 	<nav>
 	  <ul>
 	    <li>
-	      <a class="active">
+	      <a class="active" href="<c:url value='/views/'/>">
 	        <svg><use xlink:href="#home-icon"></use></svg>
 	      </a>
 	    </li>
@@ -25,16 +26,16 @@
   </ul>
   <ul>
     <li>
-      <a>
+      <a class="active" href="<c:url value='/views/club/write'/>">
         <svg><use xlink:href="#plus-icon"></use></svg>
       </a>
     </li>
   </ul>
   <ul>
     <li>
-      <a>
-    <svg><use xlink:href="#user-icon"></use></svg>
-	</a>
+      <a href="<c:url value='/views/users/profile'/>">
+    	<svg><use xlink:href="#user-icon"></use></svg>
+	  </a>
     </li>
   </ul>
   <ul>

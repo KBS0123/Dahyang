@@ -1,6 +1,7 @@
 package spring_Dahyang.club.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Select;
 
@@ -29,5 +30,7 @@ public interface ClubMapper {
 	public Club selectUserId(int uid);
 	
 	public int deleteByUid(int uid);
+	
+	public Optional<Club> findById(int clid);
 	
 }

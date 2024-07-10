@@ -1,12 +1,11 @@
 package spring_Dahyang.chat.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import spring_Dahyang.chat.model.ChatMessage;
-import spring_Dahyang.user.model.User;
+import spring_Dahyang.chat.model.Chat;
+import spring_Dahyang.club.model.Club;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface ChatRepository extends JpaRepository<ChatMessage, Long> {
-    // ChatMessage를 특정 사용자를 기준으로 조회하는 메서드 추가 예시
-    List<ChatMessage> findByUserId(Long userId);
+public interface ChatRepository extends JpaRepository<Chat, Integer> {
+    Optional<Chat> findByClub(Club club);
 }

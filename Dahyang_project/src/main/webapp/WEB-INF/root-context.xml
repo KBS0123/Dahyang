@@ -7,7 +7,14 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!-- 프로퍼티 파일 로드 -->
+    <context:property-placeholder location="classpath:application.properties, classpath:jdbc.properties" />
+
+    <!-- KakaoApi 빈 설정 -->
+    <bean id="kakaoApi" class="spring_Dahyang.kakao.repository.KakaoApi">
+        <property name="kakaoApiKey" value="${kakao.api_key}" />
+        <property name="kakaoRedirectUri" value="${kakao.redirect_uri}" />
+    </bean>
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driverClassName}"/>
@@ -25,7 +32,7 @@
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="spring_Dahyang.user.repository, spring_Dahyang.club.repository,
-											spring_Dahyang.apply.repository"/>
+											spring_Dahyang.apply.repository, spring_Dahyabg.chat.repository"/>
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">

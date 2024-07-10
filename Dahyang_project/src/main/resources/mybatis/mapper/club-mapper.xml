@@ -51,4 +51,9 @@
 	    delete from dclub where user_id=#{uid}
 	</delete>
 	
+	<!-- 방장 선택 -->
+	<select id="findById" parameterType="int" resultMap="clubResultMap">
+		select * from dclub where club_id=#{clid}
+	</select>
+	
 </mapper>
