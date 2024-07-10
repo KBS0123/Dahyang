@@ -6,10 +6,7 @@ import spring_Dahyang.club.model.Member;
 
 public interface MemberMapper {
 
-	public static int insert(int memid, int clid, int uid) {
-		return 0;
-	}
-	
+	public int insert(Member member);
 	public int delete(Member member);
 	
 	public static int deleteMember(int clid) {

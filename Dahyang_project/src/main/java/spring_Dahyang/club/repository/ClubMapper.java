@@ -3,6 +3,7 @@ package spring_Dahyang.club.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
 import spring_Dahyang.club.model.Club;
@@ -21,13 +22,16 @@ public interface ClubMapper {
 	public int count();
 	
 	@Select("select * from dclub")
+	@ResultMap("clubResultMap")
 	public List<Club> selectAll();
 	
 	public List<Club> findClub(int clid);
 	
 	public Club selectById(int clid);
 	
-	public Club selectUserId(int uid);
+	public Club selectByTitle(String title);
+	
+	public Club findUserId(int uid);
 	
 	public int deleteByUid(int uid);
 	

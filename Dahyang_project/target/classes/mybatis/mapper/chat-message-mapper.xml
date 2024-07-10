@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring_Dahyang.chat.repository.ChatMessageRepository">
+	
+	<resultMap type="Chat" id="chatResultMap">
+		<result property="MessageId" column="MESSAGE_ID" />
+		<result property="chatId" column="CHAT_ID" />
+		<result property="uid" column="USER_ID" />
+		<result property="nickname" column="NICKNAME" />
+		<result property="content" column="CONTENT" />
+		<result property="timestamp" column="TIMESTAMP" />
+	</resultMap>
+		
+	<select id="selectChatMessage" resultMap="chatResultMap">
+		SELECT 
+			MESSAGE_ID, CHAT_ID, USER_ID, NICKNAME, CONTENT, TIMESTAMP
+		FROM
+			CHAT_MESSAGE
+		WHERE
+			CHAT_ID = #{chatId}
+		ORDER BY
+			TIMESTAMP
+	</select>
+	
+	<insert id="insertChatMessage">
+		INSERT INTO CHAT_MESSAGE
+		VALUES
+			(#{chat.chatId}, #{chat.uid}, #{chat.nickname}, #{chat.content}, #{chat.timestamp})
+	</insert>
+	
+	<select id="selectChatMessageByMessageId" resultMap="chatResultMap">
+		SELECT 
+			MESSAGE_ID, CHAT_ID, USER_ID, NICKNAME, CONTENT, TIMESTAMP
+		FROM
+			CHAT_MESSAGE
+		WHERE
+			MESSAGE_ID = #{messageId}
+	</select>
+	
+
+	
+</mapper>
