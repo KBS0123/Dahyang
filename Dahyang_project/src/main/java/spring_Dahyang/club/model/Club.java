@@ -22,7 +22,4 @@ public class Club {
     private String notice;
     private String img;
 
-    @ManyToOne
-    private User creator;
-
 }

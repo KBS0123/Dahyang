@@ -41,6 +41,11 @@
 		select * from dclub where club_id=#{clid}
 	</select>
 	
+	<!-- 모임방 선택 -->
+	<select id="selectByTitle" parameterType="String" resultMap="clubResultMap">
+		select * from dclub where title=#{title}
+	</select>
+	
 	<!-- 방장 선택 -->
 	<select id="findUserId" parameterType="int" resultMap="clubResultMap">
 		select * from dclub where user_id=#{uid}

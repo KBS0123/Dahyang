@@ -21,6 +21,7 @@ import spring_Dahyang.file.FileService;
 import spring_Dahyang.file.FileServiceImpl;
 import spring_Dahyang.user.model.User;
 import spring_Dahyang.club.model.Club;
+import spring_Dahyang.club.model.Member;
 import spring_Dahyang.club.repository.ClubMapper;
 import spring_Dahyang.club.repository.MemberMapper;
 
@@ -33,6 +34,9 @@ public class ClubController {
 	
 	@Autowired
 	private ClubMapper clubMapper;
+	
+	@Autowired
+	private MemberMapper memberMapper;
 	
 	@GetMapping("/list")
 	public ModelAndView getClubView() {
@@ -73,10 +77,16 @@ public class ClubController {
 	        club.setImg(imgFileName); // 파일이 있는 경우에만 파일명 설정
 	    }
 	    
-	    // 영화 정보를 데이터베이스에 저장
-	    int result = 0;
 	    try {
-	        result = clubMapper.insert(club);
+	        clubMapper.insert(club);
+	        
+	        Club clubs = clubMapper.selectByTitle(request.getParameter("title"));
+	        
+	        Member member = new Member();
+	        member.setClid(clubs.getClid());
+	        member.setUid(clubs.getUid());
+	        
+	        memberMapper.insert(member);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

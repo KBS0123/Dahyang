@@ -22,6 +22,4 @@ public class User {
     private String birthday;
     private String images;
 
-    @OneToMany(mappedBy = "creator")
-    private List<Club> clubs;
 }
