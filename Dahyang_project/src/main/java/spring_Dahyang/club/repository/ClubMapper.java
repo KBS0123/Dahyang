@@ -25,6 +25,8 @@ public interface ClubMapper {
 	@ResultMap("clubResultMap")
 	public List<Club> selectAll();
 	
+	public List<Club> selectByUid(int uid);
+	
 	public List<Club> findClub(int clid);
 	
 	public Club selectById(int clid);

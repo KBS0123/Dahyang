@@ -34,12 +34,7 @@
 		         </c:forEach>
             </div>
         </div>
-        
-        <div class="footer">
-            <span>소개</span>
-            <span class="active">피드</span>
-            <span>채팅</span>
-        </div>
+        <c:import url="navbar2.jsp"></c:import>
     </div>
 </body>
 </html>
