@@ -36,6 +36,7 @@ public class FeedController {
 	public ModelAndView getFeedView(@PathVariable int clid) {
 		ModelAndView mav = new ModelAndView("feed_list");
 		mav.addObject("feeds", feedMapper.selectAll(clid));
+		mav.addObject("clid", clid);
 		return mav;
 	}
 	
@@ -43,6 +44,7 @@ public class FeedController {
 	public String getFeedView(@PathVariable int clid, @PathVariable int fid, HttpServletRequest request, HttpSession session, Model model) {
 		Feed feed = feedMapper.selectById(fid);
 		model.addAttribute("feed", feed);
+		model.addAttribute("clid", clid);
 		
 		return "feed";
 	}
@@ -57,7 +59,9 @@ public class FeedController {
 	
 	@PostMapping("/write")
 	public String postInsert(@PathVariable int clid, @RequestParam("img") MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
-	    // Board 객체 생성 및 필요한 데이터 설정
+		User user = (User)session.getAttribute("user");
+		// Board 객체 생성 및 필요한 데이터 설정
+		model.addAttribute("clid", clid);
 		Feed feed = new Feed();
 		feed.setClid(Integer.parseInt(request.getParameter("clid")));
 		feed.setUid(Integer.parseInt(request.getParameter("uid")));
@@ -98,6 +102,7 @@ public class FeedController {
 	@PostMapping("/update")
 	public String postUpdate(@PathVariable int clid, @RequestParam("img") MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
 		User user = (User)session.getAttribute("user");
+		model.addAttribute("clid", clid);
 		
 		if (user != null) {
 	        Feed feed = feedMapper.selectById(Integer.parseInt(request.getParameter("fid")));
@@ -146,6 +151,7 @@ public class FeedController {
 	@GetMapping("/delete/{fid}")
 	public String getDelete(@PathVariable int clid, @PathVariable int fid, HttpSession session, Model model) {
 		User user = (User)session.getAttribute("user");
+		model.addAttribute("clid", clid);
 		
 		if (user != null) {
 			Feed feed = feedMapper.selectById(fid);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -10,9 +11,13 @@
 <body>
     <div class="container">
         <div class="navbar">
-            <span class="back-arrow">&lt;</span>
+        	<a href="<c:url value='/views/club/${clid}/'/>">
+            	<span class="back-arrow">&lt;</span>
+            </a>
             <span class="group-name">그룹방 이름</span>
-            <span class="settings">&#9881;</span>
+            <a href="<c:url value='/views/club/${clid}/feed/write'/>">
+            	<span class="settings">&#9881;</span>
+            </a>
         </div>
         
         <div class="content">
