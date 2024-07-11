@@ -37,6 +37,8 @@
 					<input type="hidden" class="form-control" id="clid" name="clid" value="${clid}">
 					<input type="hidden" class="form-control" id="uid" name="uid" value="${user.uid}">
 					<input type="hidden" class="form-control" id="writer" name="writer" value="${user.nickname}">
+					<input type="hidden" class="form-control" id="uimg" name="uimg" value="${user.images}">
+					<input type="hidden" class="form-control" id="likes" name="likes" value="0">
 					<div class="d-flex justify-content-between">						
 						<button type="submit" class="btn btn-success mr-2">만들기</button>
 					</div>
