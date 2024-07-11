@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring_Dahyang.user.repository.UserMapper">
+	
+	<resultMap type="User" id="userResultMap">
+	    <result property="uid" column="USER_ID" />
+		<result property="email" column="EMAIL" />
+		<result property="pwd" column="PASSWORD" />
+		<result property="nickname" column="NICKNAME" />
+		<result property="birthday" column="BIRTHDAY" />
+		<result property="images" column="IMAGES" />
+	</resultMap>
+	
+	<!-- 회원 등록 -->
+	<insert id="insert" parameterType="User">
+		insert into duser values (duser_seq.nextval, #{email}, #{pwd}, #{nickname}, to_date(#{birthday}, 'yyyymmdd'), #{images})
+	</insert>
+	
+	<!-- 회원 수정 -->
+	<update id="update" parameterType="User">
+		update duser set NICKNAME=#{nickname}, BIRTHDAY=to_date(#{birthday}, 'yyyy-mm-dd'), IMAGES=#{images}
+    	where USER_ID=#{uid}
+	</update>
+	
+	<!-- 회원 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from duser where USER_ID=#{uid}
+	</delete>
+	
+	<!-- 회원 번호로 회원 선택 -->
+	<select id="selectByUid" parameterType="int" resultMap="userResultMap">
+		select * from duser where USER_ID = #{uid}
+	</select>
+	
+	<!-- 이메일로 회원 선택 -->
+	<select id="selectByEmail" parameterType="string" resultMap="userResultMap">
+		select * from duser where EMAIL = #{email}
+	</select>
+	
+	<!-- 회원 번호로 회원 선택 -->
+	<select id="findById" parameterType="int" resultMap="userResultMap">
+		select * from duser where USER_ID = #{uid}
+	</select>
+		
+</mapper>

@@ -14,7 +14,7 @@
     <script>
         const contextPath = '<%= request.getContextPath() %>';
         const userId = <%= request.getAttribute("userId") %>;
-        const clid = <%= request.getAttribute("clid") %>;
+        const clid = <%= request.getParameter("clid") %>;
 
         function connectSSE(clid) {
             const eventSource = new EventSource(contextPath + '/chat/stream/' + clid);

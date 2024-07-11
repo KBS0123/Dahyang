@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring_Dahyang.feed.repository.CommentMapper">
+	
+	<resultMap type="Comment" id="commentResultMap">
+		<result property="fcid" column="PHEED_COMMENT_ID" />
+		<result property="fid" column="PHEED_ID" />
+		<result property="clid" column="CLUB_ID" />
+		<result property="uid" column="USER_ID" />
+		<result property="nickname" column="NICKNAME" />
+		<result property="content" column="CONTENT" />
+		<result property="uimg" column="USER_IMAGES" />
+	</resultMap>
+	
+	<!-- 피드 댓글 등록 -->
+	<insert id="insert" parameterType="Comment">
+		insert into dpheed_comment values (dpheed_comment_seq.nextval, #{fid}, #{clid}, #{uid}, #{nickname}, #{content}, #{uimg, jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 피드 댓글 수정 -->
+	<update id="update" parameterType="Comment">
+		update dpheed_comment set content=#{content} where pheed_comment_id=#{fcid}
+	</update>
+	
+	<!-- 피드 댓글 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from dpheed_comment where pheed_comment_id=#{fcid}
+	</delete>
+	
+	<select id="selectAll" parameterType="int" resultMap="commentResultMap">
+		select * from dpheed_comment where pheed_id=#{fid}
+	</select>
+	
+	<!-- 피드 댓글 선택 -->
+	<select id="selectById" parameterType="int" resultMap="commentResultMap">
+		select * from dpheed_comment where pheed_comment_id=#{fcid}
+	</select>
+	
+</mapper>
