@@ -85,7 +85,8 @@ public class ClubController {
 	
 	@PostMapping("/write")
 	public String postInsert(@RequestParam("img") MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
-	    // Board 객체 생성 및 필요한 데이터 설정
+		User user = (User)session.getAttribute("user");
+		// Board 객체 생성 및 필요한 데이터 설정
 		Club club = new Club();
 		club.setUid(Integer.parseInt(request.getParameter("uid")));
 		club.setTitle(request.getParameter("title"));
