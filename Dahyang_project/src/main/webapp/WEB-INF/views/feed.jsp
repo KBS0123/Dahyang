@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,9 @@
 <body>
 	<div class="container">
         <div class="navbar">
-            <span class="back-arrow">&lt;</span>
+	        <a href="<c:url value='/views/club/${clid}/feed'/>">
+	            <span class="back-arrow">&lt;</span>
+	        </a>
             <span class="group-name">피드</span>
             <span class="settings">&#9881;</span>
         </div>
@@ -20,12 +23,12 @@
             <div class="feed-item">
                 <div class="feed-header">
                     <div class="profile-pic"></div>
-                    <span class="nickname">닉네임</span>
+                    <span class="nickname">${feed.writer}</span>
                     <!-- 좋아요 버튼 -->
                     <span class="like">&#9829;</span>
                 </div>
-                <div class="image-placeholder"></div>
-                <div class="content-text">내용</div>
+                <div class="image-placeholder">${feed.img}</div>
+                <div class="content-text">${feed.content}</div>
                 <div class="comments">
                     <div class="comment">
                         <div class="profile-pic comment-pic"></div>
