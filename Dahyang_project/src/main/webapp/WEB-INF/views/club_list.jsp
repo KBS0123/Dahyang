@@ -57,11 +57,18 @@
         <div class="page">
             <div id="content">
             
-            <c:if test="${empty user}">
+            <c:if test="${empty user or empty clubs}">
 	            <div id="not-logged-in">
 	            	<h2>내 그룹방</h2>
 	                <p>아직 가입된 그룹방이 없어요!</p>
-	                <button class="button" onclick="findGroup()">그룹방 찾기</button>
+	                <c:choose>
+	                	<c:when test="${not empty user}">
+	                		<button class="button"  onclick="location.href='<c:url value="/views/"/>'">그룹방 찾기</button>
+	                	</c:when>
+	                	<c:otherwise>
+	                		<button class="button" onclick="findGroup()">그룹방 찾기</button>
+	                	</c:otherwise>
+	                </c:choose>
 	            </div>
             </c:if>
             
