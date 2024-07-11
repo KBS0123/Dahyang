@@ -22,46 +22,16 @@
         
         <div class="content">
             <div class="feed">
-                <div class="feed-item">
-                    <div class="image-placeholder"></div>
-                    <p class="feed-text">피드 내용</p>
-                </div>
-                <div class="feed-item">
-                    <div class="image-placeholder"></div>
-                    <p class="feed-text">피드 내용</p>
-                </div>
-                <div class="feed-item">
-                    <div class="image-placeholder"></div>
-                    <p class="feed-text">피드 내용</p>
-                </div>
-                <div class=" feed-item">
-                    <div class="image-placeholder"></div>
-                    <p class="feed-text">피드 내용</p>
-                </div>
-                <div class="feed-item">
-                    <div class="image-placeholder"></div>
-                    <p class="feed-text">피드 내용</p>
-                </div>
-                <div class="feed-item">
-                    <div class="image-placeholder"></div>
-                    <p class="feed-text">피드 내용</p>
-                </div>
-                <div class="feed-item">
-                    <div class="image-placeholder"></div>
-                    <p class="feed-text">피드 내용</p>
-                </div>
-                <div class="feed-item">
-                    <div class="image-placeholder"></div>
-                    <p class="feed-text">피드 내용</p>
-                </div>
-                <div class="feed-item">
-                    <div class="image-placeholder"></div>
-                    <p class="feed-text">피드 내용</p>
-                </div>
-                <div class="feed-item">
-                    <div class="image-placeholder"></div>
-                    <p class="feed-text">피드 내용</p>
-                </div>
+            	<c:forEach var="feed" items="${feeds}">
+            		<div class="feed-item">
+            			<a href="<c:url value='/views/club/${clid}/feed/${feed.fid}' />">
+		                    <div class="image-placeholder">
+		                    	${feed.img}
+		                    </div>
+	                    </a>
+	                    <p class="feed-text">${feed.content}</p>
+	                </div>
+		         </c:forEach>
             </div>
         </div>
         
