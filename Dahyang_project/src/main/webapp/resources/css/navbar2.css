@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 :root {
   --icon-size: 24px;
 }
@@ -9,17 +9,17 @@
 }
 
 nav {
-  position: fixed; /* navbar À§Ä¡ °íÁ¤ */
-  bottom: 0; /* ÆäÀÌÁö ÇÏ´Ü¿¡ Á¤·Ä */
-  left: 48.6%; /* ¼öÆò °¡¿îµ¥ Á¤·Ä */
-  transform: translateX(-50%); /* navbar Á¤·ÄÀ» À§ÇÑ º¯Çü */
+  position: fixed; /* navbar ìœ„ì¹˜ ê³ ì • */
+  bottom: 0; /* í˜ì´ì§€ í•˜ë‹¨ì— ì •ë ¬ */
+  left: 48.6%; /* ìˆ˜í‰ ê°€ìš´ë° ì •ë ¬ */
+  transform: translateX(-50%); /* navbar ì •ë ¬ì„ ìœ„í•œ ë³€í˜• */
   width: 556px;
   height: 90px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /*¾ÆÀÌÄÜ °¡·Î Á¤·Ä, °£°İ¼³Á¤*/
+  grid-template-columns: repeat(3, 1fr); /*ì•„ì´ì½˜ ê°€ë¡œ ì •ë ¬, ê°„ê²©ì„¤ì •*/
   border-radius: 5px;
-  padding: 0 15px; /*¾ÆÀÌÄÜ »çÀÌ ÆĞµù*/
-  background: linear-gradient(90deg, #75b64d, #3ed4b9); /*navbar »ö»ó*/
+  padding: 0 15px; /*ì•„ì´ì½˜ ì‚¬ì´ íŒ¨ë”©*/
+  background: linear-gradient(90deg, #75b64d, #3ed4b9); /*navbar ìƒ‰ìƒ*/
   box-shadow: 0 6.7px 5.3px rgba(0, 0, 0, 0.12), 0 22.3px 17.9px rgba(0, 0, 0, 0.08), 0 100px 80px rgba(0, 0, 0, 0.04);
   overflow: hidden;
 }
@@ -40,8 +40,8 @@ nav ul li a {
   height: 100%;
   cursor: pointer;
 }
-nav ul li a svg { /*svg ¾ÆÀÌÄÜ*/
-  fill: #fff; /*¾ÆÀÌÄÜ »ö»ó*/
+nav ul li a svg { /*svg ì•„ì´ì½˜*/
+  fill: #fff; /*ì•„ì´ì½˜ ìƒ‰ìƒ*/
   width: 100%;
   height: 100%;
   opacity: 0.7;
@@ -76,8 +76,8 @@ nav .tubelight .light-ray {
 <style>
   .nav-link {
     display: inline-block;
-    text-decoration: none; /* ¸µÅ©ÀÇ ¹ØÁÙ Á¦°Å */
-    color: white; /* ±âº» ÅØ½ºÆ® »ö»ó */
+    text-decoration: none; /* ë§í¬ì˜ ë°‘ì¤„ ì œê±° */
+    color: white; /* ê¸°ë³¸ í…ìŠ¤íŠ¸ ìƒ‰ìƒ */
     padding: 10px;
   }
 
@@ -95,10 +95,10 @@ nav .tubelight .light-ray {
   }
 
   .nav-link.active {
-    background-color: #333; /* È°¼ºÈ­µÈ ¸µÅ©ÀÇ ¹è°æ»öÀ» º¯°æÇÒ ¼ö ÀÖ½À´Ï´Ù. */
+    background-color: #333; /* í™œì„±í™”ëœ ë§í¬ì˜ ë°°ê²½ìƒ‰ì„ ë³€ê²½í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. */
   }
 
-  /* ¸µÅ©¿¡ ¸¶¿ì½º¸¦ ¿Ã·ÈÀ» ¶§¿Í Å¬¸¯ÇßÀ» ¶§ÀÇ ½ºÅ¸ÀÏ Á¦°Å */
+  /* ë§í¬ì— ë§ˆìš°ìŠ¤ë¥¼ ì˜¬ë ¸ì„ ë•Œì™€ í´ë¦­í–ˆì„ ë•Œì˜ ìŠ¤íƒ€ì¼ ì œê±° */
   .nav-link:hover, .nav-link:active {
     text-decoration: none;
     color: white;

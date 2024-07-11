@@ -11,24 +11,16 @@
   --duration: .5s;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
 .like-button {
-  font-size: 35vmin;
+  font-size: 50px; 
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   border: none;
-  border-radius: 50%;
+  border-radius: 50%; 
   background: white;
-  width: 1em;
-  height: 1em;
+  width: 50px; 
+  height: 50px; 
   padding: 0;
   margin: 0;
   outline: none;
@@ -38,6 +30,10 @@ html, body {
   transition: transform var(--duration) var(--easing);
   transition: transform var(--duration) var(--easing), -webkit-transform var(--duration) var(--easing);
   cursor: pointer;
+  position: absolute; /* 위치를 절대적으로 설정 */
+  top: 5x; /* 화면 상단에서 20px 아래로 */
+  left: 57; /* 화면 가로의 50% 지점으로 이동 */
+  transform: translateX(-50%); /* 중앙 정렬 */
 }
 .like-button:before {
   z-index: -1;
@@ -125,8 +121,8 @@ html, body {
 }
 
 .heart {
-  width: .5em;
-  height: .5em;
+  width: 25px; 
+  height: 25px; 
   display: block;
   -webkit-transform-origin: center 80%;
           transform-origin: center 80%;
@@ -175,9 +171,9 @@ html, body {
   position: absolute;
   top: 0;
   left: 0;
-  height: .1em;
-  width: .1em;
-  border-radius: .05em;
+  height: 5px; 
+  width: 5px; 
+  border-radius: 2.5px; 
   background-color: var(--color);
   --percentage: calc( var(--i) / var(--total-particles) );
   --Θ: calc( var(--percentage) * 1turn );
@@ -192,42 +188,42 @@ html, body {
 }
 @-webkit-keyframes particles-out {
   50% {
-    height: .3em;
+    height: 15px; 
   }
   50%, 60% {
-    height: .3em;
-    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
-            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+    height: 15px;
+    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(8px) scale(1);
+            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(8px) scale(1);
   }
   60% {
-    height: .2em;
+    height: 10px; 
   }
   100% {
-    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
-            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
+    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(10px) scale(0);
+            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(10px) scale(0);
   }
 }
 @keyframes particles-out {
   50% {
-    height: .3em;
+    height: 15px; 
   }
   50%, 60% {
-    height: .3em;
-    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
-            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+    height: 15px; 
+    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(8px) scale(1);
+            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(8px) scale(1);
   }
   60% {
-    height: .2em;
+    height: 10px; 
   }
   100% {
-    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
-            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
+    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(10px) scale(0);
+            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(10px) scale(0);
   }
 }
 .ripple {
-  height: 1em;
-  width: 1em;
-  border-radius: 50%;
+  height: 50px; 
+  width: 50px; 
+  border-radius: 50%; 
   overflow: hidden;
   z-index: 1;
 }

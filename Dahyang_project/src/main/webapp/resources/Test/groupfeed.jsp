@@ -1,70 +1,97 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>««µÂ ∆‰¿Ã¡ˆ</title>
-    <link href="${pageContext.request.contextPath}/resources/css/groupfeed.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8">
+  <title>Í∑∏Î£πÌîºÎìú ÌéòÏù¥ÏßÄ</title>
+  <link href="${pageContext.request.contextPath}/resources/css/groupfeed.css" rel="stylesheet" type="text/css">
+  <!-- Ìè∞Ìä∏ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&display=swap" rel="stylesheet">
+  <!-- Ìè∞Ìä∏ -->
+  <style type="text/css">
+    .bs-example { margin: 20px; }
+    .logo-small { color: #f4511e; font-size: 50px; }
+    footer .glyphicon { font-size: 20px; margin-bottom: 20px; color: #f4511e; }
+     .center-text { /*ÏÉÅÎã®Î∞î ÌÖçÏä§Ìä∏ ÏúÑÏπò Ï°∞Ï†ï*/
+      margin-top: 25px;
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <div class="navbar">
-            <span class="back-arrow">&lt;</span>
-            <span class="group-name">±◊∑ÏπÊ ¿Ã∏ß</span>
-            <span class="settings">&#9881;</span>
+
+  <main>
+  
+  <header>
+    <div class="feature"></div>
+    <div class="feature"></div>
+  </header>
+  
+  <div id="app">
+    
+    <!-- ÏÉÅÎã®Î∞î -->
+      <header>
+        <div class="system-bar"></div>
+        <div class="left">
+          <span class="ion-chevron-left"></span>
         </div>
-        
-        <div class="content">
+        <div class="center-text">Í∑∏Î£π ÌîºÎìú</div>
+        <div class="right">
+          <span class="ion-navicon"></span>
+        </div>
+      </header>
+      <!-- ÏÉÅÎã®Î∞î -->
+    
+    <!-- ÎÇ¥Î∂Ä Î∞ïÏä§ -->
+    <div class="page">
+    <div class="content">
             <div class="feed">
                 <div class="feed-item">
                     <div class="image-placeholder"></div>
-                    <p class="feed-text">««µÂ ≥ªøÎ</p>
+                    <p class="feed-text">ÌîºÎìú ÎÇ¥Ïö©</p>
                 </div>
                 <div class="feed-item">
                     <div class="image-placeholder"></div>
-                    <p class="feed-text">««µÂ ≥ªøÎ</p>
+                    <p class="feed-text">ÌîºÎìú ÎÇ¥Ïö©</p>
                 </div>
                 <div class="feed-item">
                     <div class="image-placeholder"></div>
-                    <p class="feed-text">««µÂ ≥ªøÎ</p>
+                    <p class="feed-text">ÌîºÎìú ÎÇ¥Ïö©</p>
                 </div>
                 <div class=" feed-item">
                     <div class="image-placeholder"></div>
-                    <p class="feed-text">««µÂ ≥ªøÎ</p>
+                    <p class="feed-text">ÌîºÎìú ÎÇ¥Ïö©</p>
                 </div>
                 <div class="feed-item">
                     <div class="image-placeholder"></div>
-                    <p class="feed-text">««µÂ ≥ªøÎ</p>
+                    <p class="feed-text">ÌîºÎìú ÎÇ¥Ïö©</p>
                 </div>
                 <div class="feed-item">
                     <div class="image-placeholder"></div>
-                    <p class="feed-text">««µÂ ≥ªøÎ</p>
+                    <p class="feed-text">ÌîºÎìú ÎÇ¥Ïö©</p>
                 </div>
                 <div class="feed-item">
                     <div class="image-placeholder"></div>
-                    <p class="feed-text">««µÂ ≥ªøÎ</p>
+                    <p class="feed-text">ÌîºÎìú ÎÇ¥Ïö©</p>
                 </div>
                 <div class="feed-item">
                     <div class="image-placeholder"></div>
-                    <p class="feed-text">««µÂ ≥ªøÎ</p>
+                    <p class="feed-text">ÌîºÎìú ÎÇ¥Ïö©</p>
                 </div>
                 <div class="feed-item">
                     <div class="image-placeholder"></div>
-                    <p class="feed-text">««µÂ ≥ªøÎ</p>
+                    <p class="feed-text">ÌîºÎìú ÎÇ¥Ïö©</p>
                 </div>
                 <div class="feed-item">
                     <div class="image-placeholder"></div>
-                    <p class="feed-text">««µÂ ≥ªøÎ</p>
+                    <p class="feed-text">ÌîºÎìú ÎÇ¥Ïö©</p>
                 </div>
             </div>
         </div>
-        
-        <div class="footer">
-            <span>º“∞≥</span>
-            <span class="active">««µÂ</span>
-            <span>√§∆√</span>
-        </div>
+
     </div>
-</body>
-</html>
+    <!-- ÎÇ¥Î∂Ä Î∞ïÏä§ -->
+    <jsp:include page="/views/navbar.jsp" />
+    
+</main>

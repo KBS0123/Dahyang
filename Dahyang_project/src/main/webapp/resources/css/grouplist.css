@@ -1,0 +1,244 @@
+@charset "EUC-KR";
+div.page::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Sans'), local('DroidSans'), url(https://fonts.gstatic.com/s/droidsans/v6/s-BiyweUPV0v-yRb-cjciL3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Droid Sans Bold'), local('DroidSans-Bold'), url(https://fonts.gstatic.com/s/droidsans/v6/EFpQQyG9GqCrobXxL-KRMXbFhgvWbfSbdVg11QabG8w.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light'), url(https://fonts.gstatic.com/s/lato/v11/kcf5uOXucLcbFOydGU24WALUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v11/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+#app>header div.system-bar {
+  line-height: 10pt;
+  font-size: 6pt;
+  width: 100%;
+  font-family: 'Helvetica Neue';
+  font-weight: 400;
+  overflow: auto;
+}
+
+p span {
+  font-weight: 600;
+}
+
+.left span, .right span {
+  font-size: 1.5em;
+  line-height: 1pt;
+}
+
+/*수정*/
+#app > header {
+    font-size: 12pt;
+    font-family: 'Pretendard-Regular';
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    line-height: 65px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.20);
+    background-color: #75b64d;
+    padding: 10pt;
+    color: #fefefe;
+    opacity: 0.9;
+    overflow: hidden;
+}
+
+#app > header img {
+    float: left;
+    margin-top: -30px;
+}
+
+#app > header .left,
+#app > header .right {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20%;
+    font-size: 1.5em;
+    line-height: 1pt;
+}
+
+#app > header .center-text {
+    display: inline-block;
+    width: 70%;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+#app > footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 130px; /* 높이 조정 */
+  line-height: 50px; /* 줄 간격 조정 */
+  background-color: #fff;
+  padding: 8pt;
+  color: #222;
+}
+
+#app > div.page {
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  position: absolute;
+  top: 82pt;
+  bottom: 50pt; /* 하단바에 맞추어 조정 */
+  left: 0;
+  right: 0;
+  overflow: auto;
+  padding: 20pt 35pt;
+  line-height: 1.5;
+}
+
+#app * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#app {
+  width: 585px;
+  height: 900px;
+  background-color: #fefefe;
+  position: relative;
+  text-align: left;
+  overflow: hidden;
+  font-family: 'Pretendard-Regular';
+  font-size: 14pt;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: 5px;
+  color: #333;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+body {
+  text-align: center;
+  padding: 0px 339px 20px 632px;
+  background: linear-gradient(90deg, #75b64d, #3ed4b9);
+  font-family: 'Lato';
+  color: #f0f0f0;
+}
+
+body > header, body > footer {
+  padding: 0em 0 1em 0;
+}
+
+body > header > h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 12pt;
+}
+
+body > header > p {
+  font-size: 10pt;
+  margin: 0;
+  padding: 0.5em 0 0.5em 0;
+}
+
+#content {
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  
+}
+
+#logged-in h2 {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+  margin-left: 20px;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.group {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.group-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 15px; 
+  padding: 10px;
+  width: 90%;
+  height: 120px;
+  margin: 10px auto; /* 중앙 정렬 */
+  box-sizing: border-box; /* 패딩과 테두리를 너비와 높이에 포함 */
+}
+
+.group-box img {
+  margin-right: 20px;
+  border-radius: 50%; /* 이미지 둥글게 */
+}
+
+.group-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.group-info strong {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.group-info input {
+  border: none;
+  background: transparent;
+  font-size: 1em;
+}
+
+.group-info input[readonly] {
+  color: #888;
+}
+
+

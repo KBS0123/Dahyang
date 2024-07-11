@@ -62,7 +62,10 @@
         <button class="button login__submit">
           <span class="button__text">LogIn</span>
           <i class="button__icon fas fa-chevron-right"></i>
-        </button>       
+        </button> 
+        <button class="kakao-login-button">
+		  <img src="${pageContext.request.contextPath}/views/imgs/kakao_login.png" alt="Kakao Login">
+		</button>
       </form>
     </div>
     <div class="screen__background">

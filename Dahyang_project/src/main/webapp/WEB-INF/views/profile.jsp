@@ -158,6 +158,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
       </div>
     </div>
     <!--페이지 내용-->
-  <c:import url="navbar.jsp"></c:import>
+  <jsp:include page="/views/navbar.jsp" />
   </div>
   </main>

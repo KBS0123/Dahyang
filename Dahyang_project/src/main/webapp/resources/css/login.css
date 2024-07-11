@@ -189,3 +189,25 @@ a:hover {
 .round {
   border-radius: 50%;
 }
+.kakao-login-button {
+  background-color: #fee500;
+  border: none;
+  border-radius: 18px;
+  padding: 10px 20px;
+  cursor: pointer; 
+  transition: background-color 0.3s; /* 배경색 전환 애니메이션 */
+  display: flex; /* Flexbox로 내부 요소 정렬 */
+  align-items: center;
+  justify-content: center;
+  margin-top:10px;
+  margin-left: 7px;
+}
+
+.kakao-login-button img {
+  width: 150px;
+  height: auto;
+}
+
+.kakao-login-button:hover {
+  background-color: #ffdc00;
+}
