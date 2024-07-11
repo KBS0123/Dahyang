@@ -30,11 +30,13 @@
                 <div class="image-placeholder">${feed.img}</div>
                 <div class="content-text">${feed.content}</div>
                 <div class="comments">
-                    <div class="comment">
-                        <div class="profile-pic comment-pic"></div>
-                        <span class="nickname">닉네임</span>
-                        <span class="comment-text">댓글내용</span>
-                    </div>
+                	<c:forEach var="comment" items="${comments}">
+		            	<div class="comment">
+		                    <div class="profile-pic comment-pic">${comment.uimg}</div>
+		                    <span class="nickname">${comment.nickname}</span>
+		                    <span class="comment-text">${comment.content}</span>
+		                </div>
+				    </c:forEach>
                 </div>
             </div>
         </div>

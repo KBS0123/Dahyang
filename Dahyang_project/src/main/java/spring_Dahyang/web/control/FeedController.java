@@ -1,6 +1,7 @@
 package spring_Dahyang.web.control;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,7 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import spring_Dahyang.file.FileService;
 import spring_Dahyang.file.FileServiceImpl;
 import spring_Dahyang.user.model.User;
+import spring_Dahyang.feed.model.Comment;
 import spring_Dahyang.feed.model.Feed;
+import spring_Dahyang.feed.repository.CommentMapper;
 import spring_Dahyang.feed.repository.FeedMapper;
 
 @Controller
@@ -32,6 +35,9 @@ public class FeedController {
 	@Autowired
 	private FeedMapper feedMapper;
 	
+	@Autowired
+	private CommentMapper commentMapper;
+	
 	@GetMapping()
 	public ModelAndView getFeedView(@PathVariable int clid) {
 		ModelAndView mav = new ModelAndView("feed_list");
@@ -43,8 +49,10 @@ public class FeedController {
 	@GetMapping("/{fid}")
 	public String getFeedView(@PathVariable int clid, @PathVariable int fid, HttpServletRequest request, HttpSession session, Model model) {
 		Feed feed = feedMapper.selectById(fid);
+		List<Comment> comment = commentMapper.selectAll(fid);
 		model.addAttribute("feed", feed);
 		model.addAttribute("clid", clid);
+		model.addAttribute("comments", comment);
 		
 		return "feed";
 	}
