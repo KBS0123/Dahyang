@@ -19,7 +19,7 @@
             	<span class="settings">&#9881;</span>
             </a>
         </div>
-        
+         
         <div class="content">
             <div class="feed">
             	<c:forEach var="feed" items="${feeds}">
