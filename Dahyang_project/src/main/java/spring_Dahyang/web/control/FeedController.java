@@ -75,6 +75,8 @@ public class FeedController {
 		feed.setUid(Integer.parseInt(request.getParameter("uid")));
 		feed.setWriter(request.getParameter("writer"));
 		feed.setContent(request.getParameter("content"));
+		feed.setUimg(request.getParameter("uimg"));
+		feed.setLikes(Integer.parseInt(request.getParameter("likes")));
 		
 		// 파일 저장 및 파일명 설정
 	    String imgFileName = null;

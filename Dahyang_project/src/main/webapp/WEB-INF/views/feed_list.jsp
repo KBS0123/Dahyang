@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>««µÂ ∆‰¿Ã¡ˆ</title>
+    <title>ÌîºÎìú ÌéòÏù¥ÏßÄ</title>
     <link href="${pageContext.request.contextPath}/resources/css/groupfeed.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -14,7 +14,7 @@
         	<a href="<c:url value='/views/club/${clid}/'/>">
             	<span class="back-arrow">&lt;</span>
             </a>
-            <span class="group-name">±◊∑ÏπÊ ¿Ã∏ß</span>
+            <span class="group-name">Í∑∏Î£πÎ∞© Ïù¥Î¶Ñ</span>
             <a href="<c:url value='/views/club/${clid}/feed/write'/>">
             	<span class="settings">&#9881;</span>
             </a>
@@ -34,12 +34,7 @@
 		         </c:forEach>
             </div>
         </div>
-        
-        <div class="footer">
-            <span>º“∞≥</span>
-            <span class="active">««µÂ</span>
-            <span>√§∆√</span>
-        </div>
+        <c:import url="navbar2.jsp"></c:import>
     </div>
 </body>
 </html>

@@ -41,6 +41,14 @@
 		select * from dclub where club_id=#{clid}
 	</select>
 	
+	<select id="selectByUid" parameterType="int" resultMap="clubResultMap">
+		select c.club_id, c.user_id, c.title, c.content, c.notice, c.images
+		from dclub c
+		join dclub_members m on c.club_id = m.club_id
+		join duser u on m.user_id = u.user_id
+		where u.user_id=#{uid}
+	</select>
+	
 	<!-- 모임방 선택 -->
 	<select id="selectByTitle" parameterType="String" resultMap="clubResultMap">
 		select * from dclub where title=#{title}

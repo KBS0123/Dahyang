@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/chat")
+@RequestMapping("/views/club/{clid}/chat")
 public class ChatController {
     @Autowired
     private ChatService chatService;
@@ -20,7 +20,7 @@ public class ChatController {
     private final Map<Integer, SseEmitter> emitters = new HashMap<>();
 
     @PostMapping("/send")
-    public ChatMessage sendMessage(@RequestParam int userId, @RequestParam int clid, @RequestParam String content) {
+    public ChatMessage sendMessage(@PathVariable int clid, @RequestParam int userId, @RequestParam String content) {
         ChatMessage chatMessage = chatService.sendMessage(userId, clid, content);
         emitters.values().forEach(emitter -> {
             try {
@@ -33,11 +33,11 @@ public class ChatController {
     }
 
     @GetMapping("/messages")
-    public List<ChatMessage> getMessages(@RequestParam int clid) {
+    public List<ChatMessage> getMessages(@PathVariable int clid) {
         return chatService.getMessages(clid);
     }
 
-    @GetMapping("/stream/{clid}")
+    @GetMapping("/stream")
     public SseEmitter streamMessages(@PathVariable int clid) {
         SseEmitter emitter = new SseEmitter();
         emitters.put(clid, emitter);

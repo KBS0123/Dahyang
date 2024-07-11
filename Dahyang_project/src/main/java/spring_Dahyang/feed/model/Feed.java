@@ -17,5 +17,7 @@ public class Feed {
     private String writer;
     private String content;
     private String img;
+    private String uimg;
+    private int likes = 0;
 
 }
