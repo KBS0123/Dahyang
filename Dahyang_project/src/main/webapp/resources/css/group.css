@@ -7,30 +7,29 @@ body {
 }
 
 .container {
-    width: 100%;
-    width:585px;
-  	height:900px;
+    width: 585px;
+    height: 900px;
     margin: 0 auto;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* 부모 요소를 relative로 설정 */
 }
 
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 20px 20px 30px;
     border-bottom: 1px solid #75b64d;
 }
 
-.back-arrow {
-    font-size: 24px;
-}
+
 
 .group-name {
     font-size: 18px;
     font-weight: bold;
+    margin-left: 50px;
+    margin-top: 5px;
 }
 
 .content {
@@ -208,4 +207,47 @@ body {
 .user-profile .user-info .action-buttons .btn-reject {
     background-color: #dc3545;
     color: white;
+}
+
+/* 뒤로 가기 버튼 스타일 추가 */
+.back-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #8dd95d;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 20px; /* 상단 여백 조정 */
+    left: 20px; /* 좌측 여백 조정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button svg {
+    fill: #fff;
+    width: 24px;
+    height: 24px;
+}
+
+.settings-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #8dd95d; /* 톱니바퀴 버튼의 배경색 */
+    border: none;
+    border-radius: 50%; /* 원형 모양의 버튼 */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px; /* 그룹방 이름과 버튼 사이 여백 조정 */
+}
+
+.settings-button svg {
+    fill: #fff; /* 아이콘 색상 */
+    width: 24px; /* 아이콘 크기 */
+    height: 24px;
 }

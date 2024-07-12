@@ -233,3 +233,46 @@ body>header>p {
     max-height: 2.4em; /* 두 줄로 제한 */
     overflow: hidden;
 }
+
+/*새 피드 작성 버튼*/
+.button {
+  padding: 10px 20px;
+  margin-bottom: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #76da38;
+  color: #fff;
+}
+
+.button.new-feed {
+  position: fixed;
+  bottom: 50px;
+  right: 700px;
+}
+
+/* 뒤로 가기 버튼 스타일 추가 */
+.back-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #8dd95d;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    top: 10px;
+}
+
+.back-button svg {
+    fill: #fff;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

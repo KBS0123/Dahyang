@@ -8,13 +8,33 @@
     <link href="${pageContext.request.contextPath}/resources/css/group.css" rel="stylesheet" type="text/css">
     <title>가입된 그룹방</title>
 </head>
+<style>
+        .svg-icon {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1); /*아이콘 색상 변경*/
+        }
+    </style>
+
 <body>
     <div class="container">
         <div class="navbar">
-            <span class="back-arrow">&lt;</span>
+            <!-- 뒤로가기 버튼 -->
+          <button class="back-button" onclick="history.back()">
+            <svg viewBox="0 0 24 24">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+          </button>
             <span class="group-name">그룹방 이름</span>
+          
+          <!-- 톱니바퀴 버튼 추가 -->
+            <button class="settings-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+            </button>
+          
         </div>
-        
         <div class="content">
             <div class="image-placeholder"></div>
             <h2 class="group-title">그룹방 이름</h2>
