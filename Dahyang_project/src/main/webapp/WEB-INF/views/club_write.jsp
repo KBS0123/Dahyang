@@ -48,6 +48,9 @@
 						<button type="submit" class="btn btn-success mr-2">만들기</button>
 					</div>
 				</form>
+				<form action="<c:url value='/kakaoPay'/>" method="post">
+                	<button type="submit">결제하기</button>
+                </form>
 			</div>
 		</div> 
 	</div>

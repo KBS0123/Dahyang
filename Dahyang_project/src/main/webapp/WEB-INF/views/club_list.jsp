@@ -1,111 +1,119 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Board</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>그룹방(로그인시)</title>
+    <link href="${pageContext.request.contextPath}/resources/css/grouplist.css" rel="stylesheet" type="text/css">
     <style>
-        .community-section {
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-        }
-        th, td {
+        /* 중앙 정렬을 위한 CSS 추가 */
+        #content {
             text-align: center;
-            border-bottom: 1px solid #ffffff;
-          	padding: 5px;
         }
-        .pagination .btn {
-            color: #fff;
-            background-color: transparent;
-            border-color: #fff;
+
+        #content h2 {
+            font-size: 24px; /* 크기 조정 */
+            font-weight: bold;
+            margin-bottom: 20px; /* 하단 여백 조정 */
+            text-align: center; /* 중앙 정렬 */
         }
-        .pagination {
-            justify-content: center;
+
+        #not-logged-in p {
+            font-size: 18px; /* 크기 조정 */
+            color: #666; /* 색상 조정 */
+            margin-bottom: 20px; /* 하단 여백 조정 */
+            text-align: center; /* 중앙 정렬 */
         }
-        .table-container2 {
-            border-bottom: 1px solid #ffffff;
-            margin: 0 auto;  /* 게시판 틀 가운데 정렬 */
-            margin-top: 5px;
-            margin-bottom: 5px;
+
+        #not-logged-in .button {
+            display: block; /* 블록 레벨 요소로 변경하여 중앙 정렬 가능 */
+            margin: 20px auto; /* 중앙 정렬을 위해 마진 설정 */
+            padding: 10px 20px; /* 버튼 패딩 조정 */
+            font-size: 16px; /* 버튼 폰트 크기 조정 */
+            background-color: #4CAF50; /* 버튼 배경색 조정 */
+            color: white; /* 버튼 텍스트 색상 조정 */
+            border: none; /* 버튼 테두리 제거 */
+            border-radius: 5px; /* 버튼 모서리 둥글게 */
+            cursor: pointer; /* 커서 모양 변경 */
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2); /* 버튼 그림자 효과 */
         }
-        .table-header {
-            border-bottom: none; ;
-            color: #fff;
-            
+
+        #logged-in .group {
+            display: flex;
+            justify-content: center; /* 그룹 요소를 중앙 정렬 */
+            align-items: center; /* 그룹 요소를 수직 중앙 정렬 */
+            margin-bottom: 10px;
         }
-     
-       
-        .table-content {
-            color: #fff;
-            text-align : center;
-        }
- 
-   
-     .table-content .col {
-       text-align: center; /* .table-content의 텍스트를 가운데 정렬합니다. */
-         padding: 5px; /* 각 열의 간격을 조정합니다. */
-}
-
-.table-header .col {
-    text-align: center; /* .table-header의 텍스트를 가운데 정렬합니다. */
-    border-top: 3px solid #ffffff;
-    border-bottom: 3px solid #ffffff;
-}
-
-.table-header .col:nth-child(1) {
-    padding-left: 30px;
- 
-}
-
-.table-header .col:nth-child(2) {
- text-align: center;
-  
-}
-
-.table-header .col:nth-child(3) { 
-    text-align: center; /* 작성자 열의 텍스트를 가운데 정렬합니다. */
-}
-
-.table-header .col:nth-child(4) {
-   
-  padding-right: 20px;
-}
-
-.table-header .col:nth-child(5) {
-   padding-right: 20px;
-   
-}
-
     </style>
 </head>
-<body style="background-color:#2E2E2E">
-    <h3 class="text-white" align="center">커뮤니티</h3>
-    <div class="community-section">
-        <div class="table-container" style="width: 65%;">
-            <div class="table-header">  
-	            <div class="row text-white">            
-	                <div class="col">No</div>
-	                <div class="col">제목</div>
+<body>
+     <div id="app">
+        <header>
+            <div class="system-bar">
+                <img src="${pageContext.request.contextPath}/resources/css/Logo.png"
+             height="150" width="130">
+            </div>
+        </header>
+        <div class="page">
+            <div id="content">
+            
+            <c:if test="${empty user or empty clubs}">
+	            <div id="not-logged-in">
+	            	<h2>내 그룹방</h2>
+	                <p>아직 가입된 그룹방이 없어요!</p>
+	                <c:choose>
+	                	<c:when test="${not empty user}">
+	                		<button class="button"  onclick="location.href='<c:url value="/views/"/>'">그룹방 찾기</button>
+	                	</c:when>
+	                	<c:otherwise>
+	                		<button class="button" onclick="findGroup()">그룹방 찾기</button>
+	                	</c:otherwise>
+	                </c:choose>
 	            </div>
-	        </div>
-	        <div class="table-content">
-		         <c:forEach var="club" items="${clubs}">
-		                <div class="row table-container2">
-		                    <div class="col">${club.clid}</div>
-		                    <div class="col"><a href="<c:url value='/views/club/${club.clid}' />">${club.title}</a></div>
-		                </div>
-		         </c:forEach>
-	        </div>
+            </c:if>
+            
+            <div id="logged-in">
+                    <h2>내 그룹방</h2>
+                    <c:forEach var="club" items="${clubs}">
+	                    <div class="group">
+	                        <div class="group-box">
+	                            <img src="https://via.placeholder.com/50" alt="그룹방 아이콘">
+	                            <div class="group-info">
+	                            	<a href="<c:url value='/views/club/${club.clid}' />">
+	                                	<strong>${club.title}</strong>
+	                                </a>
+	                                <input type="text" value="공지사항" readonly>
+	                            </div>
+	                        </div>
+	                    </div>
+                    </c:forEach>
+                </div>
+            </div>
+            
         </div>
-        <c:import url="navbar.jsp"></c:import>
     </div>
+    <script>
+        function checkLogin() {
+            const isLoggedIn = false;
+
+            if (isLoggedIn) {
+                document.getElementById('not-logged-in').style.display = 'none';
+                document.getElementById('logged-in').style.display = 'block';
+            } else {
+                document.getElementById('not-logged-in').style.display = 'block';
+                document.getElementById('logged-in').style.display = 'none';
+            }
+        }
+
+        function findGroup() {
+            alert('로그인 해주세요.');
+            window.location.href = "<c:url value='/views/users/profile'/>";
+        }
+
+        window.onload = checkLogin;
+    </script>
+    <c:import url="navbar.jsp"></c:import>
+    <c:import url="chatbutton.jsp"></c:import>
 </body>
 </html>

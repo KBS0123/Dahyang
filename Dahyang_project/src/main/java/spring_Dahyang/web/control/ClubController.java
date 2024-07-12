@@ -39,9 +39,16 @@ public class ClubController {
 	private MemberMapper memberMapper;
 	
 	@GetMapping("/list")
-	public ModelAndView getClubView() {
+	public ModelAndView getClubView(HttpSession session) {
+		User user = (User)session.getAttribute("user");
 		ModelAndView mav = new ModelAndView("club_list");
-		mav.addObject("clubs", clubMapper.selectAll());
+		
+		if (user == null) {
+			return mav;
+		} else {
+			mav.addObject("clubs", clubMapper.selectByUid(user.getUid()));
+		}
+		
 		return mav;
 	}
 	

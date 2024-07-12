@@ -11,11 +11,13 @@
 		<result property="writer" column="WRITER" />
 		<result property="content" column="CONTENT" />
 		<result property="img" column="IMAGES" />
+		<result property="uimg" column="USER_IMAGES" />
+		<result property="likes" column="LIKE_COUNT" />
 	</resultMap>
 	
 	<!-- 피드 등록 -->
 	<insert id="insert" parameterType="Feed">
-		insert into dpheed values (dpheed_seq.nextval, #{clid}, #{uid}, #{writer}, #{content}, #{img, jdbcType=VARCHAR})
+		insert into dpheed values (dpheed_seq.nextval, #{clid}, #{uid}, #{writer}, #{content}, #{img, jdbcType=VARCHAR}, #{uimg, jdbcType=VARCHAR}, #{likes})
 	</insert>
 	
 	<!-- 피드 수정 -->

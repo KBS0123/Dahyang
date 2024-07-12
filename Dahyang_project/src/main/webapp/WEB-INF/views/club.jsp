@@ -70,7 +70,7 @@
 		        <!-- 로그인된 사용자의 uid가 member 리스트에 포함된 경우 프로필 이미지 표시 -->
 		        <c:forEach var="m" items="${member}">
 		            <c:if test="${m.uid == user.uid}">
-		                <c:import url="navbar.jsp"></c:import>
+		                <c:import url="navbar2.jsp"></c:import>
 		            </c:if>
 		        </c:forEach>
 		    </c:otherwise>

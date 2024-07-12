@@ -13,7 +13,10 @@ import lombok.NoArgsConstructor;
 @Component
 public class KakaoApi {
 
+	@Value("${kakao.api_key}")
 	private String kakaoApiKey;
+	
+	@Value("${kakao.redirect_uri}")
 	private String kakaoRedirectUri;
 	
 }

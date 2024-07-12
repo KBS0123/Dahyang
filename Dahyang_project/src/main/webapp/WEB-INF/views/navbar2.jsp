@@ -42,9 +42,9 @@
     <ul>
       <li>
         <div class="icon-container">
-          <a class="active" href="<c:url value='/views/'/>">
+          <a class="active" href="<c:url value='/views/club/${clid}' />">
             <svg><use xlink:href="#home-icon"></use></svg>
-            <p>홈</p>
+            <p>소개</p>
           </a>
         </div>
       </li>
@@ -52,9 +52,9 @@
     <ul>
       <li>
         <div class="icon-container">
-          <a href="<c:url value='/views/club/list'/>">
+          <a href="<c:url value='/views/club/${clid}/feed'/>">
             <svg><use xlink:href="#plus-icon"></use></svg>
-            <p>내 그룹방</p>
+            <p>피드</p>
           </a>
         </div>
       </li>

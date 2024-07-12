@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <link href="${pageContext.request.contextPath}/resources/css/navbar.css" rel="stylesheet" type="text/css">
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>navbar</title>
 <style>
   .icon-container {
@@ -16,8 +16,8 @@
   }
 
   .icon-container a {
-    text-decoration: none; /* ¸µÅ©ÀÇ ¹ØÁÙ Á¦°Å */
-    color: white; /* ÅØ½ºÆ® »ö»ó */
+    text-decoration: none; /* ë§í¬ì˜ ë°‘ì¤„ ì œê±° */
+    color: white; /* í…ìŠ¤íŠ¸ ìƒ‰ìƒ */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,7 +44,7 @@
         <div class="icon-container">
           <a class="active" href="<c:url value='/views/'/>">
             <svg><use xlink:href="#home-icon"></use></svg>
-            <p>È¨</p>
+            <p>í™ˆ</p>
           </a>
         </div>
       </li>
@@ -54,7 +54,7 @@
         <div class="icon-container">
           <a href="<c:url value='/views/bookmarks'/>">
             <svg><use xlink:href="#bookmark-icon"></use></svg>
-            <p>ÇÇµå</p>
+            <p>í”¼ë“œ</p>
           </a>
         </div>
       </li>
@@ -64,7 +64,7 @@
         <div class="icon-container">
           <a href="<c:url value='/views/club/write'/>">
             <svg><use xlink:href="#plus-icon"></use></svg>
-            <p>±×·ì¹æ</p>
+            <p>ê·¸ë£¹ë°©</p>
           </a>
         </div>
       </li>
@@ -74,7 +74,7 @@
         <div class="icon-container">
           <a href="<c:url value='/views/users/profile'/>">
             <svg><use xlink:href="#user-icon"></use></svg>
-            <p>¸¶ÀÌÆäÀÌÁö</p>
+            <p>ë§ˆì´í˜ì´ì§€</p>
           </a>
         </div>
       </li>
