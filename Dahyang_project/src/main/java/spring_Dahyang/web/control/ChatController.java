@@ -2,10 +2,13 @@ package spring_Dahyang.web.control;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import spring_Dahyang.chat.model.ChatMessage;
 import spring_Dahyang.chat.service.ChatService;
+import spring_Dahyang.user.model.User;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -19,9 +22,22 @@ public class ChatController {
 
     private final Map<Integer, SseEmitter> emitters = new HashMap<>();
 
+    @GetMapping()
+    public ModelAndView getChatView(@PathVariable int clid, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        ModelAndView mav = new ModelAndView("chat");
+        mav.addObject("clid", clid);
+        if (user != null) {
+            mav.addObject("uid", user.getUid());
+        } else {
+            mav.addObject("uid", null);
+        }
+        return mav;
+    }
+
     @PostMapping("/send")
-    public ChatMessage sendMessage(@PathVariable int clid, @RequestParam int userId, @RequestParam String content) {
-        ChatMessage chatMessage = chatService.sendMessage(userId, clid, content);
+    public ChatMessage sendMessage(@PathVariable int clid, @RequestParam("uid") int uid, @RequestParam String content) {
+        ChatMessage chatMessage = chatService.sendMessage(uid, clid, content);
         emitters.values().forEach(emitter -> {
             try {
                 emitter.send(chatMessage);

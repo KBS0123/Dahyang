@@ -34,15 +34,15 @@ public class ChatService {
         Optional<Club> club = clubMapper.findById(clid);
 
         if (user.isPresent() && club.isPresent()) {
-            Chat chat = chatRepository.findByClub(club.get()).orElseGet(() -> {
+            Chat chat = chatRepository.findByClid(clid).orElseGet(() -> {
                 Chat newChat = new Chat();
-                newChat.setClub(club.get());
+                newChat.setClid(clid);
                 return chatRepository.save(newChat);
             });
 
             ChatMessage chatMessage = new ChatMessage();
             chatMessage.setChat(chat);
-            chatMessage.setUser(user.get());
+            chatMessage.setUid(userId);
             chatMessage.setNickname(user.get().getNickname());
             chatMessage.setContent(content);
             chatMessage.setTimestamp(LocalDateTime.now());
@@ -55,13 +55,7 @@ public class ChatService {
     }
 
     public List<ChatMessage> getMessages(int clid) {
-        Optional<Club> club = clubMapper.findById(clid);
-        if (club.isPresent()) {
-            Optional<Chat> chat = chatRepository.findByClub(club.get());
-            return chat.map(Chat::getMessages).orElse(null);
-        } else {
-            // handle error
-            return null;
-        }
+        Optional<Chat> chat = chatRepository.findByClid(clid);
+        return chat.map(Chat::getMessages).orElse(null);
     }
 }

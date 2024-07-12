@@ -3,21 +3,35 @@
 <html>
 <head>
     <title>Chat</title>
+    <style>
+        #messages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <div>
         <input type="text" id="message" placeholder="Enter message" />
         <button onclick="sendMessage()">Send</button>
     </div>
-    <div id="messages"></div>
+    <div id="messages">
+        <!-- 기존 메시지들이 여기에 추가될 것입니다 -->
+    </div>
 
     <script>
         const contextPath = '<%= request.getContextPath() %>';
-        const userId = <%= request.getAttribute("userId") %>;
-        const clid = <%= request.getParameter("clid") %>;
+        const uid = '<%= session.getAttribute("user") != null ? ((spring_Dahyang.user.model.User) session.getAttribute("user")).getUid() : "null" %>';
+        const clid = '<%= request.getAttribute("clid") %>';
 
         function connectSSE(clid) {
-            const eventSource = new EventSource(contextPath + '/chat/stream/' + clid);
+            const eventSource = new EventSource(contextPath + '/views/club/' + clid + '/chat/stream');
             eventSource.onmessage = function(event) {
                 showMessage(JSON.parse(event.data).content);
             };
@@ -33,8 +47,15 @@
                 return; // 내용이 비어있으면 전송하지 않음
             }
 
-            fetch(contextPath + '/chat/send?userId=' + userId + '&clid=' + clid + '&content=' + encodeURIComponent(messageContent), {
-                method: 'POST'
+            fetch(contextPath + '/views/club/' + clid + '/chat/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    uid: uid,
+                    content: messageContent
+                })
             })
             .then(response => {
                 if (response.ok) {
@@ -51,11 +72,26 @@
         function showMessage(message) {
             const messages = document.getElementById('messages');
             const messageElement = document.createElement('div');
+            messageElement.className = 'message';
             messageElement.innerText = message;
             messages.appendChild(messageElement);
         }
 
+        function loadMessages() {
+            fetch(contextPath + '/views/club/' + clid + '/chat/messages')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(message => {
+                    showMessage(message.content);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading messages:', error);
+            });
+        }
+
         connectSSE(clid);
+        loadMessages();
     </script>
 </body>
 </html>
