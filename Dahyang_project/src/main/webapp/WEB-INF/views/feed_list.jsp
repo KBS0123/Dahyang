@@ -33,7 +33,11 @@
 	    <header>
 	      <div class="system-bar"></div>
 	      <div class="left">
-	        <span class="ion-chevron-left"></span>
+	        <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}"/>'">
+		        <svg viewBox="0 0 24 24">
+		          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+		        </svg>
+		    </button>
 	      </div>
 	      <div class="center-text">그룹 피드</div>
 	      <div class="right">
@@ -60,6 +64,8 @@
 	        </div>
 	        <c:import url="navbar2.jsp"></c:import>
 	    </div>
+	    <!-- 새 피드 작성 버튼 -->
+      	<button class="button new-feed" onclick="location.href='<c:url value="/views/club/${clid}/feed/write"/>'">피드 작성하기</button>
     </div>
 </main>
 </html>

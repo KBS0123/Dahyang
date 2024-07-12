@@ -52,7 +52,6 @@ public class KakaoPayController {
         session.setAttribute("title", title);
         session.setAttribute("content", content);
         session.setAttribute("notice", notice);
-        System.out.println(title);
 
         return "redirect:" + kakaoPayService.kakaoPayReady(session);
     }
@@ -68,7 +67,7 @@ public class KakaoPayController {
         String content = (String) session.getAttribute("content");
         String notice = (String) session.getAttribute("notice");
         User user = (User) session.getAttribute("user");
-        System.out.println(title);
+
         // 모임 생성 로직
         if (user != null) {
             Club club = new Club();

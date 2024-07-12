@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <title>그룹방 관리(회원)</title>
@@ -67,6 +68,5 @@
     <jsp:include page="/views/nav2.jsp" />
 </div>
 
-    <jsp:include page="/views/nav2.jsp" />
 </body>
 </html>

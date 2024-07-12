@@ -28,20 +28,6 @@
             <div class="description">
                 <span>${club.content}</span>
             </div>
-
-            <div class="info-box">
-                <div class="info-item">
-                    <span>인원</span>
-                    <div class="info-details">
-                        <span>적정</span><span>4명</span>
-                        <span>현재</span><span>2명</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <span>방식</span>
-                    <span>온라인</span>
-                </div>
-            </div>
         </div>
         <c:choose>
 	        <c:when test="${empty user}">
@@ -92,10 +78,6 @@
 						            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
 						            <div class="user-info">
 						                <div class="user-name">사용자 닉네임</div>
-						                <div class="action-buttons">
-						                    <button class="btn-accept">승낙하기</button>
-						                    <button class="btn-reject">거절하기</button>
-						                </div>
 						            </div>
 						        </div>
 						        <!-- 추가적인 참여된 인원 예시 -->

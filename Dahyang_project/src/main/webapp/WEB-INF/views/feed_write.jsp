@@ -28,7 +28,7 @@
 <div class="container">
     <div class="navbar">
         <!-- 뒤로 가기 버튼 SVG -->
-        <div class="back-button" onclick="javascript:history.back()">
+        <div class="back-button" onclick="location.href='<c:url value="/views/club/${clid}/feed"/>'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 22" width="26" height="24">
                 <path fill="#fff" d="M20 11H7.414l3.293-3.293a1 1 0 0 0-1.414-1.414l-5 5a1 1 0 0 0 0 1.414l5 5a1 1 0 0 0 1.414-1.414L7.414 13H20a1 1 0 0 0 0-2z"/>
             </svg>
