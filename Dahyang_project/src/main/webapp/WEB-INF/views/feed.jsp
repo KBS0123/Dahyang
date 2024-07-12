@@ -69,9 +69,8 @@
 		
         <!-- 댓글 작성 폼 -->
         <div class="comment-form" style="display: none;">
-        	<form action="<c:url value='/views/club/${clid}/feed/${fid}/comment/write'/>" method="post" enctype="multipart/form-data">
+        	<form action="<c:url value='/views/club/${clid}/feed/${fid}/comment/write'/>" method="post">
         		<textarea name="content" id="content" rows="3"></textarea>
-        		<input type="file" id="uimg" name="uimg" onchange="readURL(this);">
         		<input type="submit" value="작성">
         	</form>
         </div>
