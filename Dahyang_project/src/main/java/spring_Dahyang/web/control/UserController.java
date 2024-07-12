@@ -75,25 +75,13 @@ public class UserController { //유저정보를 가져와 실 정보인지 비�
     	
     	String error = null; // 에러 메시지를 저장할 변수
 
-    	// 기존 비밀번호 확인
-    	if (!ori_user.getPwd().equals(request.getParameter("opwd"))) {
-    	    error = "기존 비밀번호가 일치하지 않습니다.";
-    	} else {
+    	
     	    // 새로운 정보가 null이거나 빈 문자열인 경우 에러 메시지 설정
     	    if (user.getNickname() == null || user.getNickname().isEmpty()) {
     	        error = "닉네임을 입력해주세요.";
-    	    } else if (user.getPwd() == null || user.getPwd().isEmpty()) {
-    	        error = "비밀번호를 입력해주세요.";
-    	    } else if (request.getParameter("pwdc") == null || request.getParameter("pwdc").isEmpty()) {
-    	        error = "확인 비밀번호를 입력해주세요.";
-    	    } else if (!user.getPwd().equals(request.getParameter("pwdc"))) {
-    	        error = "새로운 비밀번호와 확인 비밀번호가 일치하지 않습니다.";
-    	    } else if (user.getEmail() == null || user.getEmail().isEmpty()) {
-    	        error = "이메일을 입력해주세요.";
     	    } else if (user.getBirthday() == null || user.getBirthday().isEmpty()) {
     	        error = "생년월일을 입력해주세요.";
     	    }
-    	}
 
     	// 에러가 없다면 수정 진행, 있으면 에러 메시지 세션에 저장
     	if (error == null) {
