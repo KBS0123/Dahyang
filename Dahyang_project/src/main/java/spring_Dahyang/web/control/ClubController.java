@@ -90,40 +90,6 @@ public class ClubController {
 		return "club_write";
 	}
 	
-	@PostMapping("/write")
-	public String postInsert(@RequestParam("img") MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
-		User user = (User)session.getAttribute("user");
-		// Board 객체 생성 및 필요한 데이터 설정
-		Club club = new Club();
-		club.setUid(Integer.parseInt(request.getParameter("uid")));
-		club.setTitle(request.getParameter("title"));
-		club.setContent(request.getParameter("content"));
-		club.setNotice(request.getParameter("notice"));
-		
-		// 파일 저장 및 파일명 설정
-	    String imgFileName = null;
-	    if (file != null && !file.isEmpty()) {
-	        imgFileName = fileService.saveFile(file); // FileService의 구현체를 사용하여 파일 저장
-	        club.setImg(imgFileName); // 파일이 있는 경우에만 파일명 설정
-	    }
-	    
-	    try {
-	        clubMapper.insert(club);
-	        
-	        Club clubs = clubMapper.selectByTitle(request.getParameter("title"));
-	        
-	        Member member = new Member();
-	        member.setClid(clubs.getClid());
-	        member.setUid(clubs.getUid());
-	        
-	        memberMapper.insert(member);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	    
-	    return "redirect:/views/";
-	}
-	
 	@GetMapping("/update/{clid}")
 	public String getUpdateView(@PathVariable int clid, HttpSession session, Model model) {
 		User user = (User)session.getAttribute("user");
