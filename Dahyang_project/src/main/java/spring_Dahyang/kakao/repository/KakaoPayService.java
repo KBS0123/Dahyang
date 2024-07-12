@@ -52,7 +52,7 @@ public class KakaoPayService {
         // Server Request Body : 서버 요청 본문
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 
-        params.add("cid", "TC0ONETIME"); // 가맹점 코드 - 테스트용
+        params.add("cid", "TCSEQUENCE"); // 가맹점 코드 - 테스트용
         params.add("partner_order_id", "1001"); // 주문 번호
         params.add("partner_user_id", user.getNickname()); // 회원 아이디
         params.add("item_name", "모임방 생성"); // 상품 명
