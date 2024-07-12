@@ -32,7 +32,7 @@
 					모임 생성시 월 5000원씩<br/>
 					요금이 부과됩니다.
 				</h4>
-				<form action="<c:url value='/views/club/write'/>" method="post" enctype="multipart/form-data">
+				<form action="<c:url value='/kakaoPay'/>" method="post" enctype="multipart/form-data">
 					<div class="col-sm-3">
 		            	<input type="file" class="form-control form-control-sm" id="img" name="img" onchange="readURL(this);">
 		        	</div>
@@ -48,9 +48,6 @@
 						<button type="submit" class="btn btn-success mr-2">만들기</button>
 					</div>
 				</form>
-				<form action="<c:url value='/kakaoPay'/>" method="post">
-                	<button type="submit">결제하기</button>
-                </form>
 			</div>
 		</div> 
 	</div>
