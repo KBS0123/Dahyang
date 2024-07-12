@@ -70,11 +70,54 @@
 		        <!-- 로그인된 사용자의 uid가 member 리스트에 포함된 경우 프로필 이미지 표시 -->
 		        <c:forEach var="m" items="${member}">
 		            <c:if test="${m.uid == user.uid}">
+				    	<!-- 공지사항 박스 -->
+					    <div class="notice-box">
+					        <h3 class="notice-title">공지사항</h3>
+					        <div class="notice-content">
+					            <!-- 여기에 공지사항 내용을 동적으로 표시할 부분 -->
+					          <p>안녕하세요?</p>
+					        </div>
+					    </div>
+					    <!-- 공지사항 박스 끝 -->
+					    
+			          	<!-- 참여된 인원 토글 박스 -->
+					   	<div class="toggle-box">
+						    <div class="toggle-header" onclick="toggleParticipants()">
+						        <div class="toggle-title">참여된 인원</div>
+						        <div class="toggle-icon">+</div>
+						    </div>
+						    <div class="toggle-content" id="participantsBox">
+						        <!-- 유저 프로필 및 승인/거절 버튼 예시 -->
+						        <div class="user-profile">
+						            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
+						            <div class="user-info">
+						                <div class="user-name">사용자 닉네임</div>
+						                <div class="action-buttons">
+						                    <button class="btn-accept">승낙하기</button>
+						                    <button class="btn-reject">거절하기</button>
+						                </div>
+						            </div>
+						        </div>
+						        <!-- 추가적인 참여된 인원 예시 -->
+						        <div class="user-profile">
+						            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
+						            <div class="user-info">
+						                <div class="user-name">사용자 닉네임</div>
+						            </div>
+						        </div>
+						    </div>
+						</div>
 		                <c:import url="navbar2.jsp"></c:import>
 		            </c:if>
 		        </c:forEach>
 		    </c:otherwise>
 	    </c:choose>
     </div>
+    <script>
+        function toggleParticipants() {
+            var box = document.getElementById("participantsBox");
+            box.classList.toggle("show");
+        }
+    </script>
 </body>
 </html>

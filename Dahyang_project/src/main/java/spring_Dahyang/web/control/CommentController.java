@@ -39,11 +39,11 @@ public class CommentController {
 		model.addAttribute("clid", clid);
 		model.addAttribute("fid", fid);
 		Comment comment = new Comment();
-		comment.setClid(Integer.parseInt(request.getParameter("fid")));
-		comment.setClid(Integer.parseInt(request.getParameter("clid")));
-		comment.setUid(Integer.parseInt(request.getParameter("uid")));
-		comment.setNickname(request.getParameter("nickname"));
-		comment.setContent(request.getParameter("content"));
+		comment.setFid(fid);
+        comment.setClid(clid);
+        comment.setUid(user.getUid()); // 세션에서 가져온 유저의 ID 사용
+        comment.setNickname(user.getNickname()); // 세션에서 가져온 유저의 닉네임 사용
+        comment.setContent(request.getParameter("content"));
 		
 		// 파일 저장 및 파일명 설정
 	    String imgFileName = null;
