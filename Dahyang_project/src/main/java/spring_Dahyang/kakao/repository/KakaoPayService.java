@@ -29,6 +29,9 @@ import spring_Dahyang.kakao.dto.KakaoPay;
 @Log
 public class KakaoPayService {
     private static final String Host = "https://kapi.kakao.com";
+    
+    @Value("${kakao.admin}")
+    private String kakaoAdminKey;
 
     private KakaoPay kakaoPay;
 
@@ -38,7 +41,7 @@ public class KakaoPayService {
 
         // Server Request Header : 서버 요청 헤더
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "KakaoAK " + "1e1007252cba46b27195b97cb5b9f28b"); // 어드민 키
+        headers.add("Authorization", "KakaoAK " + kakaoAdminKey); // 어드민 키
         headers.add("Accept", "application/json");
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
