@@ -26,15 +26,16 @@
 
             <div class="info-box">
                 <div class="info-item">
-                    <span>인원</span>
-                    <div class="info-details">
-                        <span>적정</span><span>4명</span>
-                        <span>현재</span><span>2명</span>
-                    </div>
+                    <span>적정 인원: 4명</span>
                 </div>
                 <div class="info-item">
-                    <span>방식</span>
-                    <span>온라인</span>
+                    <span>현재 참여 중: 2명</span>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-item">
+                    <span>진행 방식: 온라인</span>
                 </div>
             </div>
         </div>

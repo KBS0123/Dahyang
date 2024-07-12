@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 div.page::-webkit-scrollbar {
   width: 0 !important;
 }
@@ -60,7 +60,7 @@ p span {
   line-height: 1pt;
 }
 
-/*¼öÁ¤*/
+/*ìˆ˜ì •*/
 #app > header {
     font-size: 12pt;
     font-family: 'Pretendard-Regular';
@@ -111,8 +111,8 @@ p span {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 130px; /* ³ôÀÌ Á¶Á¤ */
-  line-height: 50px; /* ÁÙ °£°İ Á¶Á¤ */
+  height: 130px; /* ë†’ì´ ì¡°ì • */
+  line-height: 50px; /* ì¤„ ê°„ê²© ì¡°ì • */
   background-color: #fff;
   padding: 8pt;
   color: #222;
@@ -120,11 +120,11 @@ p span {
 
 #app > div.page {
   display: flex;
-  justify-content: center; /* °¡·Î Áß¾Ó Á¤·Ä */
-  align-items: center; /* ¼¼·Î Áß¾Ó Á¤·Ä */
+  justify-content: center; /* ê°€ë¡œ ì¤‘ì•™ ì •ë ¬ */
+  align-items: center; /* ì„¸ë¡œ ì¤‘ì•™ ì •ë ¬ */
   position: absolute;
   top: 82pt;
-  bottom: 50pt; /* ÇÏ´Ü¹Ù¿¡ ¸ÂÃß¾î Á¶Á¤ */
+  bottom: 50pt; /* í•˜ë‹¨ë°”ì— ë§ì¶”ì–´ ì¡°ì • */
   left: 0;
   right: 0;
   overflow: auto;
@@ -184,8 +184,8 @@ body > header > p {
 
 #content {
   display: flex;
-  justify-content: center; /* °¡·Î Áß¾Ó Á¤·Ä */
-  align-items: center; /* ¼¼·Î Áß¾Ó Á¤·Ä */
+  justify-content: center; /* ê°€ë¡œ ì¤‘ì•™ ì •ë ¬ */
+  align-items: center; /* ì„¸ë¡œ ì¤‘ì•™ ì •ë ¬ */
   
 }
 
@@ -212,13 +212,13 @@ body > header > p {
   padding: 10px;
   width: 90%;
   height: 120px;
-  margin: 10px auto; /* Áß¾Ó Á¤·Ä */
-  box-sizing: border-box; /* ÆĞµù°ú Å×µÎ¸®¸¦ ³Êºñ¿Í ³ôÀÌ¿¡ Æ÷ÇÔ */
+  margin: 10px auto; /* ì¤‘ì•™ ì •ë ¬ */
+  box-sizing: border-box; /* íŒ¨ë”©ê³¼ í…Œë‘ë¦¬ë¥¼ ë„ˆë¹„ì™€ ë†’ì´ì— í¬í•¨ */
 }
 
 .group-box img {
   margin-right: 20px;
-  border-radius: 50%; /* ÀÌ¹ÌÁö µÕ±Û°Ô */
+  border-radius: 50%; /* ì´ë¯¸ì§€ ë‘¥ê¸€ê²Œ */
 }
 
 .group-info {
@@ -241,4 +241,38 @@ body > header > p {
   color: #888;
 }
 
+#content {
+    display: flex;
+    flex-direction: column; /* ì„¸ë¡œë¡œ ìš”ì†Œë¥¼ ì •ë ¬í•˜ê¸° ìœ„í•´ column ë°©í–¥ìœ¼ë¡œ ì„¤ì • */
+    align-items: center; /* ì„¸ë¡œ ì¤‘ì•™ ì •ë ¬ */
+    justify-content: center; /* ê°€ë¡œ ì¤‘ì•™ ì •ë ¬ */
+    height: 100%; /* í™”ë©´ ì „ì²´ ë†’ì´ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì„¸ë¡œ ì •ë ¬ */
+    padding: 20px;
+}
+
+.group {
+    width: 100%;
+    text-align: center; /* ê·¸ë£¹ í—¤ë”ë¥¼ ì¤‘ì•™ ì •ë ¬ */
+    margin-bottom: 20px;
+}
+
+.button-container {
+    margin-bottom: 10px; /* ë²„íŠ¼ ì‚¬ì´ ì—¬ë°± ì¡°ì • */
+}
+
+.button {
+    width: 200px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.button:hover {
+    opacity: 0.8;
+}
 

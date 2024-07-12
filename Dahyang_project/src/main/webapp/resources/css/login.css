@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 * {
@@ -19,7 +19,7 @@ body {
   min-height: 100vh;
 }
 
-.screen {  /*ÆäÀÌÁö ¹Ú½º Å©±â Á¶Á¤*/
+.screen {  /*í˜ì´ì§€ ë°•ìŠ¤ í¬ê¸° ì¡°ì •*/
   background: linear-gradient(90deg, #3ed4b9, #75b64d);   
   position: relative; 
   height: 900px;
@@ -49,7 +49,7 @@ body {
   position: absolute;
 }
 
-.screen__background__shape1 { /*ÇÏ¾á»ö Áß¾Ó ¹è°æ*/
+.screen__background__shape1 { /*í•˜ì–€ìƒ‰ ì¤‘ì•™ ë°°ê²½*/
   height: 700px;
   width: 520px;
   background: #FFF; 
@@ -69,7 +69,7 @@ body {
 }
 
 
-.login { /*·Î±×ÀÎ ¿ä¼Ò ÀüÃ¼*/
+.login { /*ë¡œê·¸ì¸ ìš”ì†Œ ì „ì²´*/
   width: 480px;
   position: absolute;
   top: 50%;
@@ -91,7 +91,7 @@ body {
 
 .login__input {
   border: none;
-  border-bottom: 2px solid #75b64d; /*input line »ö»ó*/
+  border-bottom: 2px solid #75b64d; /*input line ìƒ‰ìƒ*/
   background: none;
   padding: 10px;
   padding-left: 24px;
@@ -104,23 +104,23 @@ body {
 .login__input:focus,
 .login__input:hover {
   outline: none;
-  border-bottom-color: #9ff097; /*input line hover »ö»ó*/
+  border-bottom-color: #9ff097; /*input line hover ìƒ‰ìƒ*/
 }
 
 .login__submit {
-  background: #fff;/*¹öÆ° ¹è°æ»ö*/
+  background: #fff;/*ë²„íŠ¼ ë°°ê²½ìƒ‰*/
   font-size: 14px;
   margin-top: 30px;
   padding: 16px 20px;
   border-radius: 26px;
-  border: 1px solid #fff;/*¹öÆ° */
+  border: 1px solid #fff;/*ë²„íŠ¼ */
   text-transform: uppercase;
   font-weight: 700;
   display: flex;
   align-items: center;
   width: 50%;
-  color: #75b64d;/*¹öÆ° ÅØ½ºÆ® »ö»ó*/
-  box-shadow: 0px 2px 2px #75b64d;/*¹öÆ° ±×¸²ÀÚ »ö»ó*/
+  color: #75b64d;/*ë²„íŠ¼ í…ìŠ¤íŠ¸ ìƒ‰ìƒ*/
+  box-shadow: 0px 2px 2px #75b64d;/*ë²„íŠ¼ ê·¸ë¦¼ì ìƒ‰ìƒ*/
   cursor: pointer;
   transition: .2s;
 }
@@ -164,7 +164,7 @@ body {
 .social-login__icon:hover {
   transform: scale(1.5);  
 }
-/*µÚ·Î°¡±â ¹öÆ°*/
+/*ë’¤ë¡œê°€ê¸° ë²„íŠ¼*/
 a {
   text-decoration: none;
   display: inline-block;
@@ -195,8 +195,8 @@ a:hover {
   border-radius: 18px;
   padding: 10px 20px;
   cursor: pointer; 
-  transition: background-color 0.3s; /* ¹è°æ»ö ÀüÈ¯ ¾Ö´Ï¸ŞÀÌ¼Ç */
-  display: flex; /* Flexbox·Î ³»ºÎ ¿ä¼Ò Á¤·Ä */
+  transition: background-color 0.3s; /* ë°°ê²½ìƒ‰ ì „í™˜ ì• ë‹ˆë©”ì´ì…˜ */
+  display: flex; /* Flexboxë¡œ ë‚´ë¶€ ìš”ì†Œ ì •ë ¬ */
   align-items: center;
   justify-content: center;
   margin-top:10px;
