@@ -3,6 +3,7 @@ package spring_Dahyang.chat.model;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,11 +11,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "DCHAT")
 public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CHAT_ID")
-    private int chatId;
+    private Long chatId;
 
     @Column(name = "CLUB_ID", nullable = false)
     private int clid;

@@ -18,4 +18,7 @@
 		<package name="spring_Dahyang.chat.model"/>
 	</typeAliases>
 
+	<typeHandlers>
+        <typeHandler handler="spring_Dahyang.chat.handler.LocalDateTimeTypeHandler" javaType="java.time.LocalDateTime"/>
+    </typeHandlers>
 </configuration>

@@ -36,7 +36,12 @@ public class ChatController {
     }
 
     @PostMapping("/send")
-    public ChatMessage sendMessage(@PathVariable int clid, @RequestParam("uid") int uid, @RequestParam String content) {
+    public ChatMessage sendMessage(@PathVariable int clid, HttpSession session, @RequestParam String content) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            throw new IllegalStateException("User not logged in");
+        }
+        int uid = user.getUid();
         ChatMessage chatMessage = chatService.sendMessage(uid, clid, content);
         emitters.values().forEach(emitter -> {
             try {

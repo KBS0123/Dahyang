@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +27,7 @@
     <script>
         const contextPath = '<%= request.getContextPath() %>';
         const uid = '<%= session.getAttribute("user") != null ? ((spring_Dahyang.user.model.User) session.getAttribute("user")).getUid() : "null" %>';
-        const clid = '<%= request.getAttribute("clid") %>';
+        const clid = '<%= request.getAttribute("clid") != null ? request.getAttribute("clid") : "null" %>';
 
         function connectSSE(clid) {
             const eventSource = new EventSource(contextPath + '/views/club/' + clid + '/chat/stream');
@@ -53,7 +52,6 @@
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: new URLSearchParams({
-                    uid: uid,
                     content: messageContent
                 })
             })

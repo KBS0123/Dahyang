@@ -1,8 +1,10 @@
 package spring_Dahyang.chat.model;
 
 import lombok.Data;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import spring_Dahyang.user.model.User;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -10,25 +12,28 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "DCHAT_MESSAGE")
 public class ChatMessage {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MESSAGE_ID")
-    private int messageId;
+    private Long messageId;
 
     @ManyToOne
-    @JoinColumn(name = "CHAT_ID", nullable = false)
+    @JoinColumn(name = "CHAT_ID")
     private Chat chat;
 
-    @Column(name = "USER_ID", nullable = false)
-    private int uid;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
-    @Column(name = "NICKNAME", nullable = false)
+    @Column(name = "NICKNAME")
     private String nickname;
 
-    @Column(name = "CONTENT", nullable = false)
+    @Column(name = "CONTENT")
     private String content;
 
-    @Column(name = "TIMESTAMP", nullable = false)
-    private LocalDateTime timestamp = LocalDateTime.now();
+    @Column(name = "TIMESTAMP", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime timestamp;
 }

@@ -2,60 +2,39 @@ package spring_Dahyang.chat.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import spring_Dahyang.chat.model.Chat;
 import spring_Dahyang.chat.model.ChatMessage;
-import spring_Dahyang.chat.repository.ChatMessageRepository;
-import spring_Dahyang.chat.repository.ChatRepository;
-import spring_Dahyang.club.model.Club;
-import spring_Dahyang.club.repository.ClubMapper;
+import spring_Dahyang.chat.repository.ChatMessageMapper;
 import spring_Dahyang.user.model.User;
 import spring_Dahyang.user.repository.UserMapper;
+import spring_Dahyang.user.repository.UserRepository;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ChatService {
     @Autowired
-    private ChatMessageRepository chatMessageRepository;
-
-    @Autowired
-    private ChatRepository chatRepository;
+    private ChatMessageMapper chatMessageMapper;
 
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    private ClubMapper clubMapper;
+    @Transactional
+    public ChatMessage sendMessage(int uid, int clid, String content) {
+        User user = userMapper.findById(uid).orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-    public ChatMessage sendMessage(int userId, int clid, String content) {
-        Optional<User> user = userMapper.findById(userId);
-        Optional<Club> club = clubMapper.findById(clid);
+        Chat chat = new Chat();
+        chat.setChatId((long) clid); // Assuming Chat entity is fetched or created properly
 
-        if (user.isPresent() && club.isPresent()) {
-            Chat chat = chatRepository.findByClid(clid).orElseGet(() -> {
-                Chat newChat = new Chat();
-                newChat.setClid(clid);
-                return chatRepository.save(newChat);
-            });
+        ChatMessage chatMessage = new ChatMessage();
+        chatMessage.setChat(chat);
+        chatMessage.setUser(user);
+        chatMessage.setNickname(user.getNickname());
+        chatMessage.setContent(content);
+        chatMessage.setTimestamp(LocalDateTime.now());
 
-            ChatMessage chatMessage = new ChatMessage();
-            chatMessage.setChat(chat);
-            chatMessage.setUid(userId);
-            chatMessage.setNickname(user.get().getNickname());
-            chatMessage.setContent(content);
-            chatMessage.setTimestamp(LocalDateTime.now());
-
-            return chatMessageRepository.save(chatMessage);
-        } else {
-            // handle error
-            return null;
-        }
-    }
-
-    public List<ChatMessage> getMessages(int clid) {
-        Optional<Chat> chat = chatRepository.findByClid(clid);
-        return chat.map(Chat::getMessages).orElse(null);
+        chatMessageMapper.insertChatMessage(chatMessage);
+        return chatMessage;
     }
 }

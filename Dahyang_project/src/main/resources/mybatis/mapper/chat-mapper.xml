@@ -4,32 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spring_Dahyang.chat.repository.ChatRepository">
 	
-	<resultMap type="Chat" id="chatResultMap">
-		<result property="clid" column="CLUB_ID" />
+	<resultMap type="spring_Dahyang.chat.model.Chat" id="chatResultMap">
 		<result property="chatId" column="CHAT_ID" />
+		<result property="clid" column="CLUB_ID" />
 	</resultMap>
 	
 	<!-- 모임방 등록 -->
-	<insert id="insert" parameterType="Chat">
-		insert into dchat values (dchat_seq.nextval, #{clid})
+	<insert id="insert" parameterType="spring_Dahyang.chat.model.Chat" useGeneratedKeys="true" keyProperty="chatId">
+		INSERT INTO dchat (CLUB_ID) VALUES (#{clid})
 	</insert>
 	
 	<!-- 모임방 삭제 -->
 	<delete id="delete" parameterType="int">
-		delete from dchat where chat_id=#{clid}
+		DELETE FROM dchat WHERE CHAT_ID = #{chatId}
 	</delete>
 	
 	<delete id="remove" parameterType="int">
-		delete from dchat where chat_id=#{clid}
+		DELETE FROM dchat WHERE CHAT_ID = #{chatId}
 	</delete>
 	
-	<select id="findChat" parameterType="int">
-		select * from dchat where chat_id=#{chatId}
+	<select id="findChat" parameterType="int" resultMap="chatResultMap">
+		SELECT * FROM dchat WHERE CHAT_ID = #{chatId}
 	</select>
 	
 	<!-- 모임방 선택 -->
 	<select id="selectById" parameterType="int" resultMap="chatResultMap">
-		select * from dchat where chat_id=#{clid}
+		SELECT * FROM dchat WHERE CHAT_ID = #{chatId}
 	</select>
 	
 </mapper>
