@@ -6,7 +6,7 @@
 <head>
 <link href="${pageContext.request.contextPath}/resources/css/navbar2.css" rel="stylesheet" type="text/css">
 <meta charset="EUC-KR">
-<title>navbar2</title>
+<title>navbar</title>
 <style>
   .icon-container {
     display: flex;
@@ -53,7 +53,7 @@
       <li>
         <div class="icon-container">
           <a href="<c:url value='/views/club/list'/>">
-            <svg><use xlink:href="#plus-icon"></use></svg>
+            <svg><use xlink:href="#bookmark-icon"></use></svg>
             <p>내 그룹방</p>
           </a>
         </div>

@@ -96,12 +96,14 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 	        <h2>${user.nickname}</h2>
 	    
 	        <div id="container">
+			  <a href="<c:url value='/views/users/profile_update'/>">
 			  <button class="learn-more">
 			    <span class="circle" aria-hidden="true">
 			      <span class="icon arrow"></span>
 			    </span>
 			    <span class="button-text">프로필 수정</span>
-			  </button>
+				</button>
+			  </a>
 			</div>
 	        
 	        <div id="container">

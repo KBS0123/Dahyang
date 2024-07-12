@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="${pageContext.request.contextPath}/resources/css/navbar.css" rel="stylesheet" type="text/css">
-<meta charset="UTF-8">
+<link href="${pageContext.request.contextPath}/resources/css/navbar2.css" rel="stylesheet" type="text/css">
+<meta charset="EUC-KR">
 <title>navbar</title>
 <style>
   .icon-container {
@@ -52,19 +52,9 @@
     <ul>
       <li>
         <div class="icon-container">
-          <a href="<c:url value='/views/bookmarks'/>">
+          <a href="<c:url value='/views/club/list'/>">
             <svg><use xlink:href="#bookmark-icon"></use></svg>
-            <p>피드</p>
-          </a>
-        </div>
-      </li>
-    </ul>
-    <ul>
-      <li>
-        <div class="icon-container">
-          <a href="<c:url value='/views/club/write'/>">
-            <svg><use xlink:href="#plus-icon"></use></svg>
-            <p>그룹방</p>
+            <p>내 그룹방</p>
           </a>
         </div>
       </li>
