@@ -78,13 +78,13 @@
 						    </div>
 						    <div class="toggle-content" id="participantsBox">
 						        <!-- 추가적인 참여된 인원 예시 -->
-						        <c:forEach var="ms" items="${members}">
-						        <div class="user-profile">
-						            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
-						            <div class="user-info">
-						                <div class="user-name">${ms.unickname}</div>
-						            </div>
-						        </div>
+						        <c:forEach var="m" items="${member}">
+							        <div class="user-profile">
+							            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
+							            <div class="user-info">
+							                <div class="user-name">${m.unickname}</div>
+							            </div>
+							        </div>
 						        </c:forEach>
 						    </div>
 						</div>
@@ -92,7 +92,7 @@
 		        </c:forEach>
 		    </c:otherwise>
 	    </c:choose>
-
+		<c:import url="navbar2.jsp"></c:import>
     </div>
     <script>
         function toggleParticipants() {

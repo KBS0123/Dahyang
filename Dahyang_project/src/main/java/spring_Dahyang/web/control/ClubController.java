@@ -57,10 +57,8 @@ public class ClubController {
 		User user = (User)session.getAttribute("user");
 		Club club = clubMapper.selectById(clid);
 		List<Member> member = memberMapper.findMembers(clid);
-		List<Member> members = memberMapper.selectAll(clid);
 		model.addAttribute("club", club);
 		model.addAttribute("member", member);
-		model.addAttribute("members", members);
 		
 		return "club";
 	}
