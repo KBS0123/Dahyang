@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/resources/css/feedwrite.css" rel="stylesheet" type="text/css">
 <title>피드 관리</title>
+<script type="text/javascript">
+   function readURL(input) {
+      var file = input.files[0]; 
+      console.log(file);
+      if (file !== undefined) {
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.onload = function (e) { 
+            console.log(e.target);
+            console.log(e.target.result);
+            $('#preview').attr('src', e.target.result);
+         };
+      }
+  }  
+</script>
 </head>
 <body>
 <div class="container">
@@ -25,26 +41,30 @@
         <div class="feed-item">
             <div class="feed-header">
                 <div class="profile-pic"></div>
-                <span class="nickname">닉네임</span>
+                <span class="nickname">${feed.writer}</span>
             </div>
-          <!-- 이미지 등록 버튼 -->
-            <div class="image-placeholder">
-                <form action="${pageContext.request.contextPath}/uploadImage" method="post" enctype="multipart/form-data">
-                    <div class="file-upload-wrapper">
-                        <input type="file" id="imageUpload" name="image" accept="image/*">
-                        <label for="imageUpload">+</label>
-                    </div>
-                 </div>
-              <!-- 내용 작성 폼 -->
-        <div class="form-container">
-            <form action="${pageContext.request.contextPath}/uploadContent" method="post">
-                <textarea name="content" placeholder="내용을 입력하세요"></textarea>
-                <button type="submit" formaction="${pageContext.request.contextPath}/updateContent">수정하기</button>
-				<button type="submit" formaction="${pageContext.request.contextPath}/deleteContent">삭제하기</button>
-                
-            </form>
-        </div>
-            </div> 
+	        <!-- 내용 작성 폼 -->
+	        <div class="form-container">
+	            <form action="<c:url value='/views/club/${clid}/feed/update'/>" method="post" enctype="multipart/form-data">
+	            	<!-- 이미지 등록 버튼 -->
+		            <div class="image-placeholder">
+		                <div class="file-upload-wrapper">
+		                    <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
+		                    <label for="imageUpload">+</label>
+		                </div>
+		            </div>
+	                <textarea id="content" name="content" placeholder="내용을 입력하세요"></textarea>
+	                <input type="hidden" id="fid" name="fid" value="${feed.fid}">
+	                <input type="hidden" id="clid" name="clid" value="${feed.clid}">
+					<input type="hidden" id="uid" name="uid" value="${user.uid}">
+					<input type="hidden" id="writer" name="writer" value="${feed.writer}">
+					<input type="hidden" id="uimg" name="uimg" value="${feed.uimg}">
+					<input type="hidden" id="likes" name="likes" value="0">
+	            </form>
+	            <button type="submit">수정하기</button>
+	            <button type="button" onclick="location.href='<c:url value="/views/club/${clid}/feed/delete/${fid}"/>'">삭제하기</button>
+	        </div>
+        </div> 
     </div>
 </div>
 </body>

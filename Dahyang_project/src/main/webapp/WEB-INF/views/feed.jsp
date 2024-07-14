@@ -38,7 +38,9 @@
 				</div>
 	        </a>
             <span style="margin-left: 10px;">피드</span>
-            <span class="settings">&#9881;</span>
+            <a href="<c:url value='/views/club/${clid}/feed/update/${fid}'/>">
+            	<span class="settings">&#9881;</span>
+            </a>
         </div>
         
         <div class="content">

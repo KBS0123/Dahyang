@@ -26,7 +26,12 @@
 	</update>
 	
 	<!-- 피드 삭제 -->
-	<delete id="delete" parameterType="int">
+	<delete id="deleteComment" parameterType="int">
+		delete from dpheed_comment where pheed_id=#{fid}
+	</delete>
+	
+	<!-- 피드 삭제 -->
+	<delete id="deleteFeed" parameterType="int">
 		delete from dpheed where pheed_id=#{fid}
 	</delete>
 	

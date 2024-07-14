@@ -151,7 +151,7 @@ public class FeedController {
 	                e.printStackTrace();
 	            }
 	            
-	            return "redirect:/views/club/" + clid + "/feed" + feed.getFid();
+	            return "redirect:/views/club/" + clid + "/feed/" + feed.getFid();
 	        }
 		}
 		
@@ -167,8 +167,9 @@ public class FeedController {
 			Feed feed = feedMapper.selectById(fid);
 			
 			if (user.getUid() == feed.getUid()) {
-				feedMapper.delete(fid);
-				return "redirect:/views/";
+				feedMapper.deleteComment(fid);
+				feedMapper.deleteFeed(fid);
+				return "redirect:/views/club/" + clid + "/feed";
 			}
 		}
 		
