@@ -8,6 +8,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="${pageContext.request.contextPath}/resources/css/group.css" rel="stylesheet" type="text/css">
 <title>그룹방 생성</title>
+<script type="text/javascript">
+	   function readURL(input) {
+	      var file = input.files[0]; 
+	      console.log(file);
+	      if (file !== undefined) {
+	         var reader = new FileReader();
+	         reader.readAsDataURL(file);
+	         reader.onload = function (e) { 
+	            console.log(e.target);
+	            console.log(e.target.result);
+	            $('#preview').attr('src', e.target.result);
+	         };
+	      }
+	  }  
+	</script>
 <style type="text/css">
         .content::-webkit-scrollbar {
     	display: none;
@@ -142,6 +157,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M0 0h24v24H0z" fill="none"/>
                     <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+                </svg>
             </button>
             
         </div>
@@ -172,20 +188,5 @@
             </div>
         </div>
     </div>
-	<script type="text/javascript">
-	   function readURL(input) {
-	      var file = input.files[0]; 
-	      console.log(file);
-	      if (file !== undefined) {
-	         var reader = new FileReader();
-	         reader.readAsDataURL(file);
-	         reader.onload = function (e) { 
-	            console.log(e.target);
-	            console.log(e.target.result);
-	            $('#preview').attr('src', e.target.result);
-	         };
-	      }
-	  }  
-	</script>
 </body>
 </html>
