@@ -31,6 +31,6 @@ public interface MemberMapper {
 		return false;
 	}
 	
-	public List<Member> selectAll(int uid);
+	public List<Member> selectAll(int clid);
 	
 }

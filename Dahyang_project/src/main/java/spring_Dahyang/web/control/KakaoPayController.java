@@ -88,6 +88,8 @@ public class KakaoPayController {
                 Member member = new Member();
                 member.setClid(clubs.getClid());
                 member.setUid(clubs.getUid());
+                member.setUnickname(user.getNickname());
+                member.setUimg(user.getImages());
                 memberMapper.insert(member);
             } catch (Exception e) {
                 e.printStackTrace();

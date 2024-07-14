@@ -12,5 +12,7 @@ public class Member {
 	private int memid;
 	private int clid;
 	private int uid;
+	private String unickname;
+	private String uimg;
 	
 }

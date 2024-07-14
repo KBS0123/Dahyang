@@ -18,9 +18,7 @@
             <span class="group-name">${club.title}</span>
             <!-- 톱니바퀴 버튼 추가 -->
             <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/setting"/>'">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M0 0h24v24H0z" fill="none"/>
-                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+                
             </button>
         </div>
         
@@ -80,19 +78,21 @@
 						    </div>
 						    <div class="toggle-content" id="participantsBox">
 						        <!-- 추가적인 참여된 인원 예시 -->
+						        <c:forEach var="ms" items="${members}">
 						        <div class="user-profile">
 						            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
 						            <div class="user-info">
-						                <div class="user-name">사용자 닉네임</div>
+						                <div class="user-name">${ms.unickname}</div>
 						            </div>
 						        </div>
+						        </c:forEach>
 						    </div>
 						</div>
 		            </c:if>
 		        </c:forEach>
 		    </c:otherwise>
 	    </c:choose>
-	    <c:import url="navbar2.jsp"></c:import>
+
     </div>
     <script>
         function toggleParticipants() {
