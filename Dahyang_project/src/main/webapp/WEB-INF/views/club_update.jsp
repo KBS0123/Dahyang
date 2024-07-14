@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,34 +130,36 @@
 <body>
     <div class="container">
         <div class="navbar">
-            <span class="back-arrow">&lt;</span>
+            <button class="back-button" onclick="history.back()">
+	            <svg viewBox="0 0 24 24">
+	              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+	            </svg>
+	          </button>
             <span class="group-name">그룹방 관리</span>
         </div>
         
         <div class="content">
-            <!-- 이미지 업로드 부분 -->
-            <div class="image-placeholder">
-                <form action="${pageContext.request.contextPath}/uploadImage" method="post" enctype="multipart/form-data">
-                    <div class="file-upload-wrapper">
-                        <input type="file" id="imageUpload" name="image" accept="image/*">
-                        <label for="imageUpload">+</label>
-                    </div>
-                </form>
-            </div>
-            
             <!-- 그룹방 정보 입력 폼 -->
             <div class="form-container">
                 <h3>그룹방 정보</h3>
-                <form action="${pageContext.request.contextPath}/submitGroupInfo" method="post">
-                    <label for="groupName">그룹방 이름:</label>
-                    <input type="text" id="groupName" name="groupName" required>
+                <form action="<c:url value='/views/club/update'/>" method="post" enctype="multipart/form-data">
+                	<!-- 이미지 업로드 부분 -->
+		            <div class="image-placeholder">
+		                <div class="file-upload-wrapper">
+		                    <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
+		                    <label for="imageUpload">+</label>
+		                </div>
+		            </div>
+                    <label for="text">그룹방 이름:</label>
+                    <input type="text" id="title" name="title" required>
                     
-                    <label for="groupDescription">그룹방 설명:</label>
-                    <textarea id="groupDescription" name="groupDescription" required></textarea>
+                    <label for="content">그룹방 설명:</label>
+                    <textarea id="content" name="content" required></textarea>
                     
-                    <label for="groupNotice">공지글:</label>
-                    <textarea id="groupNotice" name="groupNotice"></textarea>
-                    <input type="hidden" class="form-control" id="uid" name="uid" value="${user.uid}">
+                    <label for="notice">공지글:</label>
+                    <textarea id="notice" name="notice"></textarea>
+                    <input type="hidden" id="clid" name="clid" value="${club.clid}">
+                    <input type="hidden" id="uid" name="uid" value="${user.uid}">
                     <input type="submit" value="등록">
                 </form>
             </div>

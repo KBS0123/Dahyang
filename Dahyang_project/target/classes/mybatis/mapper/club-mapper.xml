@@ -20,7 +20,7 @@
 	
 	<!-- 모임방 수정 -->
 	<update id="update" parameterType="Club">
-		update dclub set title=#{title}, content=#{content}, notice=#{notice}, img=#{img, jdbcType=VARCHAR} where club_id=#{clid}
+		update dclub set title=#{title}, content=#{content}, notice=#{notice}, images=#{img, jdbcType=VARCHAR} where club_id=#{clid}
 	</update>
 	
 	<!-- 모임방 삭제 -->

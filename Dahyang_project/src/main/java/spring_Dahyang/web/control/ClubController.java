@@ -135,9 +135,10 @@ public class ClubController {
 	            	club.setImg(imgFileName);
 	            }
 	            
+	            club.setUid(Integer.parseInt(request.getParameter("uid")));
 	            club.setTitle(request.getParameter("title"));
 	            club.setContent(request.getParameter("content"));
-	            club.setUid(Integer.parseInt(request.getParameter("uid")));
+	            club.setNotice(request.getParameter("notice"));
 	            
 	            try {
 	            	clubMapper.update(club); // MovieMapper의 update 메서드를 호출하여 업데이트

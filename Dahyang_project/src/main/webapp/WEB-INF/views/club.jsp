@@ -16,6 +16,12 @@
             	<span class="back-arrow">&lt;</span>
             </a>
             <span class="group-name">${club.title}</span>
+            <!-- 톱니바퀴 버튼 추가 -->
+            <button class="settings-button" onclick="location.href='<c:url value="/views/club/update/${clid}"/>'">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+            </button>
         </div>
         
         <div class="content">
