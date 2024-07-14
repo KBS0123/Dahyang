@@ -82,6 +82,16 @@ public class ClubController {
 		
 	}
 	
+	@GetMapping("/{clid}/setting")
+	public String getSettingView(@PathVariable int clid, HttpSession session, Model model) {
+		User user = (User)session.getAttribute("user");
+		Club club = clubMapper.selectById(clid);
+		model.addAttribute("user", user);
+		model.addAttribute("club", club);
+		
+		return "club_setting";
+	}
+	
 	@GetMapping("/write")
 	public String getInsertView(HttpSession session, Model model) {
 		User user = (User)session.getAttribute("user");
@@ -161,8 +171,11 @@ public class ClubController {
 			Club club = clubMapper.selectById(clid);
 			
 			if (user.getUid() == club.getUid()) {
-				clubMapper.delete(clid);
-				return "redirect:/views/test";
+				clubMapper.deleteFeedComment(clid);
+				clubMapper.deleteFeed(clid);
+				clubMapper.deleteMembers(clid);
+				clubMapper.deleteClub(clid);
+				return "redirect:/views/club/list";
 			}
 		}
 		
@@ -170,15 +183,19 @@ public class ClubController {
 	}
 	
 	// 모임 탈퇴 기능
-	@GetMapping("/remove/{uid}")
-	public String getRemoveMember(@PathVariable int clid, HttpSession session, Model model) {
+	@GetMapping("/{clid}/remove/{uid}")
+	public String getRemoveMember(@PathVariable int clid, @PathVariable int uid, HttpSession session, Model model) {
 		User user = (User)session.getAttribute("user");
-		Club leaderId = clubMapper.selectById(clid);
 		
-		if(user != null && leaderId.equals(user.getUid())) {
-			if (MemberMapper.deleteClub(clid)) {
-				return "club";
-			}
+		if(user != null) {
+			
+			Member member = new Member();
+	        member.setClid(clid);
+	        member.setUid(uid);
+			
+			memberMapper.delete(member);
+			
+			return "redirect:/views/";
 		}
 				
 		

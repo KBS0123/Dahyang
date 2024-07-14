@@ -17,11 +17,11 @@
 	
 	<!-- 모임방 멤버 삭제 -->
 	<delete id="delete" parameterType="Member">
-		delete from dclub_members where memeber_level=#{memid} and club_id=#{clid} and user_id=#{uid}
+		delete from dclub_members where club_id=#{clid} and user_id=#{uid}
 	</delete>
 	
 	<!-- 모임방 멤버 탈퇴 -->
-	<delete id="deleteMember" parameterType="int">
+	<delete id="deleteMember" parameterType="int" >
 		delete from dclub_members where club_id=#{clid}
 	</delete>
 	

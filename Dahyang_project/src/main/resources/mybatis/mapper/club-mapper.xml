@@ -24,7 +24,22 @@
 	</update>
 	
 	<!-- 모임방 삭제 -->
-	<delete id="delete" parameterType="int">
+	<delete id="deleteFeedComment" parameterType="int">
+		delete from dpheed_comment where club_id=#{clid}
+	</delete>
+	
+	<!-- 모임방 삭제 -->
+	<delete id="deleteFeed" parameterType="int">
+		delete from dpheed where club_id=#{clid}
+	</delete>
+	
+	<!-- 모임방 삭제 -->
+	<delete id="deleteMembers" parameterType="int">
+		delete from dclub_members where club_id=#{clid}
+	</delete>
+	
+	<!-- 모임방 삭제 -->
+	<delete id="deleteClub" parameterType="int">
 		delete from dclub where club_id=#{clid}
 	</delete>
 	
