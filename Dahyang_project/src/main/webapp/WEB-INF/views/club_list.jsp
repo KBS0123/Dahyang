@@ -83,7 +83,7 @@
 	                            	<a href="<c:url value='/views/club/${club.clid}' />">
 	                                	<strong>${club.title}</strong>
 	                                </a>
-	                                <input type="text" value="공지사항" readonly>
+	                                <input type="text" value="공지사항: ${club.notice}" readonly>
 	                            </div>
 	                        </div>
 	                    </div>

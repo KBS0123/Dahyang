@@ -61,7 +61,7 @@
 					        <h3 class="notice-title">공지사항</h3>
 					        <div class="notice-content">
 					            <!-- 여기에 공지사항 내용을 동적으로 표시할 부분 -->
-					          <p>안녕하세요?</p>
+					          <p>${club.notice}</p>
 					        </div>
 					    </div>
 					    <!-- 공지사항 박스 끝 -->
@@ -73,13 +73,6 @@
 						        <div class="toggle-icon">+</div>
 						    </div>
 						    <div class="toggle-content" id="participantsBox">
-						        <!-- 유저 프로필 및 승인/거절 버튼 예시 -->
-						        <div class="user-profile">
-						            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
-						            <div class="user-info">
-						                <div class="user-name">사용자 닉네임</div>
-						            </div>
-						        </div>
 						        <!-- 추가적인 참여된 인원 예시 -->
 						        <div class="user-profile">
 						            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
@@ -89,11 +82,11 @@
 						        </div>
 						    </div>
 						</div>
-		                <c:import url="navbar2.jsp"></c:import>
 		            </c:if>
 		        </c:forEach>
 		    </c:otherwise>
 	    </c:choose>
+	    <c:import url="navbar2.jsp"></c:import>
     </div>
     <script>
         function toggleParticipants() {
