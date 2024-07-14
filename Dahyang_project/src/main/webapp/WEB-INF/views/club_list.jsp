@@ -114,6 +114,8 @@
         window.onload = checkLogin;
     </script>
     <c:import url="navbar.jsp"></c:import>
-    <c:import url="chatbutton.jsp"></c:import>
+    <c:if test="${not empty user}">
+    	<c:import url="chatbutton.jsp"></c:import>
+    </c:if>
 </body>
 </html>

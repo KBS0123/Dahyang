@@ -161,6 +161,8 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     </div>
     <!--페이지 내용-->
   <c:import url="navbar.jsp"></c:import>
-  <c:import url="chatbutton.jsp"></c:import>
+  <c:if test="${not empty user}">
+  	<c:import url="chatbutton.jsp"></c:import>
+  </c:if>
   </div>
   </main>
