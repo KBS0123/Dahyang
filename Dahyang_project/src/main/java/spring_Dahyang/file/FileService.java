@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public interface FileService {
 
-	public static final String IMAGE_REPO="C:/springworks/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Dahyang_project/views/imgs";
+	public static final String IMAGE_REPO="C:/springworks/Dahyang/Dahyang_project/src/main/webapp/resources/imgs";
 	public String saveFile(MultipartFile file);
 	
 }

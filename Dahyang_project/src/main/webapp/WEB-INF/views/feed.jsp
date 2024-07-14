@@ -49,7 +49,9 @@
                     <div class="profile-pic"></div>
                     <span class="nickname">${feed.writer}</span>
                 </div>
-                <div class="image-placeholder">${feed.img}</div>
+                <div class="image-placeholder">
+                	<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.img}">
+                </div>
                 <div class="content-text">${feed.content}</div>
                 <div class="comments">
                 	<c:forEach var="comment" items="${comments}">
@@ -108,21 +110,6 @@
 	            commentForm.style.display = 'block';
 	        });
 	    });
-	</script>
-	<script type="text/javascript">
-	   function readURL(input) {
-	      var file = input.files[0]; 
-	      console.log(file);
-	      if (file !== undefined) {
-	         var reader = new FileReader();
-	         reader.readAsDataURL(file);
-	         reader.onload = function (e) { 
-	            console.log(e.target);
-	            console.log(e.target.result);
-	            $('#preview').attr('src', e.target.result);
-	         };
-	      }
-	  }  
 	</script>
 </body>
 </html>

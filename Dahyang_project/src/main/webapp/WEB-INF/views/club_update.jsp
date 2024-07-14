@@ -147,7 +147,7 @@
 		            <div class="image-placeholder">
 		                <div class="file-upload-wrapper">
 		                    <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
-		                    <label for="imageUpload">+</label>
+		                    <label for="img">+</label>
 		                </div>
 		            </div>
                     <label for="text">그룹방 이름:</label>

@@ -78,7 +78,7 @@
                     <c:forEach var="club" items="${clubs}">
 	                    <div class="group">
 	                        <div class="group-box">
-	                            <img src="https://via.placeholder.com/50" alt="그룹방 아이콘">
+	                            <img src="${pageContext.request.contextPath}/resources/imgs/${club.img}" alt="그룹방 아이콘">
 	                            <div class="group-info">
 	                            	<a href="<c:url value='/views/club/${club.clid}' />">
 	                                	<strong>${club.title}</strong>

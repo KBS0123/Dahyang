@@ -24,7 +24,7 @@
         
         <div class="content">
             <div class="image-placeholder">
-            	<img src="${club.img}">
+            	<img src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
             </div>
             <h2 class="group-title">${club.title}</h2>
             <p class="status">현재 멤버를 모집 중인 모임입니다.</p>

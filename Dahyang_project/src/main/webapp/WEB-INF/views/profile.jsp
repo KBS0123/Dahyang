@@ -84,7 +84,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 			<c:choose>
 				<c:when test="${not empty user.images}">
 		        	<div class="profile-img">
-		          		<img src="${user.images}">
+		          		<img src="${pageContext.request.contextPath}/resources/imgs/${user.images}">
 		        	</div>
 	        	</c:when>
 	        	<c:otherwise>

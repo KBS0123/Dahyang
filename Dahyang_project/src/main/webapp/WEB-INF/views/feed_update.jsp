@@ -50,7 +50,7 @@
 		            <div class="image-placeholder">
 		                <div class="file-upload-wrapper">
 		                    <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
-		                    <label for="imageUpload">+</label>
+		                    <label for="img">+</label>
 		                </div>
 		            </div>
 	                <textarea id="content" name="content" placeholder="내용을 입력하세요"></textarea>
@@ -60,9 +60,9 @@
 					<input type="hidden" id="writer" name="writer" value="${feed.writer}">
 					<input type="hidden" id="uimg" name="uimg" value="${feed.uimg}">
 					<input type="hidden" id="likes" name="likes" value="0">
+					<button type="submit">수정하기</button>
+	            	<button type="button" onclick="location.href='<c:url value="/views/club/${clid}/feed/delete/${fid}"/>'">삭제하기</button>
 	            </form>
-	            <button type="submit">수정하기</button>
-	            <button type="button" onclick="location.href='<c:url value="/views/club/${clid}/feed/delete/${fid}"/>'">삭제하기</button>
 	        </div>
         </div> 
     </div>
