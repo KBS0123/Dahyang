@@ -75,10 +75,6 @@
 		        </div>
 		
 		        <div class="button-container">
-		            <button class="button" onclick="location.href='${pageContext.request.contextPath}/feedWrite.jsp'">피드 등록</button>
-		        </div>
-		
-		        <div class="button-container">
 		            <button class="button" onclick="location.href='<c:url value="/views/club/${clid}/remove/${user.uid}"/>'">모임 나가기</button>
 		        </div>
 		    </div>
