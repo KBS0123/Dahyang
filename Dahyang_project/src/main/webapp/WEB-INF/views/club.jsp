@@ -80,7 +80,7 @@
 						        <!-- 추가적인 참여된 인원 예시 -->
 						        <c:forEach var="m" items="${member}">
 							        <div class="user-profile">
-							            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
+							            <img src="${pageContext.request.contextPath}/resources/imgs/${m.uimg}" alt="프로필 사진">
 							            <div class="user-info">
 							                <div class="user-name">${m.unickname}</div>
 							            </div>
