@@ -92,10 +92,22 @@
 						        <!-- 추가적인 참여된 인원 예시 -->
 						        <c:forEach var="m" items="${member}">
 							        <div class="user-profile">
-							            <img src="${pageContext.request.contextPath}/resources/imgs/${m.uimg}" alt="프로필 사진">
+								        <c:choose>
+								        	<c:when test="${not empty m.uimg}">
+								        		<img src="${pageContext.request.contextPath}/resources/imgs/${m.uimg}" alt="프로필 사진">
+								        	</c:when>
+								        	<c:otherwise>
+								        		<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+								        	</c:otherwise>
+								        </c:choose>
 							            <div class="user-info">
 							                <div class="user-name">${m.unickname}</div>
 							            </div>
+							            <c:if test="${m.uid == club.uid}">
+								            <div class="user-info">
+								                <div class="user-name">(방장)</div>
+								            </div>
+							            </c:if>
 							        </div>
 						        </c:forEach>
 						    </div>
