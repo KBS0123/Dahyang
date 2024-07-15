@@ -34,7 +34,7 @@
             </svg>
         </div>
         <!-- 뒤로 가기 버튼 SVG -->
-        <span style="margin-left: 10px;">피드 관리</span>
+        <span style="margin-left: 10px;">피드 작성</span>
     </div>
     
     <div class="content">

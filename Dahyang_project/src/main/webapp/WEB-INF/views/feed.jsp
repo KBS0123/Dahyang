@@ -30,17 +30,17 @@
 <body>
 	<div class="container">
         <div class="navbar">
-	        <a href="<c:url value='/views/club/${clid}/feed'/>">
-	            <div class="back-button">
-				    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 22" width="26" height="24">
-				      <path fill="#fff" d="M20 11H7.414l3.293-3.293a1 1 0 0 0-1.414-1.414l-5 5a1 1 0 0 0 0 1.414l5 5a1 1 0 0 0 1.414-1.414L7.414 13H20a1 1 0 0 0 0-2z"/>
-				    </svg>
-				</div>
-	        </a>
+	        <div class="back-button" onclick="location.href='<c:url value="/views/club/${clid}/feed"/>'">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 22" width="26" height="24">
+					<path fill="#fff" d="M20 11H7.414l3.293-3.293a1 1 0 0 0-1.414-1.414l-5 5a1 1 0 0 0 0 1.414l5 5a1 1 0 0 0 1.414-1.414L7.414 13H20a1 1 0 0 0 0-2z"/>
+				</svg>
+			</div>
             <span style="margin-left: 10px;">피드</span>
-            <a href="<c:url value='/views/club/${clid}/feed/update/${fid}'/>">
-            	<span class="settings">&#9881;</span>
-            </a>
+            <c:if test="${user.uid == feed.uid}">
+            	<a href="<c:url value='/views/club/${clid}/feed/update/${fid}'/>">
+	            	<span class="settings">&#9881;</span>
+	            </a>
+            </c:if>
         </div>
         
         <div class="content">

@@ -19,9 +19,13 @@
 <body>
     <div class="container">
         <div class="navbar">
-        	<a href="<c:url value='/views/club/list'/>">
-            	<span class="back-arrow">&lt;</span>
-            </a>
+            <div class="left">
+		        <button class="back-button" onclick="location.href='<c:url value="/views/club/list"/>'">
+			        <svg viewBox="0 0 24 24">
+			          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+			        </svg>
+			    </button>
+		    </div>
             <span class="group-name">${club.title}</span>
             <!-- 톱니바퀴 버튼 추가 -->
             <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/setting"/>'">

@@ -151,15 +151,6 @@
             </svg>
           </button>
             <span class="group-name">그룹방 생성</span>
-          
-          <!-- 톱니바퀴 버튼 추가 -->
-            <button class="settings-button">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M0 0h24v24H0z" fill="none"/>
-                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
-                </svg>
-            </button>
-            
         </div>
         <div class="content">
         	<p align="center" style="opacity: 0.4;">※주의※<br>
