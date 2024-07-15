@@ -59,7 +59,14 @@
           <c:forEach var="club" items="${clubs}">
 	          <article class="card" onclick="location.href='<c:url value="/views/club/${club.clid}"/>'">
 	            <div class="card__content">
-	              <img alt="clubs" src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
+	              <c:choose>
+				  	<c:when test="${not empty club.img}">
+				  		<img src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
+				  	</c:when>
+				  	<c:otherwise>
+				  		<img src="${pageContext.request.contextPath}/resources/css/group.png">
+				  	</c:otherwise>
+				  </c:choose>
 	            </div>
 	          </article>
 	      </c:forEach>
@@ -79,7 +86,14 @@
           <c:forEach var="club" items="${randomClubs}">
 	          <article class="card" onclick="location.href='<c:url value="/views/club/${club.clid}"/>'">
 	            <div class="card__content">
-	              <img alt="clubs" src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
+	              <c:choose>
+				  	<c:when test="${not empty club.img}">
+				  		<img src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
+				  	</c:when>
+				  	<c:otherwise>
+				  		<img src="${pageContext.request.contextPath}/resources/css/group.png">
+				  	</c:otherwise>
+				  </c:choose>
 	            </div>
 	          </article>
           </c:forEach>
@@ -99,7 +113,14 @@
           <c:forEach var="feed" items="${randomFeeds}">
 	          <article class="card" onclick="location.href='<c:url value="/views/club/${feed.clid}/feed/${feed.fid}"/>'">
 	            <div class="card__content">
-	              <img alt="clubs" src="${pageContext.request.contextPath}/resources/imgs/${feed.img}">
+	              <c:choose>
+				  	<c:when test="${not empty feed.img}">
+				  		<img src="${pageContext.request.contextPath}/resources/imgs/${feed.img}">
+				  	</c:when>
+				  	<c:otherwise>
+				  		<img src="${pageContext.request.contextPath}/resources/css/group.png">
+				  	</c:otherwise>
+				  </c:choose>
 	            </div>
 	          </article>
           </c:forEach>
