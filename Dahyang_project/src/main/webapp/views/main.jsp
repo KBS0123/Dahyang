@@ -118,7 +118,7 @@
 				  		<img src="${pageContext.request.contextPath}/resources/imgs/${feed.img}">
 				  	</c:when>
 				  	<c:otherwise>
-				  		<img src="${pageContext.request.contextPath}/resources/css/group.png">
+				  		<img src="${pageContext.request.contextPath}/resources/css/feed.jpg">
 				  	</c:otherwise>
 				  </c:choose>
 	            </div>
