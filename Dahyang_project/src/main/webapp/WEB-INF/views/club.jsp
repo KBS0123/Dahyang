@@ -9,6 +9,13 @@
     <link href="${pageContext.request.contextPath}/resources/css/group.css" rel="stylesheet" type="text/css">
     <title>Group Page</title>
 </head>
+<style>
+        .svg-icon {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1); /*아이콘 색상 변경*/
+        }
+    </style>
 <body>
     <div class="container">
         <div class="navbar">
@@ -18,8 +25,11 @@
             <span class="group-name">${club.title}</span>
             <!-- 톱니바퀴 버튼 추가 -->
             <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/setting"/>'">
-                
-            </button>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+                </svg>
+            </button>     
         </div>
         
         <div class="content">
