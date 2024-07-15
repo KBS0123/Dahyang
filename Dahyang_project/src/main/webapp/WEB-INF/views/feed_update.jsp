@@ -40,7 +40,9 @@
     <div class="content">
         <div class="feed-item">
             <div class="feed-header">
-                <div class="profile-pic"></div>
+                <div class="profile-pic">
+                	<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.uimg}">
+                </div>
                 <span class="nickname">${feed.writer}</span>
             </div>
 	        <!-- 내용 작성 폼 -->
