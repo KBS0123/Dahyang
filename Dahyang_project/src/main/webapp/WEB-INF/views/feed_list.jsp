@@ -65,7 +65,12 @@
 	        <c:import url="navbar2.jsp"></c:import>
 	    </div>
 	    <!-- 새 피드 작성 버튼 -->
-      	<button class="button new-feed" onclick="location.href='<c:url value="/views/club/${clid}/feed/write"/>'">피드 작성하기</button>
+	    <c:forEach var="m" items="${member}">
+		    <!-- 만약 회원의 uid가 사용자의 uid와 일치한다면 버튼을 표시하지 않음 -->
+		    <c:if test="${m.uid == user.uid}">
+		        <button class="button new-feed" onclick="location.href='<c:url value="/views/club/${clid}/feed/write"/>'">피드 작성하기</button>
+		    </c:if>
+		</c:forEach>
     </div>
 </main>
 </html>
