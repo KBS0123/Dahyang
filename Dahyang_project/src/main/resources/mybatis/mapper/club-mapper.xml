@@ -57,7 +57,7 @@
 	</select>
 	
 	<select id="selectAll" resultMap="clubResultMap">
-		select * from dclub order by club_id desc
+		<![CDATA[ select * from (select * from dclub order by club_id desc) where rownum <= 10 ]]>
 	</select>
 	
 	<select id="selectAllRandom" resultMap="clubResultMap">
