@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/resources/css/feedwrite.css" rel="stylesheet" type="text/css">
 <title>피드 작성</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
    function readURL(input) {
       var file = input.files[0]; 
@@ -19,10 +20,19 @@
             console.log(e.target);
             console.log(e.target.result);
             $('#preview').attr('src', e.target.result);
+            $('#preview').css('display', 'block');
+            $('#preview').removeAttr('alt'); // alt 속성 제거
          };
       }
   }  
 </script>
+<style>
+        .image-placeholder img {
+            display: none;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -49,6 +59,7 @@
             	<div class="image-placeholder">
                     <div class="file-upload-wrapper">
                         <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
+                        <img id="preview" src="#" alt="Image Preview" style="display:none;">
                         <label for="img">+</label>
                     </div>
                 </div>
