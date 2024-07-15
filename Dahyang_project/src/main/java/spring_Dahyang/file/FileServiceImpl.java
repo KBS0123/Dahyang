@@ -28,9 +28,9 @@ public class FileServiceImpl implements FileService {
 	public String getMessage(int result, HttpServletRequest request) {
 	    String message;
 	    if (result > 0) {
-	        message = "íŒŒì¼ ì—…ë¡œë“œê°€ ì„±ê³µì ìœ¼ë¡œ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.";
+	        message = "ÆÄÀÏ ¾÷·Îµå°¡ ¼º°øÀûÀ¸·Î ¿Ï·áµÇ¾ú½À´Ï´Ù.";
 	    } else {
-	        message = "íŒŒì¼ ì—…ë¡œë“œì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.";
+	        message = "ÆÄÀÏ ¾÷·Îµå¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.";
 	    }
 	    return message;
 	}
