@@ -56,29 +56,15 @@
       <div class="owl-wrapper">
         <div class="loop owl-carousel owl-theme">
           
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card One</span></h4>
-            </div>
-          </article>
-          
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card Two</span></h4>
-            </div>
-          </article>
-          
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card Three</span></h4>
-            </div>
-          </article>
-          
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card Four</span></h4>
-            </div>
-          </article>
+          <c:forEach var="club" items="${clubs}">
+	          <article class="card">
+	            <div class="card__content">
+	              <img alt="clubs" src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
+	              <h4 class="card__title"><span>${club.title}</span></h4>
+	            </div>
+	          </article>
+	      </c:forEach>
+	      
         </div>
       </div>
     </section>
@@ -91,29 +77,15 @@
       <div class="owl-wrapper">
         <div class="loop owl-carousel owl-theme">
           
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card One</span></h4>
-            </div>
-          </article>
+          <c:forEach var="club" items="${randomClubs}">
+	          <article class="card">
+	            <div class="card__content">
+	              <img alt="clubs" src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
+	              <h4 class="card__title"><span>${club.title}</span></h4>
+	            </div>
+	          </article>
+          </c:forEach>
           
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card Two</span></h4>
-            </div>
-          </article>
-          
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card Three</span></h4>
-            </div>
-          </article>
-          
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card Four</span></h4>
-            </div>
-          </article>
         </div>
       </div>
     </section>
@@ -126,29 +98,15 @@
       <div class="owl-wrapper">
         <div class="loop owl-carousel owl-theme">
           
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card One</span></h4>
-            </div>
-          </article>
+          <c:forEach var="feed" items="${randomFeeds}">
+	          <article class="card">
+	            <div class="card__content">
+	              <img alt="clubs" src="${pageContext.request.contextPath}/resources/imgs/${feed.img}">
+	              <h4 class="card__title"><span>${feed.content}</span></h4>
+	            </div>
+	          </article>
+          </c:forEach>
           
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card Two</span></h4>
-            </div>
-          </article>
-          
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card Three</span></h4>
-            </div>
-          </article>
-          
-          <article class="card">
-            <div class="card__content">
-              <h4 class="card__title"><span>Card Four</span></h4>
-            </div>
-          </article>
         </div>
       </div>
     </section>

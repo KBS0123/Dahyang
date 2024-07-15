@@ -11,6 +11,7 @@ public interface FeedMapper {
 	public int deleteComment(int fid);
 	public int deleteFeed(int fid);
 	public List<Feed> selectAll(int clid);
+	public List<Feed> selectAllRandom();
 	public Feed selectById(int fid);
 	
 }

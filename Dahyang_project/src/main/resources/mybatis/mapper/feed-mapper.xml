@@ -39,6 +39,10 @@
 		select * from dpheed where club_id=#{clid}
 	</select>
 	
+	<select id="selectAllRandom" resultMap="feedResultMap">
+		<![CDATA[ select * from (select * from dpheed order by dbms_random.value) where rownum <= 10 ]]>
+	</select>
+	
 	<!-- 피드 선택 -->
 	<select id="selectById" parameterType="int" resultMap="feedResultMap">
 		select * from dpheed where pheed_id=#{fid}

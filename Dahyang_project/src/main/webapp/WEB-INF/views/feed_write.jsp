@@ -27,12 +27,13 @@
   }  
 </script>
 <style>
-        .image-placeholder img {
-            display: none;
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    #preview {
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+    }
+</style>
+
 </head>
 <body>
 <div class="container">

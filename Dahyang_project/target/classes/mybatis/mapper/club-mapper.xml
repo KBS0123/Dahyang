@@ -56,6 +56,14 @@
 		select * from dclub where club_id=#{clid}
 	</select>
 	
+	<select id="selectAll" resultMap="clubResultMap">
+		select * from dclub order by club_id desc
+	</select>
+	
+	<select id="selectAllRandom" resultMap="clubResultMap">
+		<![CDATA[ select * from (select * from dclub order by dbms_random.value) where rownum <= 10 ]]>
+	</select>
+	
 	<select id="selectByUid" parameterType="int" resultMap="clubResultMap">
 		select c.club_id, c.user_id, c.title, c.content, c.notice, c.images
 		from dclub c

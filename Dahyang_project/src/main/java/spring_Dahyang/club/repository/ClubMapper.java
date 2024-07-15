@@ -24,9 +24,9 @@ public interface ClubMapper {
 	@Select("select count(*) from dclub")
 	public int count();
 	
-	@Select("select * from dclub")
-	@ResultMap("clubResultMap")
 	public List<Club> selectAll();
+	
+	public List<Club> selectAllRandom();
 	
 	public List<Club> selectByUid(int uid);
 	
