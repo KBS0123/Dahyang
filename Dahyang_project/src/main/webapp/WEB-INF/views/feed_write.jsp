@@ -59,7 +59,16 @@
     <div class="content">
         <div class="feed-item">
             <div class="feed-header">
-                <div class="profile-pic"></div>
+                <div class="profile-pic">
+                	<c:choose>
+						<c:when test="${not empty user.images}">
+							<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${user.images}">
+						</c:when>
+						<c:otherwise>
+							<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+						</c:otherwise>
+					</c:choose>
+                </div>
                 <span class="nickname">닉네임</span>
             </div>
             

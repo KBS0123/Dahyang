@@ -62,9 +62,11 @@ public class FeedController {
 	public String getFeedView(@PathVariable int clid, @PathVariable int fid, HttpServletRequest request, HttpSession session, Model model) {
 		Feed feed = feedMapper.selectById(fid);
 		List<Comment> comment = commentMapper.selectAll(fid);
+		List<Images> images = imagesMapper.selectAll(fid);
 		model.addAttribute("feed", feed);
 		model.addAttribute("clid", clid);
 		model.addAttribute("comments", comment);
+		model.addAttribute("images", images);
 		
 		return "feed";
 	}
