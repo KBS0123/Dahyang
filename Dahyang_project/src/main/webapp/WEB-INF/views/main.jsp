@@ -60,7 +60,6 @@
 	          <article class="card" onclick="location.href='<c:url value="/views/club/${club.clid}"/>'">
 	            <div class="card__content">
 	              <img alt="clubs" src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
-	              <h4 class="card__title"><span>${club.title}</span></h4>
 	            </div>
 	          </article>
 	      </c:forEach>
@@ -81,7 +80,6 @@
 	          <article class="card" onclick="location.href='<c:url value="/views/club/${club.clid}"/>'">
 	            <div class="card__content">
 	              <img alt="clubs" src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
-	              <h4 class="card__title"><span>${club.title}</span></h4>
 	            </div>
 	          </article>
           </c:forEach>
@@ -102,7 +100,6 @@
 	          <article class="card" onclick="location.href='<c:url value="/views/club/${feed.clid}/feed/${feed.fid}"/>'">
 	            <div class="card__content">
 	              <img alt="clubs" src="${pageContext.request.contextPath}/resources/imgs/${feed.img}">
-	              <h4 class="card__title"><span>${feed.content}</span></h4>
 	            </div>
 	          </article>
           </c:forEach>
