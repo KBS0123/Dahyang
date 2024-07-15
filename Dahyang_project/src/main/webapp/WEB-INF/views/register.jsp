@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" type="text/css">
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>signup</title>
   <style>
   h3 {
@@ -18,9 +18,9 @@
     height: 50px;
     padding: 8px 16px;
     position: absolute; 
-    top: 40px; /* È­¸é »ó´Ü¿¡¼­ ¾Æ·¡·Î */
-    left: 680px; /* È­¸é ¿ŞÂÊ¿¡¼­¿À¸¥ÂÊÀ¸·Î */
-    z-index: 1000; /* ´Ù¸¥ ¿ä¼Òµéº¸´Ù À§¿¡ Ç¥½ÃµÇµµ·Ï ¼³Á¤ */
+    top: 40px; /* í™”ë©´ ìƒë‹¨ì—ì„œ ì•„ë˜ë¡œ */
+    left: 680px; /* í™”ë©´ ì™¼ìª½ì—ì„œì˜¤ë¥¸ìª½ìœ¼ë¡œ */
+    z-index: 1000; /* ë‹¤ë¥¸ ìš”ì†Œë“¤ë³´ë‹¤ ìœ„ì— í‘œì‹œë˜ë„ë¡ ì„¤ì • */
     font-family: "Lucida Sans Unicode", "Arial Unicode MS";
     font-size: 25px;
     line-height: 30px;
@@ -44,14 +44,14 @@
 <body>
 	<div class="container">
 	
-	<!-- µÚ·Î°¡±â ¹öÆ°(À¯´ÏÄÚµå) -->
+	<!-- ë’¤ë¡œê°€ê¸° ë²„íŠ¼(ìœ ë‹ˆì½”ë“œ) -->
 	<a href="<c:url value='/views/users/profile'/>" class="previous round">&#8249;</a>
-	<!-- µÚ·Î°¡±â ¹öÆ°(À¯´ÏÄÚµå) -->
+	<!-- ë’¤ë¡œê°€ê¸° ë²„íŠ¼(ìœ ë‹ˆì½”ë“œ) -->
 	
   <div class="screen">
     <div class="screen__content">
       <form class="login" action="<c:url value='/views/users/register'/>" method="post">
-       <h3>´Ù¾çÇÑ Ãë¹Ì, ´Ù¾çÇÑ ¸¸³².</h3>
+       <h3>ë‹¤ì–‘í•œ ì·¨ë¯¸, ë‹¤ì–‘í•œ ë§Œë‚¨.</h3>
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
           <input type="email" class="login__input" id="email" name="email" placeholder="Email" required>
