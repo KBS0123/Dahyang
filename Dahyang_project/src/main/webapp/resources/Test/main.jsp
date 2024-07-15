@@ -4,23 +4,26 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
   <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
-  <!-- 폰트 -->
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/assets/owl.carousel.min.css">
+  <!-- Owl Carousel CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&display=swap" rel="stylesheet">
-  <!-- 폰트 -->
+  
   <style type="text/css">
     .bs-example { margin: 20px; }
     .logo-small { color: #f4511e; font-size: 50px; }
     footer .glyphicon { font-size: 20px; margin-bottom: 20px; color: #f4511e; }
-     .center-text { /*상단바 텍스트 위치 조정*/
+    .center-text { /* 상단바 텍스트 위치 조정 */
       margin-top: 25px;
     }
   </style>
 </head>
-
+<body>
   <main>
   
   <header>
@@ -29,50 +32,151 @@
   </header>
   
   <div id="app">
-    
     <!-- 상단바 -->
-      <header>
-        <div class="system-bar"></div>
-        <div class="left">
-          <span class="ion-chevron-left"></span>
-        </div>
-        <img src="${pageContext.request.contextPath}/resources/css/Logo.png"
-             height="150" width="130">
-        <div class="center-text">다양한 사람들과 다양한 취미를 향유하다</div>
-        <div class="right">
-          <span class="ion-navicon"></span>
-        </div>
-      </header>
-      <!-- 상단바 -->
+    <header>
+      <div class="system-bar"></div>
+      <div class="left">
+        <span class="ion-chevron-left"></span>
+      </div>
+      <img src="${pageContext.request.contextPath}/resources/css/Logo.png" height="150" width="130">
+      <div class="center-text">다양한 사람들과 다양한 취미를 향유하다</div>
+      <div class="right">
+        <span class="ion-navicon"></span>
+      </div>
+    </header>
+    <!-- 상단바 끝 -->
     
     <!-- 내부 박스 -->
-    <div class="page"><p>
-    -스크롤 테스트용 더미 텍스트-PBR&B affogato humblebrag slow-carb hoodie.
-    Irony shoreditch bushwick, readymade small batch hella cliche before they sold out
-    sustainable keytar slow-carb franzen messenger bag kinfolk trust fund. Polaroid chambray trust fund
-     brooklyn distillery skateboard freegan etsy raw denim health goth XOXO. Meditation biodiesel jean shorts,
-     wayfarers cardigan paleo green juice tote bag fixie authentic. Tattooed try-hard sustainable microdosing,
-     man bun whatever leggings polaroid you probably haven't heard of them tumblr. Craft beer retro leggings readymade 
-     ynth, keytar selvage direct trade. Church-key drinking vinegar retro, shoreditch gochujang post-ironic YOLO cardigan
-     stumptown.</p>
-
-	<p>Artisan keytar fingerstache, pitchfork banjo fashion axe keffiyeh squid meggings tattooed
-	retro disrupt meditation intelligentsia marfa. Banjo iPhone put a bird on it, drinking vinegar
-	small batch squid chambray artisan bushwick twee kinfolk semiotics four loko. Tilde brooklyn fap,
-	salvia truffaut four loko everyday carry franzen quinoa aesthetic tote bag drinking vinegar meggings ugh.
-	Knausgaard vinyl mixtape tacos fap pug. Chambray lo-fi crucifix skateboard, synth before they sold out taxidermy pitchfork
-	food truck. YOLO authentic fingerstache, ennui next level hoodie waistcoat meggings listicle. Gentrify flannel yr pinterest.</p>
-	
-	<p>Artisan keytar fingerstache, pitchfork banjo fashion axe keffiyeh squid meggings tattooed
-	retro disrupt meditation intelligentsia marfa. Banjo iPhone put a bird on it, drinking vinegar
-	small batch squid chambray artisan bushwick twee kinfolk semiotics four loko. Tilde brooklyn fap,
-	salvia truffaut four loko everyday carry franzen quinoa aesthetic tote bag drinking vinegar meggings ugh.
-	Knausgaard vinyl mixtape tacos fap pug. Chambray lo-fi crucifix skateboard, synth before they sold out taxidermy pitchfork
-	food truck. YOLO authentic fingerstache, ennui next level hoodie waistcoat meggings listicle. Gentrify flannel yr pinterest.
-	-스크롤 테스트용 더미 텍스트-</p>
-
+    <div class="page">
+    
+      <h3>신규 그룹방</h3>
+      
+   <!-- 신규 그룹방 슬라이드 -->
+    <section class="cards">
+      <div class="owl-wrapper">
+        <div class="loop owl-carousel owl-theme">
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card One</span></h4>
+            </div>
+          </article>
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card Two</span></h4>
+            </div>
+          </article>
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card Three</span></h4>
+            </div>
+          </article>
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card Four</span></h4>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- 슬라이드 섹션 끝 -->
+      
+      <h3>인기 그룹방</h3>
+      
+   <!-- 인기 그룹방 슬라이드 -->
+    <section class="cards">
+      <div class="owl-wrapper">
+        <div class="loop owl-carousel owl-theme">
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card One</span></h4>
+            </div>
+          </article>
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card Two</span></h4>
+            </div>
+          </article>
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card Three</span></h4>
+            </div>
+          </article>
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card Four</span></h4>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- 슬라이드 섹션 끝 -->
+    
+    <h3>인기 피드</h3>
+      
+   <!-- 인기 피드 슬라이드 -->
+    <section class="cards">
+      <div class="owl-wrapper">
+        <div class="loop owl-carousel owl-theme">
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card One</span></h4>
+            </div>
+          </article>
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card Two</span></h4>
+            </div>
+          </article>
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card Three</span></h4>
+            </div>
+          </article>
+          
+          <article class="card">
+            <div class="card__content">
+              <h4 class="card__title"><span>Card Four</span></h4>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- 슬라이드 섹션 끝 -->
     </div>
-    <!-- 내부 박스 -->
+    <!-- 내부 박스 끝 -->
     <jsp:include page="/views/navbar.jsp" />
-    
+  </div>
+  
 </main>
+
+<!-- Owl Carousel JS ※주의※ !!삭제하면 페이지에 출력 안됨!!-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/owl.carousel.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $(".loop").owlCarousel({
+      items: 3,
+      loop: true,
+      margin: 5,
+      nav: false,
+      autoplay: false,
+      autoplayTimeout: 3000,
+      autoplayHoverPause: true
+    });
+  });
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/carousel.js"></script>
+<!-- Owl Carousel JS ※주의※ !!별도의 JS와 html내 script 모두 있어야 동작 가능!!-->
+</body>
+</html>
