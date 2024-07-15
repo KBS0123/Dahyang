@@ -107,6 +107,8 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 			    	<div class="profile-img">
 			      		<img src="${pageContext.request.contextPath}/resources/imgs/${user.images}">
 			    	</div>
+			    	<input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
+			      	<label for="img">+</label>
 		    	</c:when>
 		    	<c:otherwise>
 		    		<div class="profile-img">
