@@ -9,6 +9,8 @@ public interface ImagesMapper {
 	public int insert(Images images);
 	public int update(Images images);
 	public int delete(int fid);
+	public String selectFirstImage(int fid);
+	public List<String> selectImages(int fid);
 	public List<Images> selectAll(int fid);
 	
 }

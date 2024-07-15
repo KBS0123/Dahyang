@@ -29,4 +29,10 @@
 		select * from dpheed_images where pheed_id=#{fid}
 	</select>
 	
+	
+	
+	<select id="selectImages" parameterType="int" resultType="java.lang.String">
+		select images from dpheed_images where pheed_id=#{fid} order by image_id
+	</select>
+	
 </mapper>
