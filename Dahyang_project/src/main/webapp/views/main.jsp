@@ -131,7 +131,10 @@
     <!-- 슬라이드 섹션 끝 -->
     </div>
     <!-- 내부 박스 끝 -->
-    <jsp:include page="/views/navbar.jsp" />
+    <c:import url="navbar.jsp"></c:import>
+    <c:if test="${not empty user}">
+    	<c:import url="chatbutton.jsp"></c:import>
+    </c:if>
   </div>
   
 </main>
