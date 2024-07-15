@@ -24,9 +24,14 @@
             </a>
             <span class="group-name">${club.title}</span>
             <!-- 톱니바퀴 버튼 추가 -->
-            <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/setting"/>'">
-                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
-            </button>
+            <c:forEach var="m" items="${member}">
+		        <!-- 만약 회원의 uid가 사용자의 uid와 일치한다면 버튼을 표시하지 않음 -->
+		        <c:if test="${m.uid == user.uid}">
+		            <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/setting"/>'">
+	                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+	            	</button>
+		        </c:if>
+		    </c:forEach>
         </div>
         
         <div class="content">
