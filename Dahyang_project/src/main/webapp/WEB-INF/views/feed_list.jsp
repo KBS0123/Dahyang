@@ -54,7 +54,14 @@
 	            		<div class="feed-item">
 	            			<a href="<c:url value='/views/club/${clid}/feed/${feed.fid}' />">
 			                    <div class="image-placeholder">
-			                    	<img src="${pageContext.request.contextPath}/resources/imgs/${feed.img}" alt="Feed Image">
+			                    	<c:choose>
+										<c:when test="${not empty feed.img}">
+											<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.img}">
+										</c:when>
+										<c:otherwise>
+											<img src="${pageContext.request.contextPath}/resources/css/group.png">
+										</c:otherwise>
+									</c:choose>
 			                    </div>
 		                    </a>
 		                    <p class="feed-text">${feed.content}</p>

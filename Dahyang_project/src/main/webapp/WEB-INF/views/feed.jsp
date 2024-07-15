@@ -47,19 +47,40 @@
             <div class="feed-item">
                 <div class="feed-header">
                     <div class="profile-pic">
-                    	<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.uimg}">
+                    	<c:choose>
+							<c:when test="${not empty feed.uimg}">
+								<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.uimg}">
+							</c:when>
+							<c:otherwise>
+								<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+							</c:otherwise>
+						</c:choose>
                     </div>
                     <span class="nickname">${feed.writer}</span>
                 </div>
                 <div class="image-placeholder">
-                	<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.img}">
+                	<c:choose>
+						<c:when test="${not empty feed.img}">
+							<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.img}">
+						</c:when>
+						<c:otherwise>
+							<img src="${pageContext.request.contextPath}/resources/css/group.png">
+						</c:otherwise>
+					</c:choose>
                 </div>
                 <div class="content-text">${feed.content}</div>
                 <div class="comments">
                 	<c:forEach var="comment" items="${comments}">
 		            	<div class="comment">
 		                    <div class="profile-pic comment-pic">
-		                    	<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${comment.uimg}">
+		                    	<c:choose>
+									<c:when test="${not empty comment.uimg}">
+										<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${comment.uimg}">
+									</c:when>
+									<c:otherwise>
+										<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+									</c:otherwise>
+								</c:choose>
 		                    </div>
 		                    <span class="nickname">${comment.nickname}</span>
 		                    <span class="comment-text">${comment.content}</span>

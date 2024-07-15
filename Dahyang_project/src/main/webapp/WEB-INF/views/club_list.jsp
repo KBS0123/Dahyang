@@ -78,7 +78,14 @@
                     <c:forEach var="club" items="${clubs}">
 	                    <div class="group">
 	                        <div class="group-box">
-	                            <img src="${pageContext.request.contextPath}/resources/imgs/${club.img}" alt="그룹방 아이콘">
+	                        	<c:choose>
+									<c:when test="${not empty club.img}">
+										<img src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
+									</c:when>
+									<c:otherwise>
+										<img src="${pageContext.request.contextPath}/resources/css/group.png">
+									</c:otherwise>
+								</c:choose>
 	                            <div class="group-info">
 	                            	<a href="<c:url value='/views/club/${club.clid}' />">
 	                                	<strong>${club.title}</strong>
