@@ -8,20 +8,22 @@
 		<result property="memid" column="MEMEBER_LEVEL" />
 		<result property="clid" column="CLUB_ID" />
 		<result property="uid" column="USER_ID" />
+		<result property="unickname" column="USER_NICKNAME" />
+		<result property="uimg" column="USER_IMAGES" />
 	</resultMap>
 	
 	<!-- 모임방 멤버 등록 -->
 	<insert id="insert" parameterType="Member">
-		insert into dclub_members values (dclub_members_seq.nextval, #{clid}, #{uid})
+		insert into dclub_members values (dclub_members_seq.nextval, #{clid}, #{uid}, #{unickname}, #{uimg, jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 모임방 멤버 삭제 -->
 	<delete id="delete" parameterType="Member">
-		delete from dclub_members where memeber_level=#{memid} and club_id=#{clid} and user_id=#{uid}
+		delete from dclub_members where club_id=#{clid} and user_id=#{uid}
 	</delete>
 	
 	<!-- 모임방 멤버 탈퇴 -->
-	<delete id="deleteMember" parameterType="int">
+	<delete id="deleteMember" parameterType="int" >
 		delete from dclub_members where club_id=#{clid}
 	</delete>
 	
@@ -30,14 +32,7 @@
 	</select>
 	
 	<select id="findMembers" parameterType="int" resultMap="memberResultMap">
-		select user_id from dclub_members where club_id=#{clid}
-	</select>
-	
-	<!-- 모임방 멤버 리스트 -->
-	<select id="selectAll" parameterType="int">
-		select c.club_id, c.user_id, c.title, c.content, c.notice, c.images
-		from dclub_members m left outer join club c on m.club_id = c.club_id
-		where m.user_id=#{uid}
+		select * from dclub_members where club_id=#{clid}
 	</select>
 	
 </mapper>

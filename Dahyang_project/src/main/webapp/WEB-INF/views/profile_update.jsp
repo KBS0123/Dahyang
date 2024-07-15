@@ -63,6 +63,21 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
   }
     
   </style>
+  <script type="text/javascript">
+   function readURL(input) {
+      var file = input.files[0]; 
+      console.log(file);
+      if (file !== undefined) {
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.onload = function (e) { 
+            console.log(e.target);
+            console.log(e.target.result);
+            $('#preview').attr('src', e.target.result);
+         };
+      }
+  }  
+</script>
 </head>
 <body>
   <div id="app">
@@ -85,21 +100,24 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
       <div class="profile">
         <h3>정보 수정</h3>
         <br>
-        <c:choose>
-			<c:when test="${not empty user.images}">
-		    	<div class="profile-img">
-		      		<img src="${user.images}">
-		    	</div>
-	    	</c:when>
-	    	<c:otherwise>
-	    		<div class="profile-img">
-		      		<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
-		    	</div>
-	    	</c:otherwise>
-	    </c:choose>
-        <br>
         <div class="profile-details">
-          <form action="<c:url value='/views/users/profile_update'/>" method="post">
+          <form action="<c:url value='/views/users/profile_update'/>" method="post" enctype="multipart/form-data">
+          	<c:choose>
+				<c:when test="${not empty user.images}">
+			    	<div class="profile-img">
+			      		<img src="${pageContext.request.contextPath}/resources/imgs/${user.images}">
+			    	</div>
+			    	<input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
+			      	<label for="img">+</label>
+		    	</c:when>
+		    	<c:otherwise>
+		    		<div class="profile-img">
+			      		<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+			    	</div>
+			    	<input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
+			      	<label for="img">+</label>
+		    	</c:otherwise>
+		    </c:choose>
             <p>
               <label for="name">닉네임:</label>
               <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요">

@@ -20,11 +20,26 @@
 	
 	<!-- 모임방 수정 -->
 	<update id="update" parameterType="Club">
-		update dclub set title=#{title}, content=#{content}, notice=#{notice}, img=#{img, jdbcType=VARCHAR} where club_id=#{clid}
+		update dclub set title=#{title}, content=#{content}, notice=#{notice}, images=#{img, jdbcType=VARCHAR} where club_id=#{clid}
 	</update>
 	
 	<!-- 모임방 삭제 -->
-	<delete id="delete" parameterType="int">
+	<delete id="deleteFeedComment" parameterType="int">
+		delete from dpheed_comment where club_id=#{clid}
+	</delete>
+	
+	<!-- 모임방 삭제 -->
+	<delete id="deleteFeed" parameterType="int">
+		delete from dpheed where club_id=#{clid}
+	</delete>
+	
+	<!-- 모임방 삭제 -->
+	<delete id="deleteMembers" parameterType="int">
+		delete from dclub_members where club_id=#{clid}
+	</delete>
+	
+	<!-- 모임방 삭제 -->
+	<delete id="deleteClub" parameterType="int">
 		delete from dclub where club_id=#{clid}
 	</delete>
 	
@@ -39,6 +54,14 @@
 	<!-- 모임방 선택 -->
 	<select id="selectById" parameterType="int" resultMap="clubResultMap">
 		select * from dclub where club_id=#{clid}
+	</select>
+	
+	<select id="selectAll" resultMap="clubResultMap">
+		<![CDATA[ select * from (select * from dclub order by club_id desc) where rownum <= 10 ]]>
+	</select>
+	
+	<select id="selectAllRandom" resultMap="clubResultMap">
+		<![CDATA[ select * from (select * from dclub order by dbms_random.value) where rownum <= 10 ]]>
 	</select>
 	
 	<select id="selectByUid" parameterType="int" resultMap="clubResultMap">

@@ -1,55 +1,183 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="${pageContext.request.contextPath}/resources/css/group.css" rel="stylesheet" type="text/css">
+<title>그룹방 생성</title>
 <script type="text/javascript">
-   function readURL(input) {
-      var file = input.files[0]; 
-      console.log(file);
-      if (file !== undefined) {
-         var reader = new FileReader();
-         reader.readAsDataURL(file);
-         reader.onload = function (e) { 
-            console.log(e.target);
-            console.log(e.target.result);
-            $('#preview').attr('src', e.target.result);
-         };
-      }
-  }  
-</script>
+	   function readURL(input) {
+	      var file = input.files[0]; 
+	      console.log(file);
+	      if (file !== undefined) {
+	         var reader = new FileReader();
+	         reader.readAsDataURL(file);
+	         reader.onload = function (e) { 
+	            console.log(e.target);
+	            console.log(e.target.result);
+	            $('#preview').attr('src', e.target.result);
+	         };
+	      }
+	  }  
+	</script>
+<style type="text/css">
+        .content::-webkit-scrollbar {
+    	display: none;
+    	}
+        .content {
+            padding: 5px; /* 콘텐츠 여백 설정 */
+            height: 700px;
+            max-height: 900px;
+            overflow-y: auto;
+            
+        }
+  
+.image-placeholder {
+            position: relative;
+            width: 95%;
+            margin: 0 auto; /* 중앙 정렬 */
+            height: 300px; 
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .file-upload-wrapper {
+            position: relative;
+        }
+
+        .file-upload-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-wrapper label {/*사진등록 버튼 디자인*/
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #28a745;
+            color: white;
+            font-size: 24px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+	  .form-container {
+	    position: relative; /* 상대적 위치 설정 */
+	    background-color: #fff;
+	    padding: 30px;
+	    border-radius: 5px;
+	    margin-top:-5px;
+	    margin-bottom: 10px; /* 하단 여백 추가 */
+	    width: 80%; /* 폭 설정 */
+      height: 30px;
+	    max-width: 700px; /* 최대 폭 설정 */
+	    margin-left: auto; /* 가운데 정렬을 위한 자동 마진 설정 */
+	    margin-right: auto; /* 가운데 정렬을 위한 자동 마진 설정 */
+	}
+	
+	    .form-container h3 {
+	        font-size: 20px;
+	        margin-bottom: 10px;
+	    }
+	
+	    .form-container label {
+	        display: block;
+	        margin-bottom: 8px;
+	        font-weight: bold;
+	    }
+	
+	    .form-container input[type=text],
+	    .form-container textarea {
+	        width: 100%;
+	        padding: 10px;
+	        margin-bottom: 15px;
+	        border: 1px solid #ccc;
+	        border-radius: 4px;
+	        box-sizing: border-box;
+	    }
+	
+	    .form-container textarea {
+	        height: 60px; /* textarea 높이 설정 */
+	    }
+	
+	    .form-container input[type=submit] {
+	        background-color: #4CAF50;
+	        color: white;
+	        padding: 12px 20px;
+	        border: none;
+	        border-radius: 4px;
+	        cursor: pointer;
+	    }
+	
+	    .form-container input[type=submit]:hover {
+	        background-color: #45a049;
+	    }
+	  .navbar {
+	        display: flex;
+	        align-items: center; /* 세로 중앙 정렬 */
+	    }
+	
+	    .group-name {
+	        flex: 1; /* 남은 공간 모두 차지 */
+	        text-align: center; /* 가운데 정렬 */
+	    }
+	    
+	     .svg-icon {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1); /*아이콘 색상 변경*/
+        }
+</style>
 </head>
-<body style="background-color:#2E2E2E">
-	<div class="container mb-4">
-		<div class="row justify-content-center mb-3">
-			<div class="col-md-6 mb-3">
-				<h4 class="text-white" align="center">
-					주의<br/>
-					모임 생성시 월 5000원씩<br/>
-					요금이 부과됩니다.
-				</h4>
-				<form action="<c:url value='/kakaoPay'/>" method="post" enctype="multipart/form-data">
-					<div class="col-sm-3">
-		            	<input type="file" class="form-control form-control-sm" id="img" name="img" onchange="readURL(this);">
-		        	</div>
-					<div class="mb-3">
-						<input type="text" class="form-control" name="title" id="title" placeholder="모임 이름">
-					</div>
-					<div class="mb-3">
-						<textarea class="form-control" name="content" id="content" rows="15" cols="50" placeholder="모임 설명"></textarea>
-					</div>
-					<input type="hidden" class="form-control" id="uid" name="uid" value="${user.uid}">
-					<input type="hidden" class="form-control" id="notice" name="notice">
-					<div class="d-flex justify-content-between">						
-						<button type="submit" class="btn btn-success mr-2">만들기</button>
-					</div>
-				</form>
-			</div>
-		</div> 
-	</div>
+<body>
+    <div class="container">
+        <div class="navbar">
+            
+            <!-- 뒤로가기 버튼 -->
+          <button class="back-button" onclick="history.back()">
+            <svg viewBox="0 0 24 24">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+          </button>
+            <span class="group-name">그룹방 생성</span>
+        </div>
+        <div class="content">
+        	<p align="center" style="opacity: 0.4;">※주의※<br>
+            그룹방 생성시 월 5,000원의 이용 요금이 부과됩니다.</p>
+            <!-- 그룹방 정보 입력 폼 -->
+            <div class="form-container">
+                <h3>그룹방 정보 입력(필수)</h3>
+                <form action="<c:url value='/kakaoPay'/>" method="post" enctype="multipart/form-data">
+                	<div class="image-placeholder">
+			            <div class="file-upload-wrapper">
+			                <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
+			                <label for="img">+</label>
+			            </div>
+		            </div>
+                    <label for="groupName">그룹방 이름:</label>
+                    <input type="text" id="title" name="title" required>
+                    
+                    <label for="groupDescription">그룹방 설명:</label>
+                    <textarea id="content" name="content" required></textarea>
+                    
+                    <label for="groupNotice">공지글:</label>
+                    <textarea id="notice" name="notice"></textarea>
+                    <input type="hidden" class="form-control" id="uid" name="uid" value="${user.uid}">
+                    <input type="submit" value="만들기">
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

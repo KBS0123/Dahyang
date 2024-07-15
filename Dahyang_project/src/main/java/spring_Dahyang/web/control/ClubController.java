@@ -71,6 +71,8 @@ public class ClubController {
 	        Member member = new Member();
 	        member.setClid(clid);
 	        member.setUid(user.getUid());
+	        member.setUnickname(user.getNickname());
+	        member.setUimg(user.getImages());
 	        
 	        memberMapper.insert(member);
 	        
@@ -80,6 +82,16 @@ public class ClubController {
 	    
 	    return "redirect:/views/club/{clid}";
 		
+	}
+	
+	@GetMapping("/{clid}/setting")
+	public String getSettingView(@PathVariable int clid, HttpSession session, Model model) {
+		User user = (User)session.getAttribute("user");
+		Club club = clubMapper.selectById(clid);
+		model.addAttribute("user", user);
+		model.addAttribute("club", club);
+		
+		return "club_setting";
 	}
 	
 	@GetMapping("/write")
@@ -135,9 +147,10 @@ public class ClubController {
 	            	club.setImg(imgFileName);
 	            }
 	            
+	            club.setUid(Integer.parseInt(request.getParameter("uid")));
 	            club.setTitle(request.getParameter("title"));
 	            club.setContent(request.getParameter("content"));
-	            club.setUid(Integer.parseInt(request.getParameter("uid")));
+	            club.setNotice(request.getParameter("notice"));
 	            
 	            try {
 	            	clubMapper.update(club); // MovieMapper의 update 메서드를 호출하여 업데이트
@@ -160,8 +173,11 @@ public class ClubController {
 			Club club = clubMapper.selectById(clid);
 			
 			if (user.getUid() == club.getUid()) {
-				clubMapper.delete(clid);
-				return "redirect:/views/test";
+				clubMapper.deleteFeedComment(clid);
+				clubMapper.deleteFeed(clid);
+				clubMapper.deleteMembers(clid);
+				clubMapper.deleteClub(clid);
+				return "redirect:/views/club/list";
 			}
 		}
 		
@@ -169,15 +185,19 @@ public class ClubController {
 	}
 	
 	// 모임 탈퇴 기능
-	@GetMapping("/remove/{uid}")
-	public String getRemoveMember(@PathVariable int clid, HttpSession session, Model model) {
+	@GetMapping("/{clid}/remove/{uid}")
+	public String getRemoveMember(@PathVariable int clid, @PathVariable int uid, HttpSession session, Model model) {
 		User user = (User)session.getAttribute("user");
-		Club leaderId = clubMapper.selectById(clid);
 		
-		if(user != null && leaderId.equals(user.getUid())) {
-			if (MemberMapper.deleteClub(clid)) {
-				return "club";
-			}
+		if(user != null) {
+			
+			Member member = new Member();
+	        member.setClid(clid);
+	        member.setUid(uid);
+			
+			memberMapper.delete(member);
+			
+			return "redirect:/views/";
 		}
 				
 		

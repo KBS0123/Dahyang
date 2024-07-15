@@ -124,7 +124,7 @@ line-height:1pt;
 #app>div.page {
   position:absolute;
   top:82pt; /*텍스트, 내용이 보이는 페이지 margin. 스크롤 되는 내용 경계*/
-  bottom:34pt;
+  bottom:70pt;
   left:0;
   right:0;
   overflow:auto;
@@ -160,6 +160,7 @@ line-height:1pt;
 
 body {
   text-align:center;
+  min-height: 100vh;
   padding:0px 339px 20px 632px;
   background: linear-gradient(90deg, #75b64d, #3ed4b9);
   font-family:'Lato';
@@ -179,6 +180,130 @@ body>header>p {
   margin:0;
   padding:0.5em 0 0.5em 0;
 }
+
+
+/*슬라이더*/
+
+ .card, .owl-item {
+	 transition: all 1s ease-out;
+	 -webkit-backface-visibility: hidden;
+	 -webkit-transform: translateZ(0) scale(1, 1);
+}
+ .owl-wrapper {/*owl carousel 기본 세팅*/
+	 position: relative;
+	 height: 20vh;
+	 width: 100%;
+	 margin-top: 0;
+	 padding: 0;
+}
+ .cards {/*요소 warraper*/
+	 position: relative;
+	 height: 20vh;
+	 width: 100%;
+	 padding: 0;
+	 background-color: #fefefe;
+}
+ .card {/*카드(피드)요소*/
+	 display: flex;
+	 justify-content: center;
+	 height: 8.5em;
+	 padding: 0.5em;
+	 margin: -0.5em 0;
+	 border-radius: 4px;
+	 opacity: 0.7;
+	 transform: scale(0.87);
+	 transition: transform 0.4s 0.5s ease-out, opacity 1s ease;
+	 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+ .active .card {
+	 box-shadow: 0 0px 1em rgba(0, 0, 0, 0.2);
+	 transform: box-shadow 0.3s ease, transform 0.1s 0.4s ease-in, opacity 0.4s ease;
+}
+ .card__content {
+	 display: flex;
+	 align-items: center;
+	 text-align: center;
+	 color: #fff;
+	 opacity: 1;
+}
+ .active .card__content {
+	 opacity: 1;
+	 transition: opacity 0.4s ease;
+}
+ .card__title {
+	 display: inline-block;
+	 font-size: 20px;
+	 overflow: hidden;
+   align-self: flex-end;
+}
+ .card__title span {
+	 display: inline-block;
+	 animation: slide-up 0.4s 0s ease both;
+}
+ .center.active .card__title span, .center.active.cloned:last-child .card__title span {
+	 opacity: 1;
+	 animation: slide-down 0.4s 0.4s ease both;
+	 transition: transform 0.3s 0.4s ease, opacity 0.3s ease;
+}
+ .center .card {
+	 opacity: 1;
+	 transform: scale(1);
+}
+ .center .card:hover {
+	 box-shadow: 0 8px 16px -5px rgba(0, 0, 0, 0.4);
+}
+
+
+
+ .owl-item:nth-of-type(1n) .card {
+	 background-color: #ff527b;
+}
+ .owl-item:nth-of-type(2n) .card {
+	 background-color: #ffcc8f;
+}
+ .owl-item:nth-of-type(3n) .card {
+	 background-color: #ff8f2f;
+}
+ .owl-item:nth-of-type(4n) .card {
+	 background-color: #2480fe;
+}
+ .owl-theme .owl-dots .owl-dot span {
+	 width: 4em;
+	 height: 4px;
+	 margin: 0 0.5em;
+	 background: #d6d6d6;
+	 display: block;
+	 -webkit-backface-visibility: visible;
+	 transition: opacity 0.2s ease;
+	 border-radius: 0;
+}
+ .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+	 background: #ff527b;
+}
+.owl-theme .owl-dots {
+    display: none; /* 도트 내비게이션 숨김 처리 */
+}
+ @keyframes slide-down {
+	 0% {
+		 opacity: 0;
+		 transform: translate3d(0, -120%, 0);
+	}
+	 100% {
+		 opacity: 1;
+		 transform: translate3d(0, 0%, 0);
+	}
+}
+ @keyframes slide-up {
+	 0% {
+		 opacity: 1;
+		 transform: translate3d(0, 0%, 0);
+	}
+	 100% {
+		 opacity: 0;
+		 transform: translate3d(0, -120%, 0);
+	}
+}
+
 
 .left {
   float:left;

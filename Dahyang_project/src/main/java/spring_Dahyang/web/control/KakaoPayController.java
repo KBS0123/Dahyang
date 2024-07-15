@@ -41,18 +41,23 @@ public class KakaoPayController {
 
     @PostMapping("/kakaoPay")
     public String kakaoPay(HttpSession session, 
-                           @RequestParam("img") MultipartFile file, 
+    						@RequestParam("img") MultipartFile file, 
                            @RequestParam("title") String title,
                            @RequestParam("content") String content, 
                            @RequestParam("notice") String notice) {
         log.info("kakaoPay post.....................");
         
+        // 파일을 임시 저장소에 저장하고 파일 경로를 세션에 저장
+        String filePath = null;
+        if (file != null && !file.isEmpty()) {
+            filePath = fileService.saveFile(file);
+        }
+        
         // 모임 정보 세션에 저장
-        session.setAttribute("img", file);
+        session.setAttribute("img", filePath);
         session.setAttribute("title", title);
         session.setAttribute("content", content);
         session.setAttribute("notice", notice);
-        System.out.println(title);
 
         return "redirect:" + kakaoPayService.kakaoPayReady(session);
     }
@@ -63,12 +68,12 @@ public class KakaoPayController {
         log.info("kakaoPaySuccess pg_token : " + pg_token);
 
         // 세션에서 모임 정보 가져오기
-        MultipartFile img = (MultipartFile) session.getAttribute("img");
+        String filePath = (String) session.getAttribute("img");
         String title = (String) session.getAttribute("title");
         String content = (String) session.getAttribute("content");
         String notice = (String) session.getAttribute("notice");
         User user = (User) session.getAttribute("user");
-        System.out.println(title);
+
         // 모임 생성 로직
         if (user != null) {
             Club club = new Club();
@@ -77,10 +82,8 @@ public class KakaoPayController {
             club.setContent(content);
             club.setNotice(notice);
 
-            String imgFileName = null;
-            if (img != null && !img.isEmpty()) {
-                imgFileName = fileService.saveFile(img); // FileService의 구현체를 사용하여 파일 저장
-                club.setImg(imgFileName);
+            if (filePath != null) {
+                club.setImg(filePath);
             }
 
             try {
@@ -89,6 +92,8 @@ public class KakaoPayController {
                 Member member = new Member();
                 member.setClid(clubs.getClid());
                 member.setUid(clubs.getUid());
+                member.setUnickname(user.getNickname());
+                member.setUimg(user.getImages());
                 memberMapper.insert(member);
             } catch (Exception e) {
                 e.printStackTrace();

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>그룹방 관리(회원)</title>
+    <title>그룹방 관리</title>
     <link href="${pageContext.request.contextPath}/resources/css/grouplist.css" rel="stylesheet" type="text/css">
     <style>
         /* 중앙 정렬을 위한 CSS 추가 */
@@ -52,20 +52,35 @@
             <img src="${pageContext.request.contextPath}/resources/css/Logo.png" height="150" width="130">
         </div>
     </header>
-    <div id="content">
-        <div class="group">
-            <h2>내 그룹방</h2>
-        </div>
-
-        <div class="button-container">
-            <button class="button" onclick="location.href='${pageContext.request.contextPath}/feedWrite.jsp'">피드 등록</button>
-        </div>
-
-        <div class="button-container">
-            <button class="button" onclick="location.href='${pageContext.request.contextPath}/leaveGroup'">모임 나가기</button>
-        </div>
-    </div>
-    <jsp:include page="/views/nav2.jsp" />
+    <c:choose>
+    	<c:when test="${user.uid == club.uid}">
+    		<div id="content">
+		        <div class="group">
+		            <h2>내 그룹방</h2>
+		        </div>
+		
+		        <div class="button-container">
+		            <button class="button" onclick="location.href='<c:url value="/views/club/update/${clid}"/>'">모임 수정</button>
+		        </div>
+		
+		        <div class="button-container">
+		            <button class="button" onclick="location.href='<c:url value="/views/club/delete/${clid}"/>'">모임 삭제</button>
+		        </div>
+		    </div>
+    	</c:when>
+    	<c:otherwise>
+    		<div id="content">
+		        <div class="group">
+		            <h2>내 그룹방</h2>
+		        </div>
+		
+		        <div class="button-container">
+		            <button class="button" onclick="location.href='<c:url value="/views/club/${clid}/remove/${user.uid}"/>'">모임 나가기</button>
+		        </div>
+		    </div>
+    	</c:otherwise>
+    </c:choose>
+    <c:import url="navbar2.jsp"></c:import>
 </div>
 
 </body>

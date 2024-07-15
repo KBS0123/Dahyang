@@ -78,12 +78,19 @@
                     <c:forEach var="club" items="${clubs}">
 	                    <div class="group">
 	                        <div class="group-box">
-	                            <img src="https://via.placeholder.com/50" alt="그룹방 아이콘">
+	                        	<c:choose>
+									<c:when test="${not empty club.img}">
+										<img src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
+									</c:when>
+									<c:otherwise>
+										<img src="${pageContext.request.contextPath}/resources/css/group.png">
+									</c:otherwise>
+								</c:choose>
 	                            <div class="group-info">
 	                            	<a href="<c:url value='/views/club/${club.clid}' />">
 	                                	<strong>${club.title}</strong>
 	                                </a>
-	                                <input type="text" value="공지사항" readonly>
+	                                <input type="text" value="공지사항: ${club.notice}" readonly>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -114,6 +121,8 @@
         window.onload = checkLogin;
     </script>
     <c:import url="navbar.jsp"></c:import>
-    <c:import url="chatbutton.jsp"></c:import>
+    <c:if test="${not empty user}">
+    	<c:import url="chatbutton.jsp"></c:import>
+    </c:if>
 </body>
 </html>

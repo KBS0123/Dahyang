@@ -101,21 +101,37 @@
 	        align-items: center; /* 세로 중앙 정렬 */
 	    }
 	
-	    .back-arrow {
-	        margin-right: 10px; /* 뒤로가기 화살표 오른쪽 여백 */
-	    }
-	
 	    .group-name {
 	        flex: 1; /* 남은 공간 모두 차지 */
 	        text-align: center; /* 가운데 정렬 */
 	    }
+	    
+	     .svg-icon {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1); /*아이콘 색상 변경*/
+        }
 </style>
 </head>
 <body>
     <div class="container">
         <div class="navbar">
-            <span class="back-arrow">&lt;</span>
+            
+            <!-- 뒤로가기 버튼 -->
+          <button class="back-button" onclick="history.back()">
+            <svg viewBox="0 0 24 24">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+          </button>
             <span class="group-name">그룹방 관리</span>
+          
+          <!-- 톱니바퀴 버튼 추가 -->
+            <button class="settings-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+            </button>
+            
         </div>
         
         <div class="content">

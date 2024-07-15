@@ -33,7 +33,11 @@
 	    <header>
 	      <div class="system-bar"></div>
 	      <div class="left">
-	        <span class="ion-chevron-left"></span>
+	        <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}"/>'">
+		        <svg viewBox="0 0 24 24">
+		          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+		        </svg>
+		    </button>
 	      </div>
 	      <div class="center-text">그룹 피드</div>
 	      <div class="right">
@@ -50,7 +54,14 @@
 	            		<div class="feed-item">
 	            			<a href="<c:url value='/views/club/${clid}/feed/${feed.fid}' />">
 			                    <div class="image-placeholder">
-			                    	<img src="${feed.img}" alt="Feed Image">
+			                    	<c:choose>
+										<c:when test="${not empty feed.img}">
+											<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.img}">
+										</c:when>
+										<c:otherwise>
+											<img src="${pageContext.request.contextPath}/resources/css/feed.jpg">
+										</c:otherwise>
+									</c:choose>
 			                    </div>
 		                    </a>
 		                    <p class="feed-text">${feed.content}</p>
@@ -60,6 +71,13 @@
 	        </div>
 	        <c:import url="navbar2.jsp"></c:import>
 	    </div>
+	    <!-- 새 피드 작성 버튼 -->
+	    <c:forEach var="m" items="${member}">
+		    <!-- 만약 회원의 uid가 사용자의 uid와 일치한다면 버튼을 표시하지 않음 -->
+		    <c:if test="${m.uid == user.uid}">
+		        <button class="button new-feed" onclick="location.href='<c:url value="/views/club/${clid}/feed/write"/>'">피드 작성하기</button>
+		    </c:if>
+		</c:forEach>
     </div>
 </main>
 </html>

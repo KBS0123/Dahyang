@@ -24,18 +24,24 @@
   <main>
   
   <header>
-    <div class="feature"></div>
-    <div class="feature"></div>
-  </header>
+      <div class="feature"></div>
+      <div class="feature"></div>
+    </header>
   
-  <div id="app">
-    
-    <!-- 상단바 -->
+    <div id="app">
+      <!-- 상단바 -->
       <header>
+        
         <div class="system-bar"></div>
         <div class="left">
-          <span class="ion-chevron-left"></span>
+          <!-- 뒤로가기 버튼 -->
+          <button class="back-button" onclick="history.back()">
+        <svg viewBox="0 0 24 24">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+      </button>
         </div>
+        
         <div class="center-text">그룹 피드</div>
         <div class="right">
           <span class="ion-navicon"></span>
@@ -92,6 +98,10 @@
 
     </div>
     <!-- 내부 박스 -->
+    
+    <!-- 새 피드 작성 버튼 -->
+      <button class="button new-feed" onclick="location.href='new_feed.jsp'">피드 작성하기</button>
+      
     <jsp:include page="/views/navbar.jsp" />
     
 </main>

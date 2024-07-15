@@ -70,10 +70,6 @@
           <span class="button__text">LogIn</span>
           <i class="button__icon fas fa-chevron-right"></i>
         </button>
-        <button type="button" 
-				onclick="location.href='https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&prompt=login'">
-				카카오 로그인
-		</button>
       </form>
     </div>
     <div class="screen__background">

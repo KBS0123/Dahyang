@@ -9,6 +9,13 @@
     <link href="${pageContext.request.contextPath}/resources/css/group.css" rel="stylesheet" type="text/css">
     <title>Group Page</title>
 </head>
+<style>
+.settings-button .svg-icon {
+    width: 24px; /* 아이콘 크기 */
+    height: 24px;
+    fill: #fff;
+}
+</style>
 <body>
     <div class="container">
         <div class="navbar">
@@ -16,31 +23,33 @@
             	<span class="back-arrow">&lt;</span>
             </a>
             <span class="group-name">${club.title}</span>
+            <!-- 톱니바퀴 버튼 추가 -->
+            <c:forEach var="m" items="${member}">
+		        <!-- 만약 회원의 uid가 사용자의 uid와 일치한다면 버튼을 표시하지 않음 -->
+		        <c:if test="${m.uid == user.uid}">
+		            <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/setting"/>'">
+	                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+	            	</button>
+		        </c:if>
+		    </c:forEach>
         </div>
         
         <div class="content">
             <div class="image-placeholder">
-            	<img src="${club.img}">
+            	<c:choose>
+					<c:when test="${not empty club.img}">
+						<img src="${pageContext.request.contextPath}/resources/imgs/${club.img}">
+					</c:when>
+					<c:otherwise>
+						<img src="${pageContext.request.contextPath}/resources/css/group.png">
+					</c:otherwise>
+				</c:choose>
             </div>
             <h2 class="group-title">${club.title}</h2>
             <p class="status">현재 멤버를 모집 중인 모임입니다.</p>
             
             <div class="description">
                 <span>${club.content}</span>
-            </div>
-
-            <div class="info-box">
-                <div class="info-item">
-                    <span>인원</span>
-                    <div class="info-details">
-                        <span>적정</span><span>4명</span>
-                        <span>현재</span><span>2명</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <span>방식</span>
-                    <span>온라인</span>
-                </div>
             </div>
         </div>
         <c:choose>
@@ -75,7 +84,7 @@
 					        <h3 class="notice-title">공지사항</h3>
 					        <div class="notice-content">
 					            <!-- 여기에 공지사항 내용을 동적으로 표시할 부분 -->
-					          <p>안녕하세요?</p>
+					          <p>${club.notice}</p>
 					        </div>
 					    </div>
 					    <!-- 공지사항 박스 끝 -->
@@ -87,31 +96,34 @@
 						        <div class="toggle-icon">+</div>
 						    </div>
 						    <div class="toggle-content" id="participantsBox">
-						        <!-- 유저 프로필 및 승인/거절 버튼 예시 -->
-						        <div class="user-profile">
-						            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
-						            <div class="user-info">
-						                <div class="user-name">사용자 닉네임</div>
-						                <div class="action-buttons">
-						                    <button class="btn-accept">승낙하기</button>
-						                    <button class="btn-reject">거절하기</button>
-						                </div>
-						            </div>
-						        </div>
 						        <!-- 추가적인 참여된 인원 예시 -->
-						        <div class="user-profile">
-						            <img src="사용자 프로필 이미지 URL" alt="프로필 사진">
-						            <div class="user-info">
-						                <div class="user-name">사용자 닉네임</div>
-						            </div>
-						        </div>
+						        <c:forEach var="m" items="${member}">
+							        <div class="user-profile">
+								        <c:choose>
+								        	<c:when test="${not empty m.uimg}">
+								        		<img src="${pageContext.request.contextPath}/resources/imgs/${m.uimg}" alt="프로필 사진">
+								        	</c:when>
+								        	<c:otherwise>
+								        		<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+								        	</c:otherwise>
+								        </c:choose>
+							            <div class="user-info">
+							                <div class="user-name">${m.unickname}</div>
+							            </div>
+							            <c:if test="${m.uid == club.uid}">
+								            <div class="user-info">
+								                <div class="user-name">(방장)</div>
+								            </div>
+							            </c:if>
+							        </div>
+						        </c:forEach>
 						    </div>
 						</div>
-		                <c:import url="navbar2.jsp"></c:import>
 		            </c:if>
 		        </c:forEach>
 		    </c:otherwise>
 	    </c:choose>
+		<c:import url="navbar2.jsp"></c:import>
     </div>
     <script>
         function toggleParticipants() {

@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import spring_Dahyang.file.FileService;
 import spring_Dahyang.file.FileServiceImpl;
 import spring_Dahyang.user.model.User;
+import spring_Dahyang.club.model.Member;
+import spring_Dahyang.club.repository.MemberMapper;
 import spring_Dahyang.feed.model.Comment;
 import spring_Dahyang.feed.model.Feed;
 import spring_Dahyang.feed.repository.CommentMapper;
@@ -36,12 +38,17 @@ public class FeedController {
 	private FeedMapper feedMapper;
 	
 	@Autowired
+	private MemberMapper memberMapper;
+	
+	@Autowired
 	private CommentMapper commentMapper;
 	
 	@GetMapping()
 	public ModelAndView getFeedView(@PathVariable int clid) {
 		ModelAndView mav = new ModelAndView("feed_list");
 		mav.addObject("feeds", feedMapper.selectAll(clid));
+		List<Member> member = memberMapper.findMembers(clid);
+		mav.addObject("member", member);
 		mav.addObject("clid", clid);
 		return mav;
 	}
@@ -151,7 +158,7 @@ public class FeedController {
 	                e.printStackTrace();
 	            }
 	            
-	            return "redirect:/views/club/" + clid + "/feed" + feed.getFid();
+	            return "redirect:/views/club/" + clid + "/feed/" + feed.getFid();
 	        }
 		}
 		
@@ -167,8 +174,9 @@ public class FeedController {
 			Feed feed = feedMapper.selectById(fid);
 			
 			if (user.getUid() == feed.getUid()) {
-				feedMapper.delete(fid);
-				return "redirect:/views/";
+				feedMapper.deleteComment(fid);
+				feedMapper.deleteFeed(fid);
+				return "redirect:/views/club/" + clid + "/feed";
 			}
 		}
 		

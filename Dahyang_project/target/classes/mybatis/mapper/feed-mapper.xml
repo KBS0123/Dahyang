@@ -26,12 +26,21 @@
 	</update>
 	
 	<!-- 피드 삭제 -->
-	<delete id="delete" parameterType="int">
+	<delete id="deleteComment" parameterType="int">
+		delete from dpheed_comment where pheed_id=#{fid}
+	</delete>
+	
+	<!-- 피드 삭제 -->
+	<delete id="deleteFeed" parameterType="int">
 		delete from dpheed where pheed_id=#{fid}
 	</delete>
 	
 	<select id="selectAll" parameterType="int" resultMap="feedResultMap">
 		select * from dpheed where club_id=#{clid}
+	</select>
+	
+	<select id="selectAllRandom" resultMap="feedResultMap">
+		<![CDATA[ select * from (select * from dpheed order by dbms_random.value) where rownum <= 10 ]]>
 	</select>
 	
 	<!-- 피드 선택 -->
