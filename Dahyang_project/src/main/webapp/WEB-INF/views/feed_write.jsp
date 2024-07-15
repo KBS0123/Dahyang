@@ -10,21 +10,29 @@
 <title>피드 작성</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-   function readURL(input) {
+   function readURL(input, previewId) {
       var file = input.files[0]; 
-      console.log(file);
       if (file !== undefined) {
          var reader = new FileReader();
          reader.readAsDataURL(file);
          reader.onload = function (e) { 
-            console.log(e.target);
-            console.log(e.target.result);
-            $('#preview').attr('src', e.target.result);
-            $('#preview').css('display', 'block');
-            $('#preview').removeAttr('alt'); // alt 속성 제거
+            $('#' + previewId).attr('src', e.target.result);
+            $('#' + previewId).css('display', 'block');
+            $('#' + previewId).removeAttr('alt'); // alt 속성 제거
          };
       }
-  }  
+  }
+  
+  function addFileInput() {
+      var inputCount = $('.file-upload-wrapper').length + 1;
+      var newInput = `
+          <div class="file-upload-wrapper">
+              <input type="file" id="img${inputCount}" name="img[]" accept="image/*" onchange="readURL(this, 'preview${inputCount}');">
+              <img id="preview${inputCount}" src="#" alt="Image Preview" style="display:none;">
+              <label for="img${inputCount}">+</label>
+          </div>`;
+      $('#image-upload-container').append(newInput);
+  }
 </script>
 <style>
     #preview {
@@ -56,23 +64,25 @@
             </div>
             
             <form action="<c:url value='/views/club/${clid}/feed/write'/>" method="post" enctype="multipart/form-data">
-          		<!-- 이미지 등록 버튼 -->
-            	<div class="image-placeholder">
+                <!-- 이미지 등록 영역 -->
+                <div id="image-upload-container">
                     <div class="file-upload-wrapper">
-                        <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
-                        <img id="preview" src="#" alt="Image Preview" style="display:none;">
-                        <label for="img">+</label>
+                        <input type="file" id="img1" name="img[]" accept="image/*" onchange="readURL(this, 'preview1');">
+                        <img id="preview1" src="#" alt="Image Preview" style="display:none;">
+                        <label for="img1">+</label>
                     </div>
                 </div>
-              	<!-- 내용 작성 폼 -->
-        		<div class="form-container">
-	                <textarea name="content" id="content" placeholder="내용을 입력하세요"></textarea>
-	                <input type="hidden" class="form-control" id="clid" name="clid" value="${clid}">
-					<input type="hidden" id="uid" name="uid" value="${user.uid}">
-					<input type="hidden" id="writer" name="writer" value="${user.nickname}">
-					<input type="hidden" id="uimg" name="uimg" value="${user.images}">
-					<input type="hidden" id="likes" name="likes" value="0">
-	                <button type="submit">등록</button>
+                <button type="button" onclick="addFileInput()">이미지 추가</button>
+                
+                <!-- 내용 작성 폼 -->
+                <div class="form-container">
+                    <textarea name="content" id="content" placeholder="내용을 입력하세요"></textarea>
+                    <input type="hidden" class="form-control" id="clid" name="clid" value="${clid}">
+                    <input type="hidden" id="uid" name="uid" value="${user.uid}">
+                    <input type="hidden" id="writer" name="writer" value="${user.nickname}">
+                    <input type="hidden" id="uimg" name="uimg" value="${user.images}">
+                    <input type="hidden" id="likes" name="likes" value="0">
+                    <button type="submit">등록</button>
                 </div>
             </form>
         </div> 

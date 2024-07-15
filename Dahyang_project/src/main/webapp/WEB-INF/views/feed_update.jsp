@@ -7,21 +7,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/resources/css/feedwrite.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>피드 관리</title>
 <script type="text/javascript">
-   function readURL(input) {
+   function readURL(input, previewId) {
       var file = input.files[0]; 
-      console.log(file);
       if (file !== undefined) {
          var reader = new FileReader();
          reader.readAsDataURL(file);
          reader.onload = function (e) { 
-            console.log(e.target);
-            console.log(e.target.result);
-            $('#preview').attr('src', e.target.result);
+            $('#' + previewId).attr('src', e.target.result);
+            $('#' + previewId).css('display', 'block');
+            $('#' + previewId).removeAttr('alt'); // alt 속성 제거
          };
       }
-  }  
+  }
+  
+  function addFileInput() {
+      var inputCount = $('.file-upload-wrapper').length + 1;
+      var newInput = `
+          <div class="file-upload-wrapper">
+              <input type="file" id="img${inputCount}" name="img[]" accept="image/*" onchange="readURL(this, 'preview${inputCount}');">
+              <img id="preview${inputCount}" src="#" alt="Image Preview" style="display:none;">
+              <label for="img${inputCount}">+</label>
+          </div>`;
+      $('#image-upload-container').append(newInput);
+  }
 </script>
 </head>
 <body>
@@ -41,20 +52,29 @@
         <div class="feed-item">
             <div class="feed-header">
                 <div class="profile-pic">
-                	<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.uimg}">
+                	<c:choose>
+						<c:when test="${not empty feed.uimg}">
+							<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.uimg}">
+						</c:when>
+						<c:otherwise>
+							<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+						</c:otherwise>
+					</c:choose>
                 </div>
                 <span class="nickname">${feed.writer}</span>
             </div>
 	        <!-- 내용 작성 폼 -->
 	        <div class="form-container">
 	            <form action="<c:url value='/views/club/${clid}/feed/update'/>" method="post" enctype="multipart/form-data">
-	            	<!-- 이미지 등록 버튼 -->
-		            <div class="image-placeholder">
-		                <div class="file-upload-wrapper">
-		                    <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
-		                    <label for="img">+</label>
-		                </div>
-		            </div>
+	            	<!-- 이미지 등록 영역 -->
+	                <div id="image-upload-container">
+	                    <div class="file-upload-wrapper">
+	                        <input type="file" id="img1" name="img[]" accept="image/*" onchange="readURL(this, 'preview1');">
+	                        <img id="preview1" src="#" alt="Image Preview" style="display:none;">
+	                        <label for="img1">+</label>
+	                    </div>
+	                </div>
+	                <button type="button" onclick="addFileInput()">이미지 추가</button>
 	                <textarea id="content" name="content" placeholder="내용을 입력하세요"></textarea>
 	                <input type="hidden" id="fid" name="fid" value="${feed.fid}">
 	                <input type="hidden" id="clid" name="clid" value="${feed.clid}">

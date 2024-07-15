@@ -24,8 +24,10 @@ import spring_Dahyang.club.model.Member;
 import spring_Dahyang.club.repository.MemberMapper;
 import spring_Dahyang.feed.model.Comment;
 import spring_Dahyang.feed.model.Feed;
+import spring_Dahyang.feed.model.Images;
 import spring_Dahyang.feed.repository.CommentMapper;
 import spring_Dahyang.feed.repository.FeedMapper;
+import spring_Dahyang.feed.repository.ImagesMapper;
 
 @Controller
 @RequestMapping("/views/club/{clid}/feed")
@@ -36,6 +38,9 @@ public class FeedController {
 	
 	@Autowired
 	private FeedMapper feedMapper;
+	
+	@Autowired
+	private ImagesMapper imagesMapper;
 	
 	@Autowired
 	private MemberMapper memberMapper;
@@ -73,7 +78,7 @@ public class FeedController {
 	}
 	
 	@PostMapping("/write")
-	public String postInsert(@PathVariable int clid, @RequestParam("img") MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
+	public String postInsert(@PathVariable int clid, @RequestParam("img[]") MultipartFile[] files, HttpServletRequest request, HttpSession session, Model model) {
 		User user = (User)session.getAttribute("user");
 		// Board 객체 생성 및 필요한 데이터 설정
 		model.addAttribute("clid", clid);
@@ -85,15 +90,21 @@ public class FeedController {
 		feed.setUimg(request.getParameter("uimg"));
 		feed.setLikes(Integer.parseInt(request.getParameter("likes")));
 		
-		// 파일 저장 및 파일명 설정
-	    String imgFileName = null;
-	    if (file != null && !file.isEmpty()) {
-	        imgFileName = fileService.saveFile(file); // FileService의 구현체를 사용하여 파일 저장
-	        feed.setImg(imgFileName); // 파일이 있는 경우에만 파일명 설정
-	    }
-	    
-	    try {
-	    	feedMapper.insert(feed);
+		try {
+	        feedMapper.insert(feed);
+	        
+	        Feed fid = feedMapper.selectByContent(request.getParameter("content"));
+	        
+	        // 파일 저장 및 파일명 설정
+	        for (MultipartFile file : files) {
+	            if (file != null && !file.isEmpty()) {
+	                String imgFileName = fileService.saveFile(file); // FileService의 구현체를 사용하여 파일 저장
+	                Images image = new Images();
+	                image.setFid(fid.getFid());
+	                image.setImg(imgFileName);
+	                imagesMapper.insert(image); // 이미지 정보 데이터베이스에 저장
+	            }
+	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
@@ -117,52 +128,59 @@ public class FeedController {
 	}
 	
 	@PostMapping("/update")
-	public String postUpdate(@PathVariable int clid, @RequestParam("img") MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
-		User user = (User)session.getAttribute("user");
-		model.addAttribute("clid", clid);
-		
-		if (user != null) {
+	public String postUpdate(@PathVariable int clid, @RequestParam("img[]") MultipartFile[] files, HttpServletRequest request, HttpSession session, Model model) {
+	    User user = (User) session.getAttribute("user");
+	    model.addAttribute("clid", clid);
+
+	    if (user != null) {
 	        Feed feed = feedMapper.selectById(Integer.parseInt(request.getParameter("fid")));
 	        if (feed != null && user.getUid() == feed.getUid()) {
 	            // 기존 파일 삭제
-	            if (feed.getImg() != null && !feed.getImg().isEmpty()) {
-	                File oldFile = new File(FileServiceImpl.IMAGE_REPO, feed.getImg());
-	                if (oldFile.exists()) {
-	                    oldFile.delete(); // 기존 파일 삭제
+	            try {
+	                List<Images> existingImages = imagesMapper.selectAll(feed.getFid());
+	                for (Images image : existingImages) {
+	                    File oldFile = new File(FileServiceImpl.IMAGE_REPO, image.getImg());
+	                    if (oldFile.exists()) {
+	                        oldFile.delete(); // 기존 파일 삭제
+	                    }
 	                }
+	                imagesMapper.delete(feed.getFid()); // 기존 이미지 레코드 삭제
+	            } catch (Exception e) {
+	                e.printStackTrace();
 	            }
 
-	            // 새 파일 업로드
-	            String imgFileName = null; // 새 파일명
+	            // 새 파일 업로드 및 파일명 설정
 	            try {
-	                if (file != null && !file.isEmpty()) {
-	                    imgFileName = fileService.saveFile(file); // FileService의 구현체를 사용하여 새 파일 저장
+	                for (MultipartFile file : files) {
+	                    if (file != null && !file.isEmpty()) {
+	                        String imgFileName = fileService.saveFile(file); // FileService의 구현체를 사용하여 새 파일 저장
+	                        Images image = new Images();
+	                        image.setFid(feed.getFid());
+	                        image.setImg(imgFileName);
+	                        imagesMapper.insert(image); // 새 이미지 정보 데이터베이스에 저장
+	                    }
 	                }
 	            } catch (Exception e) {
 	                e.printStackTrace();
 	            }
 
-	            // 파일명 업데이트
-	            if (imgFileName != null) {
-	            	feed.setImg(imgFileName);
-	            }
-	            
+	            // 피드 정보 업데이트
 	            feed.setClid(Integer.parseInt(request.getParameter("clid")));
 	            feed.setUid(Integer.parseInt(request.getParameter("uid")));
 	            feed.setWriter(request.getParameter("writer"));
 	            feed.setContent(request.getParameter("content"));
-	            
+
 	            try {
-	            	feedMapper.update(feed); // MovieMapper의 update 메서드를 호출하여 업데이트
+	                feedMapper.update(feed); // FeedMapper의 update 메서드를 호출하여 피드 업데이트
 	            } catch (Exception e) {
 	                e.printStackTrace();
 	            }
-	            
+
 	            return "redirect:/views/club/" + clid + "/feed/" + feed.getFid();
 	        }
-		}
-		
-		return session.getServletContext().getContextPath() + "/views/test";
+	    }
+
+	    return session.getServletContext().getContextPath() + "/views/test";
 	}
 	
 	@GetMapping("/delete/{fid}")
@@ -174,6 +192,7 @@ public class FeedController {
 			Feed feed = feedMapper.selectById(fid);
 			
 			if (user.getUid() == feed.getUid()) {
+				feedMapper.deleteImages(fid);
 				feedMapper.deleteComment(fid);
 				feedMapper.deleteFeed(fid);
 				return "redirect:/views/club/" + clid + "/feed";
