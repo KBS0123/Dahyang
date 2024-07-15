@@ -53,7 +53,7 @@
       <li>
         <div class="icon-container">
           <a href="<c:url value='/views/club/${clid}/feed'/>">
-            <svg><use xlink:href="#plus-icon"></use></svg>
+            <svg><use xlink:href="#bookmark-icon"></use></svg>
             <p>피드</p>
           </a>
         </div>

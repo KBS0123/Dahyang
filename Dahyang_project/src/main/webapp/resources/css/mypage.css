@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 @import url('loginbutton.css');
 div.page::-webkit-scrollbar {     
   width: 0 !important;
@@ -61,10 +61,10 @@ p span {
 
 #app > header {
   font-size: 12pt;
-  font-family: 'Pretendard-Regular'; /* ¼öÁ¤: Pretendard-Bold -> Pretendard-Regular */
-  font-weight: 600; /* ¼öÁ¤: 700 -> 600 */
+  font-family: 'Pretendard-Regular'; /* ìˆ˜ì •: Pretendard-Bold -> Pretendard-Regular */
+  font-weight: 600; /* ìˆ˜ì •: 700 -> 600 */
   text-align: center;
-  letter-spacing: 3px; /* ¼öÁ¤: 2px -> 3px */
+  letter-spacing: 3px; /* ìˆ˜ì •: 2px -> 3px */
   position: absolute;
   top: 0;
   left: 0;
@@ -73,16 +73,16 @@ p span {
   line-height: 65px;
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.20);
-  background-color: #75b64d; /* »ó´Ü¹Ù »ö»ó */
-  padding: 10pt; /* ÆĞµù °ª º¯°æ */
-  color: #fefefe; /*»ó´Ü¹Ù ÅØ½ºÆ® »ö»ó*/
+  background-color: #75b64d; /* ìƒë‹¨ë°” ìƒ‰ìƒ */
+  padding: 10pt; /* íŒ¨ë”© ê°’ ë³€ê²½ */
+  color: #fefefe; /*ìƒë‹¨ë°” í…ìŠ¤íŠ¸ ìƒ‰ìƒ*/
   opacity: 0.9;
   overflow: hidden;
   animation: dsTop 1.5s;
 }
 
 #app > header img {
-  float: left; /* ÀÌ¹ÌÁö¸¦ ¿ŞÂÊÀ¸·Î Á¤·Ä */
+  float: left; /* ì´ë¯¸ì§€ë¥¼ ì™¼ìª½ìœ¼ë¡œ ì •ë ¬ */
   margin-top: -30px;
 }
 
@@ -97,17 +97,27 @@ p span {
 
 #app > header .center-text {
   display: inline-block;
-  width: 70%; /* ¼öÁ¤: 60% -> 70% */
-  text-align: left; /* ¼öÁ¤: center -> left */
+  width: 70%; /* ìˆ˜ì •: 60% -> 70% */
+  text-align: left; /* ìˆ˜ì •: center -> left */
   vertical-align: middle;
-  font-size: 1em; /* ¼öÁ¤: 1.2em -> 1em */
+  font-size: 1em; /* ìˆ˜ì •: 1.2em -> 1em */
   line-height: 1.5;
 }
 
-#app .profile {
-  text-align: center;
-  margin-top: 0px;
-  animation: fadeIn 2s ease-in;
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ì¤‘ì•™ ì •ë ¬ */
+    text-align: left; /* í…ìŠ¤íŠ¸ëŠ” ì™¼ìª½ ì •ë ¬ */
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.profile-details {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 #app .profile-img {
@@ -142,13 +152,13 @@ p span {
 
 #app>div.page {
   position:absolute;
-  top:82pt; /*ÅØ½ºÆ®, ³»¿ëÀÌ º¸ÀÌ´Â ÆäÀÌÁö margin. ½ºÅ©·Ñ µÇ´Â ³»¿ë °æ°è*/
+  top:82pt; /*í…ìŠ¤íŠ¸, ë‚´ìš©ì´ ë³´ì´ëŠ” í˜ì´ì§€ margin. ìŠ¤í¬ë¡¤ ë˜ëŠ” ë‚´ìš© ê²½ê³„*/
   bottom:34pt;
   left:0;
   right:0;
   overflow:auto;
   padding:20pt 35pt;
-  line-height:1.5;/*ÁÙ, ¿ä¼Ò°£°İ*/
+  line-height:1.5;/*ì¤„, ìš”ì†Œê°„ê²©*/
 }
 
 #app * {
@@ -161,7 +171,7 @@ p span {
                                   not supported by any browser */
 }
 
-#app /*³»ºÎ ¹Ú½º »çÀÌÁî Á¶Á¤*/{
+#app /*ë‚´ë¶€ ë°•ìŠ¤ ì‚¬ì´ì¦ˆ ì¡°ì •*/{
   width:585px;
   height:900px;
   background-color:#fefefe;
@@ -174,17 +184,17 @@ p span {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 5px;
-   color:#333; /*³»ºÎ ¹Ú½º ÅØ½ºÆ® »ö»ó*/
+   color:#333; /*ë‚´ë¶€ ë°•ìŠ¤ í…ìŠ¤íŠ¸ ìƒ‰ìƒ*/
    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
-body {
-  text-align:center;
-  padding:0px 339px 20px 632px;
-  background: linear-gradient(90deg, #75b64d, #3ed4b9);
-  font-family:'Lato';
-  color:#f0f0f0;
-}
 
+body {
+  text-align: center;
+  padding: 0px 339px 20px 632px;
+  background: linear-gradient(90deg, #75b64d, #3ed4b9);
+  font-family: 'Lato';
+  color: #f0f0f0;
+}
 body>header,body>footer {
   padding:0em 0 1em 0;
 }
@@ -219,18 +229,19 @@ body>header>p {
 .profile {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Áß¾Ó Á¤·Ä */
-  text-align: left; /* ÅØ½ºÆ®´Â ¿ŞÂÊ Á¤·Ä */
+  align-items: center; /* ì¤‘ì•™ ì •ë ¬ */
+  text-align: left; /* í…ìŠ¤íŠ¸ëŠ” ì™¼ìª½ ì •ë ¬ */
   animation: fadeIn 1s ease-out forwards;
 }
 .profile-details {
-  padding: 20px; /* ¿øÇÏ´Â padding °ªÀ¸·Î º¯°æ */
-  margin-top: 20px; /* À§ÂÊ ¸¶Áø */
-  background-color: #f5f5f5; /* ¹è°æ»ö */
-  border-radius: 5px; /* ¸ğ¼­¸® µÕ±Û°Ô */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* ±×¸²ÀÚ È¿°ú */
+  padding: 20px; /* ì›í•˜ëŠ” padding ê°’ìœ¼ë¡œ ë³€ê²½ */
+  margin-top: 20px; /* ìœ„ìª½ ë§ˆì§„ */
+  background-color: #f5f5f5; /* ë°°ê²½ìƒ‰ */
+  border-radius: 5px; /* ëª¨ì„œë¦¬ ë‘¥ê¸€ê²Œ */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* ê·¸ë¦¼ì íš¨ê³¼ */
 }
-/*¾Ö´Ï¸ŞÀÌ¼Ç*/
+
+/*ì• ë‹ˆë©”ì´ì…˜*/
 @keyframes fadeIn {
   from {
     opacity: 0;

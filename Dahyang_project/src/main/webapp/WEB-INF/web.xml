@@ -1,7 +1,7 @@
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
-                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" 
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <display-name>Dahyang_project</display-name>
     
@@ -16,7 +16,7 @@
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
-        <async-supported>true</async-supported>
+        <async-supported>true</async-supported> <!-- 비동기 지원 추가 -->
     </servlet>
     
     <servlet-mapping>
@@ -40,10 +40,11 @@
         <servlet-name>default</servlet-name>
         <url-pattern>*.jpg</url-pattern>
     </servlet-mapping>
-
+    
     <filter>
         <filter-name>encoding-filter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+                <async-supported>true</async-supported> <!-- 비동기 지원 추가 -->
         <init-param>
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>

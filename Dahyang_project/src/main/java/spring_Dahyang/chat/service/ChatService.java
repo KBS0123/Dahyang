@@ -2,39 +2,34 @@ package spring_Dahyang.chat.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import spring_Dahyang.chat.model.Chat;
-import spring_Dahyang.chat.model.ChatMessage;
-import spring_Dahyang.chat.repository.ChatMessageMapper;
-import spring_Dahyang.user.model.User;
-import spring_Dahyang.user.repository.UserMapper;
-import spring_Dahyang.user.repository.UserRepository;
+import spring_Dahyang.chat.repository.ChatMapper;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ChatService {
-    @Autowired
-    private ChatMessageMapper chatMessageMapper;
 
     @Autowired
-    private UserMapper userMapper;
+    private ChatMapper chatMapper;
 
-    @Transactional
-    public ChatMessage sendMessage(int uid, int clid, String content) {
-        User user = userMapper.findById(uid).orElseThrow(() -> new IllegalArgumentException("User not found"));
+    public int insert(Chat chat) {
+        return chatMapper.insert(chat);
+    }
 
-        Chat chat = new Chat();
-        chat.setChatId((long) clid); // Assuming Chat entity is fetched or created properly
+    public int update(Chat chat) {
+        return chatMapper.update(chat);
+    }
 
-        ChatMessage chatMessage = new ChatMessage();
-        chatMessage.setChat(chat);
-        chatMessage.setUser(user);
-        chatMessage.setNickname(user.getNickname());
-        chatMessage.setContent(content);
-        chatMessage.setTimestamp(LocalDateTime.now());
+    public int delete(int cid) {
+        return chatMapper.delete(cid);
+    }
 
-        chatMessageMapper.insertChatMessage(chatMessage);
-        return chatMessage;
+    public List<Chat> selectAll(int clid) {
+        return chatMapper.selectAll(clid);
+    }
+
+    public Chat selectById(int cid) {
+        return chatMapper.selectById(cid);
     }
 }

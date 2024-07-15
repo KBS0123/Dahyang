@@ -62,5 +62,4 @@
 
     <tx:annotation-driven transaction-manager="jpaTransactionManager"/>
 
-    <jpa:repositories base-package="spring_Dahyang.chat.repository" />
 </beans>

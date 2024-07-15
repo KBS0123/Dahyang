@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -34,11 +34,11 @@ body {
 }
 
 .content {
-    flex: 1; /* ÄÁÅÙÃ÷ ¿µ¿ªÀÌ ³²Àº °ø°£À» ¸ğµÎ Â÷ÁöÇÏµµ·Ï ¼³Á¤ */
+    flex: 1; /* ì»¨í…ì¸  ì˜ì—­ì´ ë‚¨ì€ ê³µê°„ì„ ëª¨ë‘ ì°¨ì§€í•˜ë„ë¡ ì„¤ì • */
     padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* ÄÁÅÙÃ÷¸¦ ¼¼·Î ¹æÇâÀ¸·Î À§¿¡¼­ ¾Æ·¡·Î Á¤·Ä */
+    justify-content: flex-start; /* ì»¨í…ì¸ ë¥¼ ì„¸ë¡œ ë°©í–¥ìœ¼ë¡œ ìœ„ì—ì„œ ì•„ë˜ë¡œ ì •ë ¬ */
 }
 
 
@@ -95,7 +95,8 @@ body {
 
 .apply-button {
     width: 100%;
-    padding: 30px;
+    height: 10%;
+    margin-top: 50px;
     background-color: #75b64d;
     color: #fff;
     border: none;
@@ -106,4 +107,105 @@ body {
 
 .apply-button:hover {
     background-color: #3ed4b9;
+}
+
+
+/*ê³µì§€ì‚¬í•­ ë°•ìŠ¤*/
+.notice-box {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.notice-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.notice-content {
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* í† ê¸€ ë°•ìŠ¤ ìŠ¤íƒ€ì¼ */
+.toggle-box {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.toggle-box .toggle-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.toggle-box .toggle-header .toggle-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.toggle-box .toggle-content {
+    display: none;
+    margin-top: 10px;
+}
+
+.toggle-box .toggle-content.active {
+    display: block;
+}
+
+.toggle-content {
+    display: none; /* ì´ˆê¸°ì—ëŠ” ìˆ¨ê¹€ ìƒíƒœë¡œ ì„¤ì • */
+}
+
+.toggle-content.show {
+    display: block; /* í† ê¸€ ì‹œ ë³´ì´ë„ë¡ ì„¤ì • */
+}
+
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-profile .user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-profile .user-info .user-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.user-profile .user-info .action-buttons button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-profile .user-info .action-buttons .btn-accept {
+    background-color: #28a745;
+    color: white;
+}
+
+.user-profile .user-info .action-buttons .btn-reject {
+    background-color: #dc3545;
+    color: white;
 }

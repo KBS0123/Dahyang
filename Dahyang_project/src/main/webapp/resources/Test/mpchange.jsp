@@ -14,8 +14,54 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
   <style>
     .profile-details {
-      text-align: left;
-    }
+    width: 450px;
+    height: 300px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .profile-details label {
+    font-weight: bold;
+  }
+
+  .profile-details p {
+    margin-bottom: 10px;
+  }
+
+  .profile-details input[type="text"] {
+    width: calc(50% - 16px); /* 두 개의 입력 필드를 한 줄에 나타내기 위해 너비를 조정합니다 */
+    padding: 8px;
+    margin: 8px 8px 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+
+  .profile-details button[type="submit"] {
+    background-color: #75b64d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .profile-details button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+    
+  .profile-details form {
+    margin-top: 50px;
+  }
+    
   </style>
 </head>
 <body>
@@ -37,35 +83,30 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     <!--페이지 내용-->
     <div class="page">
       <div class="profile">
+        <h3>정보 수정</h3>
+        <br>
         <div class="profile-img">
           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
         </div>
         <h2>User Name</h2>
-        <p>회원가입하고 편하게 찾으세요 :)</p>
-    
-        <div id="container">
-		  <button class="learn-more">
-		    <span class="circle" aria-hidden="true">
-		      <span class="icon arrow"></span>
-		    </span>
-		    <span class="button-text">로그인</span>
-		  </button>
-		</div>
         
-        <div id="container">
-		  <button class="learn-more">
-		    <span class="circle" aria-hidden="true">
-		      <span class="icon arrow"></span>
-		    </span>
-		    <span class="button-text">회원가입</span>
-		  </button>
-		</div>
+    
+        
         <br>
-         <p>상세정보</p>
         <div class="profile-details">
-          <p><span>Email:</span> user@example.com</p>
-          <p><span>지역:</span> 도시</p>
-          <p><span>관심분야:</span> 코딩, 디자인, 여행</p>
+          <form action="<c:url value='/update-profile'/>" method="post">
+            <p>
+              <label for="name">닉네임:</label>
+              <input type="text" id="name" name="name" placeholder="닉네임을 입력하세요" value="">
+            </p>
+            <p>
+              <label for="birthdate">생년월일:</label>
+              <input type="text" id="birthdate" name="birthdate" placeholder="YYYY-MM-DD 형식으로 입력하세요" value="">
+            </p>
+            <p>
+              <button type="submit">저장</button>
+            </p>
+          </form>
         </div>
       </div>
     </div>

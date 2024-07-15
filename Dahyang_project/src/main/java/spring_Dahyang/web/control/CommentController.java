@@ -27,30 +27,21 @@ import spring_Dahyang.feed.repository.FeedMapper;
 public class CommentController {
 	
 	@Autowired
-    private FileService fileService;
-	
-	@Autowired
 	private CommentMapper commentMapper;
 	
 	@PostMapping("/comment/write")
-	public String postInsert(@PathVariable int clid, @PathVariable int fid, @RequestParam("uimg") MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
+	public String postInsert(@PathVariable int clid, @PathVariable int fid, HttpServletRequest request, HttpSession session, Model model) {
 		User user = (User)session.getAttribute("user");
 		// Board 객체 생성 및 필요한 데이터 설정
 		model.addAttribute("clid", clid);
 		model.addAttribute("fid", fid);
 		Comment comment = new Comment();
-		comment.setClid(Integer.parseInt(request.getParameter("fid")));
-		comment.setClid(Integer.parseInt(request.getParameter("clid")));
-		comment.setUid(Integer.parseInt(request.getParameter("uid")));
-		comment.setNickname(request.getParameter("nickname"));
-		comment.setContent(request.getParameter("content"));
-		
-		// 파일 저장 및 파일명 설정
-	    String imgFileName = null;
-	    if (file != null && !file.isEmpty()) {
-	        imgFileName = fileService.saveFile(file); // FileService의 구현체를 사용하여 파일 저장
-	        comment.setUimg(imgFileName); // 파일이 있는 경우에만 파일명 설정
-	    }
+		comment.setFid(fid);
+        comment.setClid(clid);
+        comment.setUid(user.getUid()); // 세션에서 가져온 유저의 ID 사용
+        comment.setNickname(user.getNickname()); // 세션에서 가져온 유저의 닉네임 사용
+        comment.setContent(request.getParameter("content"));
+        comment.setUimg(user.getImages());
 	    
 	    try {
 	    	commentMapper.insert(comment);
