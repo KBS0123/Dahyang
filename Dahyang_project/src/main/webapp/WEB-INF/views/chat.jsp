@@ -55,6 +55,8 @@
             flex-direction: column;
         }
         .chat-item {
+            display: flex; /* Flexbox 사용 */
+            align-items: center; /* 중앙 정렬 */
             padding: 10px;
             margin-bottom: 10px;
             background-color: white;
@@ -63,6 +65,12 @@
             color: black; /* 텍스트 색상을 검정색으로 설정 */
             max-width: 60%; /* 메시지의 최대 너비를 설정 */
             word-wrap: break-word;
+        }
+        .chat-item img {
+            border-radius: 50%; /* 원형 이미지 */
+            width: 40px; /* 이미지 너비 */
+            height: 40px; /* 이미지 높이 */
+            margin-right: 10px; /* 텍스트와의 간격 */
         }
         .chat-item.right {
             align-self: flex-end;
@@ -123,7 +131,12 @@
                 <c:forEach var="chat" items="${chatList}">
                     <c:set var="alignClass" value="${chat.uid == sessionScope.user.uid ? 'right' : 'left'}" />
                     <div class="chat-item ${alignClass}">
-                        <div>${chat.nickname}<br> ${chat.content}</div>
+                        <!-- 사용자 이미지 추가 -->
+                        <img src="${pageContext.request.contextPath}/resources/imgs/${chat.uimg}" alt="User Image">
+                        <div>
+                            <div>${chat.nickname}</div>
+                            <div>${chat.content}</div>
+                        </div>
                     </div>
                 </c:forEach>
             </div>
@@ -152,9 +165,18 @@
             const alignClass = message.uid == ${sessionScope.user.uid} ? 'right' : 'left';
             const newMessage = document.createElement('div');
             newMessage.className = 'chat-item ' + alignClass;
-            newMessage.textContent = `${message.nickname}: ${message.content}`;
+
+            // 사용자 이미지 추가
+            newMessage.innerHTML = `
+                <img src="${pageContext.request.contextPath}/resources/imgs/${message.uimg}" alt="User Image">
+                <div>
+                    <div>${message.nickname}</div>
+                    <div>${message.content}</div>
+                </div>
+            `;
             chatBox.appendChild(newMessage);
             scrollToBottom();
+         // 페이지 새로고침
             location.reload();
         };
 
