@@ -108,12 +108,12 @@
 	    <header>
 	    	<div class="left">
 		        <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}"/>'">
-			        <svg viewBox="0 0 24 24">
+			        <svg viewBox="0 0 24 24" width="26" height="24">
 			          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
 			        </svg>
 			    </button>
 		      </div>
-		      <div class="center-text">그룹 채팅</div>
+		      <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">그룹 채팅</span>
 		      <div class="right">
 		        <span class="ion-navicon"></span>
 	      	</div>
