@@ -59,16 +59,23 @@
                     <span class="nickname">${feed.writer}</span>
                 </div>
                 <div class="image-placeholder">
-                <c:forEach var="image" items="${images}">
-                	<c:choose>
-						<c:when test="${not empty image.img}">
-							<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${image.img}">
-						</c:when>
-						<c:otherwise>
-							<img src="${pageContext.request.contextPath}/resources/css/feed.jpg">
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
+                <c:choose>
+			        <c:when test="${not empty images}">
+			            <c:forEach var="image" items="${images}">
+			                <c:choose>
+			                    <c:when test="${not empty image.img}">
+			                        <img alt="Feed Image" src="${pageContext.request.contextPath}/resources/imgs/${image.img}">
+			                    </c:when>
+			                    <c:otherwise>
+			                        <img src="${pageContext.request.contextPath}/resources/css/feed.jpg">
+			                    </c:otherwise>
+			                </c:choose>
+			            </c:forEach>
+			        </c:when>
+			        <c:otherwise>
+			            <img src="${pageContext.request.contextPath}/resources/css/feed.jpg">
+			        </c:otherwise>
+			    </c:choose>
                 </div>
                 <div class="content-text">${feed.content}</div>
                 <div class="comments">

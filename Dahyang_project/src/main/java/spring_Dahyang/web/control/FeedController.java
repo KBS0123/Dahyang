@@ -152,7 +152,7 @@ public class FeedController {
 	    if (user != null) {
 	        Feed feed = feedMapper.selectById(Integer.parseInt(request.getParameter("fid")));
 	        if (feed != null && user.getUid() == feed.getUid()) {
-	            // 기존 파일 삭제
+	            // 기존 파일 삭제 및 테이블 업데이트
 	            try {
 	                List<Images> existingImages = imagesMapper.selectAll(feed.getFid());
 	                for (Images image : existingImages) {
@@ -186,6 +186,18 @@ public class FeedController {
 	            feed.setUid(Integer.parseInt(request.getParameter("uid")));
 	            feed.setWriter(request.getParameter("writer"));
 	            feed.setContent(request.getParameter("content"));
+
+	            // dpheed_images 테이블에서 첫 번째 이미지 가져오기
+	            try {
+	                List<Images> newImages = imagesMapper.selectAll(feed.getFid());
+	                if (!newImages.isEmpty()) {
+	                    feed.setImg(newImages.get(0).getImg()); // 첫 번째 이미지를 dpheed 테이블의 img 열에 설정
+	                } else {
+	                    feed.setImg(""); // 이미지가 없는 경우 기본값으로 설정
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
 
 	            try {
 	                feedMapper.update(feed); // FeedMapper의 update 메서드를 호출하여 피드 업데이트
