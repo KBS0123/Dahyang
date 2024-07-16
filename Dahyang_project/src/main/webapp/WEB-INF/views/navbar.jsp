@@ -6,7 +6,7 @@
 <head>
 <link href="${pageContext.request.contextPath}/resources/css/navbar2.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
-<title>navbar</title>
+<title>navbar</title><!-- 연결된 JSP: main -->
 <style>
   .icon-container {
     display: flex;
@@ -53,7 +53,7 @@
       <li>
         <div class="icon-container">
           <a href="<c:url value='/views/club/list'/>">
-            <svg><use xlink:href="#bookmark-icon"></use></svg>
+            <svg><use xlink:href="#balloon-icon"></use></svg>
             <p>내 그룹방</p>
           </a>
         </div>
@@ -70,7 +70,6 @@
       </li>
     </ul>
    
-    </div>
   </nav>
 
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -93,9 +92,12 @@
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 570" id="user-icon">
     <path d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z" />
     
+</symbol>
+ <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="balloon-icon">
+    <path fill="#ffffff" d="M12,1.5c-5.51471,0-10,4.48529-10,10c0,5.51471,4.48529,10,10,10s10-4.48529,10-10C22,5.98529,17.51471,1.5,12,1.5z M12,20c-4.41828,0-8-3.58173-8-8c0-3.64194,2.45367-6.73707,5.78143-7.69087C9.85211,4.16922,10.88456,4,12,4s2.14789,0.16922,3.21857,0.30913C19.54633,5.26293,22,8.35806,22,12C22,16.41827,16.41827,22,12,22z M12,6c-1.10457,0-2,0.89543-2,2s0.89543,2,2,2s2-0.89543,2-2S13.10457,6,12,6z M12,16c-1.65685,0-3-1.34315-3-3s1.34315-3,3-3s3,1.34315,3,3S13.65685,16,12,16z"/>
   </symbol>
 </svg>
 
-  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/nav.js"></script>
+ 
 </body>
 </html>
