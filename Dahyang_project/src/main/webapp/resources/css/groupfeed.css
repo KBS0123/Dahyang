@@ -63,8 +63,8 @@ line-height:1pt;
 }
 
 /*수정*/
-#app > header { /*상단바*/
-    font-size: 22pt; /* 상단바 텍스트 사이즈 */
+#app > header {
+    font-size: 12pt;
     font-family: 'Pretendard-Regular';
     font-weight: 600;
     text-align: center;
@@ -74,12 +74,12 @@ line-height:1pt;
     left: 0;
     right: 0;
     height: 80px;
-    line-height: 65px;
+    line-height: 92px;
     border-radius: 5px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.20);
-    background-color: #75b64d; /* 상단바 색상 */
-    padding: 10pt; /* 패딩 값 변경 */
-    color: #fefefe; /*상단바 텍스트 색상*/
+    background-color: #75b64d;
+    padding: 10pt;
+    color: #fefefe;
     opacity: 0.9;
     overflow: hidden;
 }
@@ -175,11 +175,7 @@ body>header>p {
   padding:0.5em 0 0.5em 0;
 }
 
-.left {
-  float:left;
-  width:20%;
-  text-align:left;
-}
+
 .center {
   float:center;
   margin-top:10px;
@@ -259,7 +255,6 @@ body>header>p {
   right: 700px;
 }
 
-/* 뒤로 가기 버튼 스타일 추가 */
 .back-button {
     display: inline-block;
     width: 40px;
@@ -268,18 +263,16 @@ body>header>p {
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    text-align: center;
-    vertical-align: middle;
-    position: relative;
-    top: 10px;
+    position: absolute;
+    top: 35px;
+    left: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .back-button svg {
     fill: #fff;
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
 }

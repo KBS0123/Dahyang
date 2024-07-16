@@ -31,20 +31,19 @@
   	
   		<!-- 상단바 -->
 	    <header>
-	      <div class="system-bar"></div>
-	      <div class="left">
-	        <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}"/>'">
-		        <svg viewBox="0 0 24 24">
-		          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-		        </svg>
-		    </button>
-	      </div>
-	      <div class="center-text">그룹 피드</div>
-	      <div class="right">
-	        <span class="ion-navicon"></span>
-	      </div>
+	    	<div class="left">
+		        <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}"/>'">
+			        <svg viewBox="0 0 24 24" width="26" height="24">
+			          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+			        </svg>
+			    </button>
+		      </div>
+		      <span style= "margin-right: 110px; font-weight: bold; color: white; font-size: 20px;">피드 목록</span>
+		      <div class="right">
+		        <span class="ion-navicon"></span>
+	      	</div>
 	    </header>
-      	<!-- 상단바 -->
+	    <!-- 상단바 -->
       	
 		<!-- 내부 박스 -->
    	 	<div class="page">
