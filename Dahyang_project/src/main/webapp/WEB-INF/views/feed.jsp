@@ -34,6 +34,56 @@
         word-wrap: break-word; /* Break long words */
         max-width: 50ch; /* Limit line length to 50 characters */
     }
+    
+    
+     .image-slider {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto; /* Center the slider */
+            overflow: hidden; /* Hide overflow */
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            width: 100%;
+            display: block;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
     </style>
 </head>
 <body>
@@ -70,47 +120,57 @@
                     </div>
                     <span class="nickname">${feed.writer}</span>
                 </div>
-                <div class="image-placeholder">
-                <c:choose>
-			        <c:when test="${not empty images}">
-			            <c:forEach var="image" items="${images}">
-			                <c:choose>
-			                    <c:when test="${not empty image.img}">
-			                        <img alt="Feed Image" src="${pageContext.request.contextPath}/resources/imgs/${image.img}">
-			                    </c:when>
-			                    <c:otherwise>
-			                        <img src="${pageContext.request.contextPath}/resources/css/feed.jpg">
-			                    </c:otherwise>
-			                </c:choose>
-			            </c:forEach>
-			        </c:when>
-			        <c:otherwise>
-			            <img src="${pageContext.request.contextPath}/resources/css/feed.jpg"> 
-			        </c:otherwise>
-			    </c:choose>
+                 <div class="image-slider">
+                    <div class="slides">
+                        <c:choose>
+                            <c:when test="${not empty images}">
+                                <c:forEach var="image" items="${images}">
+                                    <c:choose>
+                                        <c:when test="${not empty image.img}">
+                                            <div class="slide">
+                                                <img alt="Feed Image" src="${pageContext.request.contextPath}/resources/imgs/${image.img}">
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="slide">
+                                                <img src="${pageContext.request.contextPath}/resources/css/feed.jpg">
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="slide">
+                                    <img src="${pageContext.request.contextPath}/resources/css/feed.jpg">
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
                 <div class="content-text">${feed.content}</div>
                 <div class="comments">
-                	<c:forEach var="comment" items="${comments}">
-		            	<div class="comment">
-		                    <div class="profile-pic comment-pic">
-		                    	<c:choose>
-									<c:when test="${not empty comment.uimg}">
-										<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${comment.uimg}">
-									</c:when>
-									<c:otherwise>
-										<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
-									</c:otherwise>
-								</c:choose>
-		                    </div>
+                    <c:forEach var="comment" items="${comments}">
+                        <div class="comment">
+                            <div class="profile-pic comment-pic">
+                                <c:choose>
+                                    <c:when test="${not empty comment.uimg}">
+                                        <img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${comment.uimg}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
 		                    <span class="nickname">${comment.nickname}</span>
 		                    <pre class="comment-text">${comment.content}</pre>
 		                    <!-- 댓글 삭제 버튼 -->
-		                    <c:if test="${user.uid == comment.uid}">
-		                    	<button class="btn-delete-comment" onclick="location.href='<c:url value="/views/club/${clid}/feed/${fid}/comment/delete/${comment.fcid}"/>'">
-		                    		-
-		                    	</button>
-		                    </c:if>
+		                     <c:if test="${user.uid == comment.uid}">
+                             <button class="btn-delete-comment" onclick="location.href='<c:url value="/views/club/${clid}/feed/${fid}/comment/delete/${comment.fcid}"/>'">
+                                -
+                             </button>
+                          </c:if>
 		                </div>
 				    </c:forEach>
                 </div>
@@ -164,6 +224,28 @@
 	        addCommentButton.addEventListener('click', function () {
 	            commentForm.style.display = 'block';
 	        });
+	    });
+	    
+	    
+	    <!--이미지 슬라이드 스크립트 -->
+	    let slideIndex = 1;
+
+	    function showSlides(n) {
+	        let slides = document.querySelectorAll(".slide");
+	        if (n > slides.length) { slideIndex = 1 }
+	        if (n < 1) { slideIndex = slides.length }
+	        for (let i = 0; i < slides.length; i++) {
+	            slides[i].style.display = "none";
+	        }
+	        slides[slideIndex - 1].style.display = "block";
+	    }
+
+	    function plusSlides(n) {
+	        showSlides(slideIndex += n);
+	    }
+
+	    document.addEventListener('DOMContentLoaded', function () {
+	        showSlides(slideIndex); // 슬라이드 초기화
 	    });
 	</script>
 </body>
