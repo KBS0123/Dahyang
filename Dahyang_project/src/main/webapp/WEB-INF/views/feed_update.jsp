@@ -9,6 +9,35 @@
 <link href="${pageContext.request.contextPath}/resources/css/feedwrite.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>피드 수정</title>
+<style>
+    .slider {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+        display: none;
+    }
+    .inner-slider {
+        display: flex;
+        gap: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: left 0.2s ease-in-out;
+    }
+    .item {
+        height: 200px;
+        width: 200px;
+        border-radius: 5px;
+        background-color: lightgrey;
+    }
+    .item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+</style>
 <script>
     $(document).ready(function() {
         $('#imageUpload').change(function() {

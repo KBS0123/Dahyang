@@ -94,14 +94,14 @@
             </div>
             <form action="<c:url value='/views/club/${clid}/feed/write'/>" method="post" enctype="multipart/form-data">
                 <div class="image-placeholder">
-                    <div class="file-upload-wrapper">
-                        <input type="file" id="imageUpload" name="img[]" accept="image/*" multiple>
-                        <label for="imageUpload">+</label>
-                    </div>
-                    <div class="slider">
-                        <div class="inner-slider"></div>
-                    </div>
-                </div>
+				    <div class="file-upload-wrapper">
+				        <input type="file" id="imageUpload" name="img[]" accept="image/*" multiple>
+				        <label for="imageUpload">+</label>
+				    </div>
+				    <div class="slider">
+				        <div class="inner-slider"></div>
+				    </div>
+				</div>
                 <div class="form-container">
                     <textarea name="content" placeholder="내용을 입력하세요"></textarea>
                     <input type="hidden" id="clid" name="clid" value="${clid}">
