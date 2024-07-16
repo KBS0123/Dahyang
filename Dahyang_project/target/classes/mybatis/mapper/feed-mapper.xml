@@ -26,6 +26,11 @@
 	</update>
 	
 	<!-- 피드 삭제 -->
+	<delete id="deleteImages" parameterType="int">
+		delete from dpheed_images where pheed_id=#{fid}
+	</delete>
+	
+	<!-- 피드 삭제 -->
 	<delete id="deleteComment" parameterType="int">
 		delete from dpheed_comment where pheed_id=#{fid}
 	</delete>
@@ -37,6 +42,10 @@
 	
 	<select id="selectAll" parameterType="int" resultMap="feedResultMap">
 		select * from dpheed where club_id=#{clid}
+	</select>
+	
+	<select id="selectByContent" parameterType="String" resultMap="feedResultMap">
+		select * from dpheed where content=#{content}
 	</select>
 	
 	<select id="selectAllRandom" resultMap="feedResultMap">

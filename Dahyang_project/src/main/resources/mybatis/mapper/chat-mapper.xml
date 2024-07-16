@@ -15,7 +15,7 @@
     </resultMap>
     
     <insert id="insert" parameterType="Chat">
-        insert into dchat (CONTENT_ID, CLUB_ID, USER_ID, NICKNAME, CONTENT, USER_IMAGES, TIMESTAMP) values (dchat_seq.nextval, #{clid}, #{uid}, #{nickname}, #{content}, #{uimg, jdbcType=VARCHAR}, CURRENT_TIMESTAMP)
+        insert into dchat values (dchat_seq.nextval, #{clid}, #{uid}, #{nickname}, #{content}, #{uimg, jdbcType=VARCHAR}, CURRENT_TIMESTAMP)
     </insert>
     
     <update id="update" parameterType="Chat">
