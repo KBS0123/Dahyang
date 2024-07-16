@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -51,6 +51,8 @@
             border-radius: 5px;
             margin-bottom: 10px;
             max-height: 400px; /* 최대 높이 설정 */
+            display: flex;
+            flex-direction: column;
         }
         .chat-item {
             padding: 10px;
@@ -59,9 +61,16 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             color: black; /* 텍스트 색상을 검정색으로 설정 */
+            max-width: 60%; /* 메시지의 최대 너비를 설정 */
+            word-wrap: break-word;
         }
-        .chat-item:nth-child(odd) {
-            background-color: #e9e9e9;
+        .chat-item.right {
+            align-self: flex-end;
+            background-color: #d4edda; /* 로그인한 사용자의 메시지 배경색 */
+        }
+        .chat-item.left {
+            align-self: flex-start;
+            background-color: #e9e9e9; /* 다른 사용자의 메시지 배경색 */
         }
         .form-container {
             display: flex;
@@ -102,7 +111,7 @@
         <span class="ion-navicon"></span>
     </header>
     <!-- 상단바 -->
-
+    
     <!-- 네비게이션 바 추가 -->
     <c:import url="navbar2.jsp"></c:import>
     <!-- 네비게이션 바 추가 끝 -->
@@ -112,8 +121,9 @@
         <div class="content">
             <div id="chat-box">
                 <c:forEach var="chat" items="${chatList}">
-                    <div class="chat-item">
-                        <div>${chat.nickname}: ${chat.content}</div>
+                    <c:set var="alignClass" value="${chat.uid == sessionScope.user.uid ? 'right' : 'left'}" />
+                    <div class="chat-item ${alignClass}">
+                        <div>${chat.nickname}<br> ${chat.content}</div>
                     </div>
                 </c:forEach>
             </div>
@@ -139,11 +149,13 @@
 
         eventSource.onmessage = function(event) {
             const message = JSON.parse(event.data);
+            const alignClass = message.uid == ${sessionScope.user.uid} ? 'right' : 'left';
             const newMessage = document.createElement('div');
-            newMessage.className = 'chat-item';
+            newMessage.className = 'chat-item ' + alignClass;
             newMessage.textContent = `${message.nickname}: ${message.content}`;
             chatBox.appendChild(newMessage);
             scrollToBottom();
+            location.reload();
         };
 
         document.getElementById('chat-form').onsubmit = function() {
