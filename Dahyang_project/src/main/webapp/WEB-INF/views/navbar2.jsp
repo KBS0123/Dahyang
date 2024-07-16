@@ -62,15 +62,29 @@
     <ul>
       <li>
         <div class="icon-container">
-          <a href="<c:url value='/views/club/${clid}/chat'/>">
-            <svg><use xlink:href="#user-icon"></use></svg>
-            <p>채팅</p>
-          </a>
+          <c:set var="isMember" value="false" />
+          <c:forEach var="m" items="${member}">
+            <c:if test="${m.uid == user.uid}">
+              <c:set var="isMember" value="true" />
+            </c:if>
+          </c:forEach>
+          <c:choose>
+            <c:when test="${isMember}">
+              <a href="<c:url value='/views/club/${clid}/chat'/>">
+                <svg><use xlink:href="#user-icon"></use></svg>
+                <p>채팅</p>
+              </a>
+            </c:when>
+            <c:otherwise>
+              <a onclick="findGroup()">
+                <svg><use xlink:href="#user-icon"></use></svg>
+                <p>채팅</p>
+              </a>
+            </c:otherwise>
+          </c:choose>
         </div>
       </li>
     </ul>
-   
-    </div>
   </nav>
 
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -95,7 +109,12 @@
     
   </symbol>
 </svg>
-
+<script>
+    function findGroup() {
+      alert("모임방에 가입해주세요!");
+      window.location.href = "<c:url value='/views/club/${clid}'/>";
+    }
+  </script>
   
 </body>
 </html>

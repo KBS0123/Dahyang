@@ -18,10 +18,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import spring_Dahyang.chat.model.Chat;
 import spring_Dahyang.chat.repository.ChatMapper;
+import spring_Dahyang.club.model.Member;
+import spring_Dahyang.club.repository.MemberMapper;
 import spring_Dahyang.user.model.User;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Controller
@@ -30,14 +33,19 @@ public class ChatController {
 
     @Autowired
     private ChatMapper chatMapper;
+    
+    @Autowired
+	private MemberMapper memberMapper;
 
     private final CopyOnWriteArrayList<SseEmitter> emitters = new CopyOnWriteArrayList<>();
 
     @GetMapping
     public ModelAndView getChatView(@PathVariable int clid) {
         ModelAndView mav = new ModelAndView("chat");
+        List<Member> member = memberMapper.findMembers(clid);
         mav.addObject("chatList", chatMapper.selectAll(clid));
         mav.addObject("clid", clid);
+        mav.addObject("member", member);
         return mav;
     }
 
@@ -52,7 +60,7 @@ public class ChatController {
         chat.setNickname(user.getNickname());
         chat.setContent(request.getParameter("content"));
         chat.setUimg(user.getImages());
-        chat.setTimestamp(new Timestamp(System.currentTimeMillis())); // ÇöÀç ½Ã°£À» ¼³Á¤
+        chat.setTimestamp(new Timestamp(System.currentTimeMillis())); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         try {
             chatMapper.insert(chat);
