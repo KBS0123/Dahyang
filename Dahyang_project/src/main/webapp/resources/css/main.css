@@ -131,6 +131,7 @@ line-height:1pt;
   padding:20pt 35pt;
   line-height:1.5;/*줄, 요소간격*/
 }
+
 #app * {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */

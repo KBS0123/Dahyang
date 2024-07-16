@@ -80,12 +80,14 @@ body {
     border-radius: 50%;
     margin-left: 13px;
     margin-top: 10px;
+    overflow: hidden;
 }
 
 .comment-pic {
     width: 30px;
     height: 30px;
     margin-left: 5px;
+    overflow: hidden;
 }
 .feed-header .nickname {
     margin-left: 10px; /* 프로필 사진과 닉네임 사이의 간격을 조정합니다. */
@@ -194,8 +196,15 @@ body {
             justify-content: flex-end;
             padding: 10px;
             box-sizing: border-box;
+            overflow: hidden;
         }
-
+		
+		.image-placeholder img {
+		    width: 100%;
+		    height: 100%;
+		    object-fit: cover;
+		}
+		
         .file-upload-wrapper {
             position: relative;
         }
@@ -205,13 +214,15 @@ body {
         }
 
         .file-upload-wrapper label {/*사진등록 버튼 디자인*/
-            display: inline-block;
+            position: absolute;
             width: 40px;
             height: 40px;
+            bottom: 10px;
+            right: 10px;
             border-radius: 50%;
             background-color: #28a745;
             color: white;
-            font-size: 24px;
+            font-size: 30px;
             line-height: 40px;
             text-align: center;
             cursor: pointer;

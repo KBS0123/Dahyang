@@ -69,6 +69,7 @@ body {
     margin-bottom: 20px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
     height: 750px;
+    overflow: hidden;
 }
 
 .feed-header {
@@ -80,17 +81,24 @@ body {
 
 .profile-pic {
     width: 40px;
+    max-width: 40px;
     height: 40px;
+    max-height: 40px;
     background-color: #6bab44;
     border-radius: 50%;
     margin-left: 13px;
     margin-top: 10px;
+    overflow: hidden;
+    
 }
 
 .comment-pic {
     width: 30px;
+    max-width: 30px;
     height: 30px;
+    max-height: 30px;
     margin-left: 5px;
+    overflow: hidden;
 }
 .feed-header .nickname {
     margin-left: 10px; /* 프로필 사진과 닉네임 사이의 간격을 조정합니다. */
@@ -118,6 +126,13 @@ body {
     border-radius: 8px;
     margin: 0 auto; /*가운데 정렬*/
     display: block;
+    overflow: hidden;
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .content-text {
