@@ -63,11 +63,11 @@ public class CommentController {
 			
 			if (user.getUid() == comment.getUid()) {
 				commentMapper.delete(fcid);
-				return "redirect:/views/";
+				return "redirect:/views/club/" + clid + "/feed/" + fid;
 			}
 		}
 		
-		return session.getServletContext().getContextPath() + "/views/";
+		return session.getServletContext().getContextPath() + "/views/club/" + clid + "/feed/" + fid;
 	}
 
 }

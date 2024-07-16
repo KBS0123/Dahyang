@@ -106,7 +106,11 @@
 		                    <span class="nickname">${comment.nickname}</span>
 		                    <pre class="comment-text">${comment.content}</pre>
 		                    <!-- 댓글 삭제 버튼 -->
-		                    <button class="btn-delete-comment">-</button>
+		                    <c:if test="${user.uid == comment.uid}">
+		                    	<button class="btn-delete-comment" onclick="location.href='<c:url value="/views/club/${clid}/feed/${fid}/comment/delete/${comment.fcid}"/>'">
+		                    		-
+		                    	</button>
+		                    </c:if>
 		                </div>
 				    </c:forEach>
                 </div>
