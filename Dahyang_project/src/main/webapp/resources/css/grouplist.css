@@ -192,7 +192,6 @@ body > header > p {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    margin-top: 20px; /* 위로 20px 내림 */
     max-height: 500px; /* 최대 높이 설정 */
 }
 
