@@ -81,51 +81,56 @@ public class FeedController {
 	
 	@PostMapping("/write")
 	public String postInsert(@PathVariable int clid, @RequestParam("img[]") MultipartFile[] files, HttpServletRequest request, HttpSession session, Model model) {
-	    User user = (User)session.getAttribute("user");
-	    // Feed 객체 생성 및 필요한 데이터 설정
+	    User user = (User) session.getAttribute("user");
 	    model.addAttribute("clid", clid);
 	    Feed feed = new Feed();
-	    feed.setClid(Integer.parseInt(request.getParameter("clid")));
-	    feed.setUid(Integer.parseInt(request.getParameter("uid")));
-	    feed.setWriter(request.getParameter("writer"));
-	    feed.setContent(request.getParameter("content"));
-	    feed.setUimg(request.getParameter("uimg"));
-	    feed.setLikes(Integer.parseInt(request.getParameter("likes")));
-	    
+
 	    try {
-	        // 첫 번째 이미지를 Feed 객체에 설정하고 dpheed_images 테이블에도 저장
-	        if (files.length > 0 && files[0] != null && !files[0].isEmpty()) {
+	        feed.setClid(clid);
+	        feed.setUid(user.getUid());
+	        feed.setWriter(user.getNickname());
+	        feed.setContent(request.getParameter("content"));
+	        feed.setUimg(user.getImages());
+	        feed.setLikes(0);
+
+	        // 첫 번째 이미지 설정
+	        if (files.length > 0 && !files[0].isEmpty()) {
 	            String firstImgFileName = fileService.saveFile(files[0]);
 	            feed.setImg(firstImgFileName);
 	        }
 
 	        feedMapper.insert(feed);
-	        
-	        Feed fid = feedMapper.selectByContent(request.getParameter("content"));
-	        
-	        // 첫 번째 이미지 dpheed_images 테이블에도 저장
-	        if (files.length > 0 && files[0] != null && !files[0].isEmpty()) {
+
+	        // 피드 ID 가져오기
+	        Feed insertedFeed = feedMapper.selectByContent(feed.getContent());
+	        int fid = insertedFeed.getFid();
+
+	        // 첫 번째 이미지를 images 테이블에 저장
+	        if (files.length > 0 && !files[0].isEmpty()) {
 	            Images firstImage = new Images();
-	            firstImage.setFid(fid.getFid());
+	            firstImage.setFid(fid);
 	            firstImage.setImg(feed.getImg());
 	            imagesMapper.insert(firstImage);
 	        }
 
-	        // 나머지 이미지 저장 및 파일명 설정
+	        // 나머지 이미지 저장
 	        for (int i = 1; i < files.length; i++) {
 	            MultipartFile file = files[i];
-	            if (file != null && !file.isEmpty()) {
+	            if (!file.isEmpty()) {
 	                String imgFileName = fileService.saveFile(file);
 	                Images image = new Images();
-	                image.setFid(fid.getFid());
+	                image.setFid(fid);
 	                image.setImg(imgFileName);
 	                imagesMapper.insert(image);
 	            }
 	        }
+
 	    } catch (Exception e) {
 	        e.printStackTrace();
+	        // 에러 페이지로 리다이렉트
+	        return "redirect:/views/error";
 	    }
-	    
+
 	    return "redirect:/views/club/" + clid + "/feed";
 	}
 	
@@ -145,67 +150,56 @@ public class FeedController {
 	}
 	
 	@PostMapping("/update")
-	public String postUpdate(@PathVariable int clid, @RequestParam("img[]") MultipartFile[] files, HttpServletRequest request, HttpSession session, Model model) {
+	public String postUpdate(
+	        @PathVariable int clid,
+	        @RequestParam("img[]") MultipartFile[] files,
+	        HttpServletRequest request,
+	        HttpSession session,
+	        Model model) {
 	    User user = (User) session.getAttribute("user");
 	    model.addAttribute("clid", clid);
 
 	    if (user != null) {
 	        Feed feed = feedMapper.selectById(Integer.parseInt(request.getParameter("fid")));
 	        if (feed != null && user.getUid() == feed.getUid()) {
-	            // 기존 파일 삭제 및 테이블 업데이트
 	            try {
+	                // 기존 이미지 삭제
 	                List<Images> existingImages = imagesMapper.selectAll(feed.getFid());
 	                for (Images image : existingImages) {
 	                    File oldFile = new File(FileServiceImpl.IMAGE_REPO, image.getImg());
 	                    if (oldFile.exists()) {
-	                        oldFile.delete(); // 기존 파일 삭제
+	                        oldFile.delete();
 	                    }
 	                }
-	                imagesMapper.delete(feed.getFid()); // 기존 이미지 레코드 삭제
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
+	                imagesMapper.delete(feed.getFid());
 
-	            // 새 파일 업로드 및 파일명 설정
-	            try {
-	                for (MultipartFile file : files) {
-	                    if (file != null && !file.isEmpty()) {
-	                        String imgFileName = fileService.saveFile(file); // FileService의 구현체를 사용하여 새 파일 저장
+	                // 새 이미지 파일을 저장하고 첫 번째 이미지를 피드에 설정
+	                String firstImgFileName = null;
+	                for (int i = 0; i < files.length; i++) {
+	                    MultipartFile file = files[i];
+	                    if (!file.isEmpty()) {
+	                        String imgFileName = fileService.saveFile(file);
+	                        if (i == 0) {
+	                            firstImgFileName = imgFileName;
+	                        }
 	                        Images image = new Images();
 	                        image.setFid(feed.getFid());
 	                        image.setImg(imgFileName);
-	                        imagesMapper.insert(image); // 새 이미지 정보 데이터베이스에 저장
+	                        imagesMapper.insert(image);
 	                    }
 	                }
+
+	                // 피드 정보 업데이트
+	                feed.setClid(clid);
+	                feed.setContent(request.getParameter("content"));
+	                feed.setImg(firstImgFileName != null ? firstImgFileName : "");
+	                feedMapper.update(feed);
+
+	                return "redirect:/views/club/" + clid + "/feed/" + feed.getFid();
 	            } catch (Exception e) {
 	                e.printStackTrace();
+	                return "redirect:/views/error";
 	            }
-
-	            // 피드 정보 업데이트
-	            feed.setClid(Integer.parseInt(request.getParameter("clid")));
-	            feed.setUid(Integer.parseInt(request.getParameter("uid")));
-	            feed.setWriter(request.getParameter("writer"));
-	            feed.setContent(request.getParameter("content"));
-
-	            // dpheed_images 테이블에서 첫 번째 이미지 가져오기
-	            try {
-	                List<Images> newImages = imagesMapper.selectAll(feed.getFid());
-	                if (!newImages.isEmpty()) {
-	                    feed.setImg(newImages.get(0).getImg()); // 첫 번째 이미지를 dpheed 테이블의 img 열에 설정
-	                } else {
-	                    feed.setImg(""); // 이미지가 없는 경우 기본값으로 설정
-	                }
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
-
-	            try {
-	                feedMapper.update(feed); // FeedMapper의 update 메서드를 호출하여 피드 업데이트
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
-
-	            return "redirect:/views/club/" + clid + "/feed/" + feed.getFid();
 	        }
 	    }
 
