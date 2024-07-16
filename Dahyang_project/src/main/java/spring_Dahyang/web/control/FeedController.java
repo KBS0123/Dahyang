@@ -81,30 +81,45 @@ public class FeedController {
 	
 	@PostMapping("/write")
 	public String postInsert(@PathVariable int clid, @RequestParam("img[]") MultipartFile[] files, HttpServletRequest request, HttpSession session, Model model) {
-		User user = (User)session.getAttribute("user");
-		// Board 객체 생성 및 필요한 데이터 설정
-		model.addAttribute("clid", clid);
-		Feed feed = new Feed();
-		feed.setClid(Integer.parseInt(request.getParameter("clid")));
-		feed.setUid(Integer.parseInt(request.getParameter("uid")));
-		feed.setWriter(request.getParameter("writer"));
-		feed.setContent(request.getParameter("content"));
-		feed.setUimg(request.getParameter("uimg"));
-		feed.setLikes(Integer.parseInt(request.getParameter("likes")));
-		
-		try {
+	    User user = (User)session.getAttribute("user");
+	    // Feed 객체 생성 및 필요한 데이터 설정
+	    model.addAttribute("clid", clid);
+	    Feed feed = new Feed();
+	    feed.setClid(Integer.parseInt(request.getParameter("clid")));
+	    feed.setUid(Integer.parseInt(request.getParameter("uid")));
+	    feed.setWriter(request.getParameter("writer"));
+	    feed.setContent(request.getParameter("content"));
+	    feed.setUimg(request.getParameter("uimg"));
+	    feed.setLikes(Integer.parseInt(request.getParameter("likes")));
+	    
+	    try {
+	        // 첫 번째 이미지를 Feed 객체에 설정하고 dpheed_images 테이블에도 저장
+	        if (files.length > 0 && files[0] != null && !files[0].isEmpty()) {
+	            String firstImgFileName = fileService.saveFile(files[0]);
+	            feed.setImg(firstImgFileName);
+	        }
+
 	        feedMapper.insert(feed);
 	        
 	        Feed fid = feedMapper.selectByContent(request.getParameter("content"));
 	        
-	        // 파일 저장 및 파일명 설정
-	        for (MultipartFile file : files) {
+	        // 첫 번째 이미지 dpheed_images 테이블에도 저장
+	        if (files.length > 0 && files[0] != null && !files[0].isEmpty()) {
+	            Images firstImage = new Images();
+	            firstImage.setFid(fid.getFid());
+	            firstImage.setImg(feed.getImg());
+	            imagesMapper.insert(firstImage);
+	        }
+
+	        // 나머지 이미지 저장 및 파일명 설정
+	        for (int i = 1; i < files.length; i++) {
+	            MultipartFile file = files[i];
 	            if (file != null && !file.isEmpty()) {
-	                String imgFileName = fileService.saveFile(file); // FileService의 구현체를 사용하여 파일 저장
+	                String imgFileName = fileService.saveFile(file);
 	                Images image = new Images();
 	                image.setFid(fid.getFid());
 	                image.setImg(imgFileName);
-	                imagesMapper.insert(image); // 이미지 정보 데이터베이스에 저장
+	                imagesMapper.insert(image);
 	            }
 	        }
 	    } catch (Exception e) {
