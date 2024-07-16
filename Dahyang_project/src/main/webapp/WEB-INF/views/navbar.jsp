@@ -5,7 +5,7 @@
 <html>
 <head>
 <link href="${pageContext.request.contextPath}/resources/css/navbar2.css" rel="stylesheet" type="text/css">
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>navbar</title>
 <style>
   .icon-container {
@@ -70,8 +70,6 @@
       </li>
     </ul>
    
-    <div class="tubelight">
-      <div class="light-ray"></div>
     </div>
   </nav>
 

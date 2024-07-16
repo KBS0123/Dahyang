@@ -1,13 +1,11 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Mukta:700");
-* {
-  box-sizing: border-box;
-}
+
 *::before, *::after {
   box-sizing: border-box;
 }
 
-body {
+.login-body {
   font-family: "Mukta", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
@@ -96,19 +94,4 @@ button:hover .circle .icon.arrow {
 }
 button:hover .button-text {
   color: #fff;
-}
-
-@supports (display: grid) {
-  body {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 0.625rem;
-    grid-template-areas: ". main main ." ". main main .";
-  }
-
-  #container {
-    grid-area: main;
-    align-self: center;
-    justify-self: center;
-  }
 }

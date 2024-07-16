@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="${pageContext.request.contextPath}/resources/css/group.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/group.css?after" rel="stylesheet" type="text/css">
 <title>그룹방 생성</title>
 <script type="text/javascript">
 	   function readURL(input) {
@@ -27,117 +27,108 @@
         .content::-webkit-scrollbar {
     	display: none;
     	}
-        .content {
-            padding: 5px; /* 콘텐츠 여백 설정 */
-            height: 700px;
-            max-height: 900px;
-            overflow-y: auto;
-            
-        }
-  
-.image-placeholder {
-            position: relative;
-            width: 95%;
-            margin: 0 auto; /* 중앙 정렬 */
-            height: 300px; 
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .file-upload-wrapper {
-            position: relative;
-        }
-
-        .file-upload-wrapper input[type="file"] {
-            display: none;
-        }
-
-        .file-upload-wrapper label {/*사진등록 버튼 디자인*/
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #28a745;
-            color: white;
-            font-size: 24px;
-            line-height: 40px;
-            text-align: center;
-            cursor: pointer;
-        }
-        
-	  .form-container {
-	    position: relative; /* 상대적 위치 설정 */
-	    background-color: #fff;
-	    padding: 30px;
-	    border-radius: 5px;
-	    margin-top:-5px;
-	    margin-bottom: 10px; /* 하단 여백 추가 */
-	    width: 80%; /* 폭 설정 */
-      height: 30px;
-	    max-width: 700px; /* 최대 폭 설정 */
-	    margin-left: auto; /* 가운데 정렬을 위한 자동 마진 설정 */
-	    margin-right: auto; /* 가운데 정렬을 위한 자동 마진 설정 */
-	}
-	
-	    .form-container h3 {
-	        font-size: 20px;
-	        margin-bottom: 10px;
-	    }
-	
-	    .form-container label {
-	        display: block;
-	        margin-bottom: 8px;
-	        font-weight: bold;
-	    }
-	
-	    .form-container input[type=text],
-	    .form-container textarea {
-	        width: 100%;
-	        padding: 10px;
-	        margin-bottom: 15px;
-	        border: 1px solid #ccc;
-	        border-radius: 4px;
-	        box-sizing: border-box;
-	    }
-	
-	    .form-container textarea {
-	        height: 60px; /* textarea 높이 설정 */
-	    }
-	
-	    .form-container input[type=submit] {
-	        background-color: #4CAF50;
-	        color: white;
-	        padding: 12px 20px;
-	        border: none;
-	        border-radius: 4px;
-	        cursor: pointer;
-	    }
-	
-	    .form-container input[type=submit]:hover {
-	        background-color: #45a049;
-	    }
-	  .navbar {
-	        display: flex;
-	        align-items: center; /* 세로 중앙 정렬 */
-	    }
-	
-	    .group-name {
-	        flex: 1; /* 남은 공간 모두 차지 */
-	        text-align: center; /* 가운데 정렬 */
-	    }
-	    
-	     .svg-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1); /*아이콘 색상 변경*/
-        }
+		.image-placeholder {
+		            position: relative;
+		            width: 95%;
+		            margin: 0 auto; /* 중앙 정렬 */
+		            height: 300px; 
+		            background-color: #f0f0f0;
+		            border: 1px solid #ddd;
+		            border-radius: 5px;
+		            margin-bottom: 20px;
+		            display: flex;
+		            align-items: flex-end;
+		            justify-content: flex-end;
+		            padding: 20px;
+		            box-sizing: border-box;
+		        }
+		
+		        .file-upload-wrapper {
+		            position: relative;
+		        }
+		
+		        .file-upload-wrapper input[type="file"] {
+		            display: none;
+		        }
+		
+		        .file-upload-wrapper label {/*사진등록 버튼 디자인*/
+		            display: inline-block;
+		            width: 40px;
+		            height: 40px;
+		            border-radius: 50%;
+		            background-color: #28a745;
+		            color: white;
+		            font-size: 24px;
+		            line-height: 40px;
+		            text-align: center;
+		            cursor: pointer;
+		        }
+		        
+			  .form-container {
+			    position: relative; /* 상대적 위치 설정 */
+			    background-color: #fff;
+			    padding: 10px;
+			    border-radius: 5px;
+			    margin-top:-5px;
+			    margin-bottom: 50px; /* 하단 여백 추가 */
+			    width: 80%; /* 폭 설정 */
+		      	height: 20px;
+			    max-width: 700px; /* 최대 폭 설정 */
+			    margin-left: auto; /* 가운데 정렬을 위한 자동 마진 설정 */
+			    margin-right: auto; /* 가운데 정렬을 위한 자동 마진 설정 */
+				}
+			    .form-container h3 {
+			        font-size: 20px;
+			        margin-bottom: 10px;
+			    }
+			
+			    .form-container label {
+			        display: block;
+			        margin-bottom: 8px;
+			        font-weight: bold;
+			    }
+			
+			    .form-container input[type=text],
+			    .form-container textarea {
+			        width: 100%;
+			        padding: 10px;
+			        margin-bottom: 15px;
+			        border: 1px solid #ccc;
+			        border-radius: 4px;
+			        box-sizing: border-box;
+			    }
+			
+			    .form-container textarea {
+			        height: 60px; /* textarea 높이 설정 */
+			    }
+			
+			    .form-container input[type=submit] {
+			        background-color: #4CAF50;
+			        color: white;
+			        padding: 12px 20px;
+			        border: none;
+			        border-radius: 4px;
+			        cursor: pointer;
+			    }
+			
+			    .form-container input[type=submit]:hover {
+			        background-color: #45a049;
+			    }
+			  .navbar {
+			        display: flex;
+			        align-items: center; /* 세로 중앙 정렬 */
+			    }
+			
+			    .group-name {
+			        flex: 1; /* 남은 공간 모두 차지 */
+			        text-align: center; /* 가운데 정렬 */
+			    }
+			    
+			     .svg-icon {
+		            width: 30px;
+		            height: 30px;
+		            filter: brightness(0) invert(1); /*아이콘 색상 변경*/
+		        }
 </style>
 </head>
 <body>

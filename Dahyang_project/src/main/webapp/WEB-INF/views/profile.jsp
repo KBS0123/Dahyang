@@ -5,12 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>MyPage(user profile)</title>
-<link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/mypage.css?after" rel="stylesheet" type="text/css">
+
 
  <style type="text/css">
     .bs-example { margin: 20px; }
@@ -21,7 +17,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     }
   </style>
 </head>
-
+<body>
   <main>
   
   <header>
@@ -166,3 +162,5 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
   </c:if>
   </div>
   </main>
+  </body>
+  </html>

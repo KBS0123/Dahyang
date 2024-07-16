@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="${pageContext.request.contextPath}/resources/css/feedpage.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/feedpage.css?after" rel="stylesheet" type="text/css">
     <title>피드 상세 페이지</title>
 	<style>
         .group-name {
@@ -25,6 +25,9 @@
             color: #333; /* 상단 닉네임의 글자 색상 */
             margin-right: 400px; /* 프로필 사진과 닉네임 사이의 간격 */
         }
+        .settings-button img {
+	    filter: invert(28%) sepia(94%) saturate(2964%) hue-rotate(117deg) brightness(96%) contrast(94%);
+	}
     </style>
 </head>
 <body>
@@ -35,11 +38,11 @@
 					<path fill="#fff" d="M20 11H7.414l3.293-3.293a1 1 0 0 0-1.414-1.414l-5 5a1 1 0 0 0 0 1.414l5 5a1 1 0 0 0 1.414-1.414L7.414 13H20a1 1 0 0 0 0-2z"/>
 				</svg>
 			</div>
-            <span style="margin-left: 10px;">피드</span>
+            <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 18px;">피드</span>
             <c:if test="${user.uid == feed.uid}">
-            	<a href="<c:url value='/views/club/${clid}/feed/update/${fid}'/>">
-	            	<span class="settings">&#9881;</span>
-	            </a>
+            	<button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/feed/update/${fid}"/>'">
+				    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+				</button>
             </c:if>
         </div>
         
@@ -49,7 +52,10 @@
                     <div class="profile-pic">
                     	<c:choose>
 							<c:when test="${not empty feed.uimg}">
-								<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.uimg}">
+								<img alt="123" src="${pageContext.request.contextPath}/resources/imgs/${feed.uimg}"
+								onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/imgs/no_image.png';">
+								<!-- 이미지를 비율에 맞게 수정하는 object-fit: contain 옵션은 div등 블록옵션에는 적용 안됨 -->
+								<!-- 직접 적용을 위한 핸들러 추가(onerror) -->
 							</c:when>
 							<c:otherwise>
 								<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">

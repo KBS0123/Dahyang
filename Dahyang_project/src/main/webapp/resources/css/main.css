@@ -257,16 +257,16 @@ body>header>p {
 
 
  .owl-item:nth-of-type(1n) .card {
-	 background-color: #ff527b;
+	 background-color: #75b64d;
 }
  .owl-item:nth-of-type(2n) .card {
-	 background-color: #ffcc8f;
+	 background-color: #ecbb40;
 }
  .owl-item:nth-of-type(3n) .card {
-	 background-color: #ff8f2f;
+	 background-color: #40ecdb;
 }
  .owl-item:nth-of-type(4n) .card {
-	 background-color: #2480fe;
+	 background-color: #88de53;
 }
  .owl-theme .owl-dots .owl-dot span {
 	 width: 4em;

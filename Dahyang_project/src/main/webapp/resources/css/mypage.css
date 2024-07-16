@@ -107,6 +107,7 @@ p span {
 .profile {
     display: flex;
     flex-direction: column;
+    margin-top: 40px;
     align-items: center; /* 중앙 정렬 */
     text-align: left; /* 텍스트는 왼쪽 정렬 */
     animation: fadeIn 1s ease-out forwards;
@@ -127,7 +128,6 @@ p span {
   overflow: hidden;
   margin: 0 auto 20px;
   box-shadow: 0 0 0 8px #75b64d;
-  opacity: 0.6;
   animation: mvTop 1.5s;
 }
 
@@ -159,6 +159,7 @@ p span {
   overflow:auto;
   padding:20pt 35pt;
   line-height:1.5;/*줄, 요소간격*/
+  
 }
 
 #app * {
@@ -190,6 +191,7 @@ p span {
 
 body {
   text-align: center;
+  min-height: 100vh;
   padding: 0px 339px 20px 632px;
   background: linear-gradient(90deg, #75b64d, #3ed4b9);
   font-family: 'Lato';

@@ -10,17 +10,20 @@
     <title>Group Page</title>
 </head>
 <style>
-.settings-button .svg-icon {
-    width: 24px; /* 아이콘 크기 */
-    height: 24px;
-    fill: #fff;
+.settings-button img {
+    filter: invert(28%) sepia(94%) saturate(2964%) hue-rotate(117deg) brightness(96%) contrast(94%);
 }
 </style>
 <body>
     <div class="container">
         <div class="navbar">
         	<a href="<c:url value='/views/club/list'/>">
-            	<span class="back-arrow">&lt;</span>
+            	<!-- 뒤로가기 버튼 -->
+	          <button class="back-button" onclick="history.back()">
+	            <svg viewBox="0 0 24 24">
+	              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+	            </svg>
+	          </button>
             </a>
             <span class="group-name">${club.title}</span>
             <!-- 톱니바퀴 버튼 추가 -->

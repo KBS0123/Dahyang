@@ -4,7 +4,7 @@
 <html>
 <head>
 <link href="${pageContext.request.contextPath}/resources/css/navbar2.css" rel="stylesheet" type="text/css">
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>navbar2</title>
 <style>
   .icon-container {
