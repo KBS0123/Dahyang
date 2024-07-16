@@ -50,10 +50,9 @@
 <body>
      <div id="app">
         <header>
-            <div class="system-bar">
                 <img src="${pageContext.request.contextPath}/resources/css/Logo.png"
              height="150" width="130">
-            </div>
+             <div class="center-text">다양한 사람들과 다양한 취미를 향유하다</div>
         </header>
         <div class="page">
             <div id="content">

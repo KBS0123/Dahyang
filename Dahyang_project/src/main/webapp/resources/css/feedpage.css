@@ -178,8 +178,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.btn-add-comment,
-.btn-delete-comment {/*버튼 상세 css*/
+.btn-add-comment {/*버튼 상세 css*/
     background-color: #6bab44; 
     color: white; 
     border: none; 
@@ -191,8 +190,28 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.btn-add-comment:hover,
+.btn-delete-comment {
+  background-color: #fff;
+  color: red; 
+  border: none;
+  border-radius: 50%; 
+  width: 20px; /* 버튼의 너비 */
+  height: 20px; /* 버튼의 높이 */
+  font-size: 40px; /* 텍스트 크기를 크게 설정 */
+  line-height: 40px; /* 텍스트가 중앙에 오도록 설정 */
+  text-align: center; /* 텍스트를 중앙 정렬 */
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center; /* 수평 정렬 */
+  align-items: center; /* 수직 정렬 */
+  margin-bottom: 7px;
+}
+
 .btn-delete-comment:hover {
+  color: darkred; /* 호버 시 어두운 빨간색으로 변경 */
+}
+
+.btn-add-comment:hover {
     background-color: #6ec836; /* 마우스 오버시 배경색 */
 }
 

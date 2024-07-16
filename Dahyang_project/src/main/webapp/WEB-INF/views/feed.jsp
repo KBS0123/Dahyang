@@ -28,6 +28,12 @@
         .settings-button img {
 	    filter: invert(28%) sepia(94%) saturate(2964%) hue-rotate(117deg) brightness(96%) contrast(94%);
 	}
+	
+	.comment-text {
+        white-space: pre-wrap; /* Preserve whitespace and wrap as necessary */
+        word-wrap: break-word; /* Break long words */
+        max-width: 50ch; /* Limit line length to 50 characters */
+    }
     </style>
 </head>
 <body>
@@ -98,7 +104,9 @@
 								</c:choose>
 		                    </div>
 		                    <span class="nickname">${comment.nickname}</span>
-		                    <span class="comment-text">${comment.content}</span>
+		                    <pre class="comment-text">${comment.content}</pre>
+		                    <!-- 댓글 삭제 버튼 -->
+		                    <button class="btn-delete-comment">-</button>
 		                </div>
 				    </c:forEach>
                 </div>
@@ -106,10 +114,10 @@
         </div>
         
         <c:if test="${not empty user}">
-        	<!-- 댓글 작성/삭제 버튼 -->
+        	<!-- 댓글 작성 버튼 -->
 			<div class="comment-buttons">
 				<button class="btn-add-comment">댓글 작성</button>
-				<button class="btn-delete-comment">댓글 삭제</button>
+				
 			</div>
 		
 		
