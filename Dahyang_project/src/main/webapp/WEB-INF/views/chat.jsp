@@ -102,6 +102,10 @@
         <span class="ion-navicon"></span>
     </header>
     <!-- 상단바 -->
+
+    <!-- 네비게이션 바 추가 -->
+    <c:import url="navbar2.jsp"></c:import>
+    <!-- 네비게이션 바 추가 끝 -->
     
     <!-- 내부 박스 -->
     <div class="page">
@@ -125,47 +129,45 @@
 
     <!-- SSE 이벤트 -->
     <script>
-    const clid = ${clid};
-    const chatBox = document.getElementById('chat-box');
-    const eventSource = new EventSource('${pageContext.request.contextPath}/views/club/' + clid + '/chat/stream');
+        const clid = ${clid};
+        const chatBox = document.getElementById('chat-box');
+        const eventSource = new EventSource('${pageContext.request.contextPath}/views/club/' + clid + '/chat/stream');
 
-    function scrollToBottom() {
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    eventSource.onmessage = function(event) {
-        const message = JSON.parse(event.data);
-        const newMessage = document.createElement('div');
-        newMessage.className = 'chat-item';
-        newMessage.textContent = `${message.nickname}: ${message.content}`;
-        chatBox.appendChild(newMessage);
-        scrollToBottom();
-        // 페이지 새로고침
-        location.reload();
-    };
-
-    document.getElementById('chat-form').onsubmit = function() {
-        const textarea = this.querySelector('textarea');
-        if (textarea.value.trim() === '') {
-            return false;
+        function scrollToBottom() {
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
-        setTimeout(() => {
-            textarea.value = ''; // 메시지 전송 후 텍스트박스 비우기
-            scrollToBottom();    // 메시지 전송 후 스크롤을 맨 아래로 이동
-        }, 50);
-        return true;
-    };
 
-    document.querySelector('textarea').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            document.getElementById('chat-form').submit();
-        }
-    });
+        eventSource.onmessage = function(event) {
+            const message = JSON.parse(event.data);
+            const newMessage = document.createElement('div');
+            newMessage.className = 'chat-item';
+            newMessage.textContent = `${message.nickname}: ${message.content}`;
+            chatBox.appendChild(newMessage);
+            scrollToBottom();
+        };
 
-    // 페이지 로드 시 최하단으로 스크롤
-    window.onload = scrollToBottom;
-</script>
+        document.getElementById('chat-form').onsubmit = function() {
+            const textarea = this.querySelector('textarea');
+            if (textarea.value.trim() === '') {
+                return false;
+            }
+            setTimeout(() => {
+                textarea.value = ''; // 메시지 전송 후 텍스트박스 비우기
+                scrollToBottom();    // 메시지 전송 후 스크롤을 맨 아래로 이동
+            }, 50);
+            return true;
+        };
+
+        document.querySelector('textarea').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById('chat-form').submit();
+            }
+        });
+
+        // 페이지 로드 시 최하단으로 스크롤
+        window.onload = scrollToBottom;
+    </script>
 </main>
 </body>
 </html>
