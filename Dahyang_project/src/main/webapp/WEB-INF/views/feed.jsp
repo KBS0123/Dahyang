@@ -73,7 +73,7 @@
 			            </c:forEach>
 			        </c:when>
 			        <c:otherwise>
-			            <img src="${pageContext.request.contextPath}/resources/css/feed.jpg">
+			            <img src="${pageContext.request.contextPath}/resources/css/feed.jpg"> 
 			        </c:otherwise>
 			    </c:choose>
                 </div>
