@@ -39,40 +39,51 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#imageUpload').change(function() {
-            var input = this;
-            var files = input.files;
-            var previewContainer = $('.inner-slider');
-            previewContainer.empty();
+$(document).ready(function() {
+    $('#imageUpload').change(function() {
+        var input = this;
+        var files = input.files;
+        var previewContainer = $('.inner-slider');
+        previewContainer.empty();
 
-            if (files && files.length) {
-                $('.slider').css('display', 'block');
-                for (var i = 0; i < files.length; i++) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        var img = $('<div class="item"><img src="' + e.target.result + '"></div>');
-                        previewContainer.append(img);
-                    };
-                    reader.readAsDataURL(files[i]);
-                }
-            } else {
-                $('.slider').css('display', 'none');
+        if (files && files.length) {
+            $('.slider').css('display', 'block');
+            for (var i = 0; i < files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = $('<div class="item"><img src="' + e.target.result + '"></div>');
+                    previewContainer.append(img);
+                };
+                reader.readAsDataURL(files[i]);
             }
-        });
-
-        $('.form-container form').submit(function(event) {
-            event.preventDefault(); // 폼 제출 방지 (예시용)
-            var content = $(this).find('textarea[name="content"]').val();
-            var images = [];
-            $('.inner-slider .item img').each(function() {
-                images.push($(this).attr('src'));
-            });
-            console.log('Content:', content);
-            console.log('Images:', images);
-            // 여기에 AJAX 또는 실제 제출 로직 구현
-        });
+            // 이미지 추가 후 슬라이더 초기화
+            initSlider();
+        } else {
+            $('.slider').css('display', 'none');
+        }
     });
+
+    // 슬라이더 초기화 함수
+    function initSlider() {
+        var innerSlider = $('.inner-slider');
+        var items = $('.item');
+        var totalWidth = items.length * (items.outerWidth(true) + 10); // 간격 포함
+
+        innerSlider.css('width', totalWidth + 'px');
+    }
+
+    $('.form-container form').submit(function(event) {
+        event.preventDefault(); // 폼 제출 방지 (예시용)
+        var content = $(this).find('textarea[name="content"]').val();
+        var images = [];
+        $('.inner-slider .item img').each(function() {
+            images.push($(this).attr('src'));
+        });
+        console.log('Content:', content);
+        console.log('Images:', images);
+        // AJAX 또는 실제 제출 로직을 여기에 추가
+    });
+});
 </script>
 </head>
 <body>

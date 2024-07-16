@@ -6,54 +6,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>채팅 페이지</title>
-    <link href="${pageContext.request.contextPath}/resources/css/groupfeed.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/grouplist.css" rel="stylesheet" type="text/css">
     <style type="text/css">
         body, html {
             height: 100%;
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
         }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #f4511e;
-            color: white;
-            padding: 10px 20px;
-        }
-        .header .back-button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-        }
-        .header .center-text {
-            font-size: 24px;
-        }
         .page {
             display: flex;
             flex-direction: column;
-            height: calc(100% - 60px); /* Adjust according to header/footer height */
+            
         }
         .content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
+		    flex: 1;
+		    display: flex;
+		    flex-direction: column;
+		    padding: 20px;
+		    background-color: white;
+		    margin-top: 20px; /* 위로 20px 내림 */
+		}
         #chat-box {
-            flex: 1;
-            overflow-y: auto; /* 스크롤 바 추가 */
-            background-color: #f0f0f0;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            max-height: 400px; /* 최대 높이 설정 */
-            display: flex;
-            flex-direction: column;
-        }
+		    flex: 1;
+		    overflow-y: auto; /* 스크롤 바 자동 표시 */
+		    background-color: white;
+		    padding: 20px;
+		    border: white;
+		    border-radius: 5px;
+		    margin-bottom: 10px;
+		    max-height: 500px; /* 최대 높이 설정 */
+		    display: flex;
+		    flex-direction: column;
+		    width: 500px; /* 최대 가로 너비 설정 */
+		}
+		/* WebKit 브라우저에 대한 스크롤바 숨기기 */
+		#chat-box::-webkit-scrollbar {
+		    display: none;
+		}
         .chat-item {
             padding: 10px;
             margin-bottom: 10px;
@@ -61,7 +50,7 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             color: black; /* 텍스트 색상을 검정색으로 설정 */
-            max-width: 60%; /* 메시지의 최대 너비를 설정 */
+            max-width: 50%; /* 메시지의 최대 너비를 설정 */
             word-wrap: break-word;
         }
         .chat-item.right {
@@ -72,12 +61,27 @@
             align-self: flex-start;
             background-color: #e9e9e9; /* 다른 사용자의 메시지 배경색 */
         }
+        .user-profile {
+		    display: flex;
+		    align-items: center;
+		}
+		
+		.user-profile img {
+		    width: 40px;
+		    height: 40px;
+		    border-radius: 50%;
+		    margin-right: 10px;
+		}
         .form-container {
             display: flex;
             padding: 10px;
             background-color: white;
             border-top: 1px solid #ccc;
         }
+        .form-container form {
+		    display: flex;
+		    flex: 1; /* 폼을 확장하여 내부 요소를 채우도록 함 */
+		}
         .form-container textarea {
             flex: 1;
             resize: none;
@@ -88,7 +92,7 @@
             margin-right: 10px;
         }
         .form-container button {
-            background-color: #f4511e;
+            background-color: #4CAF50;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -99,87 +103,103 @@
     </style>
 </head>
 <body>
-<main>
-    <!-- 상단바 -->
-    <header class="header">
-        <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}"/>'">
-            <svg viewBox="0 0 24 24">
-              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-            </svg>
-        </button>
-        <div class="center-text">그룹 채팅</div>
-        <span class="ion-navicon"></span>
-    </header>
-    <!-- 상단바 -->
-    
-    <!-- 네비게이션 바 추가 -->
-    <c:import url="navbar2.jsp"></c:import>
-    <!-- 네비게이션 바 추가 끝 -->
-    
-    <!-- 내부 박스 -->
-    <div class="page">
-        <div class="content">
-            <div id="chat-box">
-                <c:forEach var="chat" items="${chatList}">
-                    <c:set var="alignClass" value="${chat.uid == sessionScope.user.uid ? 'right' : 'left'}" />
-                    <div class="chat-item ${alignClass}">
-                        <div>${chat.nickname}<br> ${chat.content}</div>
-                    </div>
-                </c:forEach>
-            </div>
-            <!-- 새 채팅 작성 -->
-            <div class="form-container">
-                <form id="chat-form" action="${pageContext.request.contextPath}/views/club/${clid}/chat/send" method="post">
-                    <textarea name="content" placeholder="메시지를 입력하세요..." rows="3"></textarea>
-                    <button type="submit">Send</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- SSE 이벤트 -->
-    <script>
-        const clid = ${clid};
-        const chatBox = document.getElementById('chat-box');
-        const eventSource = new EventSource('${pageContext.request.contextPath}/views/club/' + clid + '/chat/stream');
-
-        function scrollToBottom() {
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-
-        eventSource.onmessage = function(event) {
-            const message = JSON.parse(event.data);
-            const alignClass = message.uid == ${sessionScope.user.uid} ? 'right' : 'left';
-            const newMessage = document.createElement('div');
-            newMessage.className = 'chat-item ' + alignClass;
-            newMessage.textContent = `${message.nickname}: ${message.content}`;
-            chatBox.appendChild(newMessage);
-            scrollToBottom();
-            location.reload();
-        };
-
-        document.getElementById('chat-form').onsubmit = function() {
-            const textarea = this.querySelector('textarea');
-            if (textarea.value.trim() === '') {
-                return false;
-            }
-            setTimeout(() => {
-                textarea.value = ''; // 메시지 전송 후 텍스트박스 비우기
-                scrollToBottom();    // 메시지 전송 후 스크롤을 맨 아래로 이동
-            }, 50);
-            return true;
-        };
-
-        document.querySelector('textarea').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                document.getElementById('chat-form').submit();
-            }
-        });
-
-        // 페이지 로드 시 최하단으로 스크롤
-        window.onload = scrollToBottom;
-    </script>
-</main>
+	<div id="app">
+	    <!-- 상단바 -->
+	    <header>
+	    	<div class="left">
+		        <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}"/>'">
+			        <svg viewBox="0 0 24 24">
+			          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+			        </svg>
+			    </button>
+		      </div>
+		      <div class="center-text">그룹 채팅</div>
+		      <div class="right">
+		        <span class="ion-navicon"></span>
+	      	</div>
+	    </header>
+	    <!-- 상단바 -->	    
+	    <!-- 내부 박스 -->
+	    <div class="page">
+	        <div class="content">
+	            <div id="chat-box">
+	                <c:forEach var="chat" items="${chatList}">
+	                    <c:set var="alignClass" value="${chat.uid == sessionScope.user.uid ? 'right' : 'left'}" />
+	                    <div class="chat-item ${alignClass}">
+	                        <div>
+	                        	<c:if test="${alignClass == 'left'}">
+			                       	<div class="user-profile">
+					                    <c:choose>
+											<c:when test="${not empty chat.uimg}">
+												<img src="${pageContext.request.contextPath}/resources/imgs/${chat.uimg}">
+											</c:when>
+											<c:otherwise>
+												<img src="${pageContext.request.contextPath}/resources/css/group.png">
+											</c:otherwise>
+										</c:choose>
+										${chat.nickname}
+									</div>
+								</c:if>
+		                        ${chat.content}
+	                        </div>
+	                    </div>
+	                </c:forEach>
+	            </div>
+	            <!-- 새 채팅 작성 -->
+	            <div class="form-container">
+	                <form id="chat-form" action="${pageContext.request.contextPath}/views/club/${clid}/chat/send" method="post">
+	                    <textarea name="content" placeholder="메시지를 입력하세요." rows="1" cols="45"></textarea>
+	                    <button type="submit">Send</button>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- 네비게이션 바 추가 -->
+	    <c:import url="navbar2.jsp"></c:import>
+	    <!-- 네비게이션 바 추가 끝 -->
+	</div>
 </body>
+<!-- SSE 이벤트 -->
+<script>
+    const clid = ${clid};
+    const chatBox = document.getElementById('chat-box');
+    const eventSource = new EventSource('${pageContext.request.contextPath}/views/club/' + clid + '/chat/stream');
+	
+    function scrollToBottom() {
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+	
+    eventSource.onmessage = function(event) {
+        const message = JSON.parse(event.data);
+        const alignClass = message.uid == ${sessionScope.user.uid} ? 'right' : 'left';
+        const newMessage = document.createElement('div');
+        newMessage.className = 'chat-item ' + alignClass;
+        newMessage.textContent = `${message.nickname}: ${message.content}`;
+        chatBox.appendChild(newMessage);
+        scrollToBottom();
+        location.reload();
+    };
+	
+    document.getElementById('chat-form').onsubmit = function() {
+        const textarea = this.querySelector('textarea');
+        if (textarea.value.trim() === '') {
+            return false;
+        }
+        setTimeout(() => {
+            textarea.value = ''; // 메시지 전송 후 텍스트박스 비우기
+            scrollToBottom();    // 메시지 전송 후 스크롤을 맨 아래로 이동
+        }, 50);
+        return true;
+    };
+	
+    document.querySelector('textarea').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            document.getElementById('chat-form').submit();
+        }
+    });
+	
+    // 페이지 로드 시 최하단으로 스크롤
+    window.onload = scrollToBottom;
+</script>
 </html>
