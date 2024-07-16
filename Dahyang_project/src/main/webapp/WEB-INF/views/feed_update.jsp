@@ -31,7 +31,7 @@
               <img id="preview${inputCount}" src="#" alt="Image Preview" style="display:none;">
               <label for="img${inputCount}">+</label>
           </div>`;
-      $('#image-upload-container').append(newInput);
+      $('#image-upload-container').append(newInput); 
   }
 </script>
 </head>

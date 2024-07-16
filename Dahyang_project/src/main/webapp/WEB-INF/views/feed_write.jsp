@@ -76,7 +76,7 @@
                     <div class="file-upload-wrapper">
                         <input type="file" id="img1" name="img[]" accept="image/*" onchange="readURL(this, 'preview1');">
                         <img id="preview1" src="#" alt="Image Preview" style="display:none;">
-                        <label for="img1">+</label>
+                        <label for="img1">+</label> 
                     </div>
                 </div>
                 <button type="button" onclick="addFileInput()">이미지 추가</button>
