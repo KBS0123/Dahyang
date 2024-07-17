@@ -6,16 +6,22 @@
 <meta charset="UTF-8">
 <title>MyPage(user profile)</title>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet" type="text/css">
-
-
   <style>
+  #app > header .center-text {
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    line-height: 1.5;
+    margin-right: 50px;
+    margin-top: 30px;
+}
     .profile-details {
-    width: 450px;
-    margin-top: 20px;
+    width: 350px;
+    margin-top: 0px;
     padding: 20px;
     background-color: #f8f9fa;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
   }
@@ -54,7 +60,7 @@
   }
     
   .profile-details form {
-    margin-top: 50px;
+    margin-top: 20px;
   }
     
   </style>
@@ -81,9 +87,16 @@
         <div class="left">
           <span class="ion-chevron-left"></span>
         </div>
-        <img src="${pageContext.request.contextPath}/resources/css/Logo.png"
-             height="150" width="130">
-        <div class="center-text">다양한 사람들과 다양한 취미를 향유하다</div>
+         <!-- 뒤로가기 버튼 -->
+          <div class="left">
+			 <button class="back-button" onclick="location.href='<c:url value="/views/"/>'">
+				<svg viewBox="0 0 24 24" width="26" height="24">
+				   <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+				 </svg>
+				</button>
+			 </div>
+          <!-- 뒤로가기 버튼 -->
+        <div class="center-text">프로필 수정</div>
         <div class="right">
           <span class="ion-navicon"></span>
         </div>
@@ -93,8 +106,6 @@
     <!--페이지 내용-->
     <div class="page">
       <div class="profile">
-        <h3>정보 수정</h3>
-        <br>
         <div class="profile-details">
           <form action="<c:url value='/views/users/profile_update'/>" method="post" enctype="multipart/form-data">
           	<c:choose>
@@ -102,16 +113,24 @@
 			    	<div class="profile-img">
 			      		<img src="${pageContext.request.contextPath}/resources/imgs/${user.images}">
 			    	</div>
-			    	<input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
-			      	<label for="img">+</label>
+			    	<input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);" style="display: none;">
+			      	<label for="img" class="custom-file-upload">
+				        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+						    <path d="M12 2C11.45 2 11 2.45 11 3V11H3C2.45 11 2 11.45 2 12C2 12.55 2.45 13 3 13H11V21C11 21.55 11.45 22 12 22C12.55 22 13 21.55 13 21V13H21C21.55 13 22 12.55 22 12C22 11.45 21.55 11 21 11H13V3C13 2.45 12.55 2 12 2Z"/>
+						</svg>
+				    </label>
 		    	</c:when>
 		    	<c:otherwise>
-		    		<div class="profile-img">
-			      		<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
-			    	</div>
-			    	<input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
-			      	<label for="img">+</label>
-		    	</c:otherwise>
+				    <div class="profile-img">
+				        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+				    </div>
+				    <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);" style="display: none;">
+				    <label for="img" class="custom-file-upload">
+				        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+						    <path d="M12 2C11.45 2 11 2.45 11 3V11H3C2.45 11 2 11.45 2 12C2 12.55 2.45 13 3 13H11V21C11 21.55 11.45 22 12 22C12.55 22 13 21.55 13 21V13H21C21.55 13 22 12.55 22 12C22 11.45 21.55 11 21 11H13V3C13 2.45 12.55 2 12 2Z"/>
+						</svg>
+				    </label>
+				</c:otherwise>
 		    </c:choose>
             <p>
               <label for="name">닉네임:</label>

@@ -96,18 +96,19 @@ p span {
 }
 
 #app > header .center-text {
-  display: inline-block;
-  width: 70%; /* 수정: 60% -> 70% */
-  text-align: left; /* 수정: center -> left */
-  vertical-align: middle;
-  font-size: 1em; /* 수정: 1.2em -> 1em */
-  line-height: 1.5;
+    width: 80%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    line-height: 1.5;
+    margin-right: 50px;
+    margin-top: 30px;
 }
 
 .profile {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    margin-top: 130px;
     align-items: center; /* 중앙 정렬 */
     text-align: left; /* 텍스트는 왼쪽 정렬 */
     animation: fadeIn 1s ease-out forwards;
@@ -264,4 +265,63 @@ body>header>p {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+
+.back-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #8dd95d;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 35px;
+    left: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button svg {
+    fill: #fff;
+    width: 24px;
+    height: 24px;
+}
+
+.custom-file-upload {
+    position: absolute;
+    right: 70px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-color: #8dd95d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+    margin-left: auto;
+    margin-right: 90px;
+    margin-top: -50px;
+    z-index: 1;
+}
+
+.custom-file-upload:hover {
+    background-color: #8dd95d; /* 호버 시 배경 색상 */
+    transform: scale(1.1); /* 호버 시 확대 효과 */
+}
+
+.custom-file-upload svg {
+    fill: #fff; /* 아이콘 색상 */
+    width: 24px; /* 아이콘 너비 */
+    height: 24px; /* 아이콘 높이 */
+    transition: fill 0.3s; /* 색상 변경 시 애니메이션 */
+}
+
+.custom-file-upload:hover svg {
+    fill: #fff; 
 }

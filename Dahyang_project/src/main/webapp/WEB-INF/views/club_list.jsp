@@ -45,6 +45,12 @@
             align-items: center; /* 그룹 요소를 수직 중앙 정렬 */
             margin-bottom: 10px;
         }
+        .club-notice {
+		    font-size: 14px; /* 공지사항 크기 조정 */
+		    border: none; /* 테두리 제거 */
+		    background: none; /* 배경 제거 */
+		    padding: 0; /* 패딩 제거 */
+		}
     </style>
 </head>
 <body>
@@ -86,9 +92,9 @@
 									</c:otherwise>
 								</c:choose>
 	                            <div class="group-info">
-	                            	<a href="<c:url value='/views/club/${club.clid}' />">
-	                                	<strong>${club.title}</strong>
-	                                </a>
+	                            	<a href="<c:url value='/views/club/${club.clid}' />" class="group-title">
+								        <strong>${club.title}</strong>
+								    </a>
 	                                 <input type="text" class="club-notice" value="공지사항: ${club.notice}" readonly>
 	                            </div>
 	                        </div>
