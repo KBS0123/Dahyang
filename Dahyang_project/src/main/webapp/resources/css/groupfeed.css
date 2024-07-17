@@ -266,6 +266,9 @@ body>header>p {
     position: absolute;
     top: 35px;
     left: 50px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .home-button svg {
