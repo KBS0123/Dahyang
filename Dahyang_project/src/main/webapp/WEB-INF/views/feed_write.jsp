@@ -36,6 +36,19 @@
         object-fit: cover;
         border-radius: 5px;
     }
+    .form-container button { /*수정 삭제 버튼*/
+          display: inline-block;
+          width: auto;
+          padding: 10px 40px;
+          margin-right: 30px;
+          margin-left: 38%;
+          background-color: #28a745;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          font-size: 16px;
+          cursor: pointer;
+      }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -98,7 +111,7 @@ $(document).ready(function() {
 	        </svg>
 	    </button>
 	   </div>
-	   <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">피드</span>
+	   <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">피드 등록</span>
 	   <div class="right">
 	     <c:if test="${user.uid == feed.uid}">
 	         <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/feed/update/${fid}"/>'">

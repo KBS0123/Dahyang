@@ -76,16 +76,23 @@
 </script>
 </head>
 <body>
-<div class="container">
-    <div class="navbar">
-        <div class="back-button" onclick="javascript:history.back()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 22" width="26" height="24">
-                <path fill="#fff" d="M20 11H7.414l3.293-3.293a1 1 0 0 0-1.414-1.414l-5 5a1 1 0 0 0 0 1.414l5 5a1 1 0 0 0 1.414-1.414L7.414 13H20a1 1 0 0 0 0-2z"/>
-            </svg>
-        </div>
-        <span style="margin-left: 10px;">피드 수정</span>
-    </div>
+<div id="app">
+    <!-- 상단바 -->
+	<header>
+		<div class="left">
+	     <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}/feed/${fid}"/>'">
+	        <svg viewBox="0 0 24 24" width="26" height="24">
+	          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+	        </svg>
+	    </button>
+	   </div>
+	   <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">피드 수정</span>
+	   <div class="right">
+	   </div>
+	</header>
+	<!-- 상단바 -->
     
+<div class="page">
     <div class="content">
         <div class="feed-item">
             <div class="feed-header">
@@ -125,6 +132,7 @@
 	            </form>
         </div> 
     </div>
+</div>
 </div>
 </body>
 </html>
