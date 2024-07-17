@@ -8,11 +8,12 @@
 		<result property="imgid" column="IMAGE_ID" />
 		<result property="fid" column="PHEED_ID" />
 		<result property="img" column="IMAGES" />
+		<result property="clid" column="CLUB_ID" />
 	</resultMap>
 	
 	<!-- 피드 이미지 등록 -->
 	<insert id="insert" parameterType="Images">
-		insert into dpheed_images values (dpheed_images_seq.nextval, #{fid}, #{img, jdbcType=VARCHAR})
+		insert into dpheed_images values (dpheed_images_seq.nextval, #{fid}, #{img, jdbcType=VARCHAR}, #{clid})
 	</insert>
 	
 	<!-- 피드 이미지 수정 -->
@@ -28,7 +29,6 @@
 	<select id="selectAll" parameterType="int" resultMap="imagesResultMap">
 		select * from dpheed_images where pheed_id=#{fid}
 	</select>
-	
 	
 	
 	<select id="selectImages" parameterType="int" resultType="java.lang.String">

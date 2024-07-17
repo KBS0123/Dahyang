@@ -173,6 +173,7 @@ public class ClubController {
 			Club club = clubMapper.selectById(clid);
 			
 			if (user.getUid() == club.getUid()) {
+				clubMapper.deleteImages(clid);
 				clubMapper.deleteFeedComment(clid);
 				clubMapper.deleteFeed(clid);
 				clubMapper.deleteMembers(clid);

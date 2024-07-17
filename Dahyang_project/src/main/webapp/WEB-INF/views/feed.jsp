@@ -62,6 +62,7 @@
 		    width: 100%;
 		    height: 100%;
 		    display: block;
+		    object-fit: cover;
 		    
 		}
         .prev, .next {
@@ -88,13 +89,19 @@
             background-color: rgba(0,0,0,0.8);
         }
          .slide-number {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-        }
+		    position: absolute;
+		    right: 10px;
+		    bottom: 3px;
+		    width: 40px;
+		    height: 25px;
+		    text-align: center;
+		    color: white;
+		    font-size: 16px;
+		    font-weight: bold;
+		    background-color: black;
+		    opacity: 0.7;
+		    border-radius: 5px;
+		}
     </style>
 </head>
 <body>

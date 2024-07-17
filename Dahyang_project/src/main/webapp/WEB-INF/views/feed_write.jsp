@@ -113,11 +113,6 @@ $(document).ready(function() {
 	   </div>
 	   <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">피드 등록</span>
 	   <div class="right">
-	     <c:if test="${user.uid == feed.uid}">
-	         <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/feed/update/${fid}"/>'">
-	              <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
-	         </button>
-	     </c:if>
 	  	  </div>
 	</header>
 	<!-- 상단바 -->
