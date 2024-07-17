@@ -32,11 +32,15 @@
   		<!-- 상단바 -->
 	    <header>
 	    	<div class="left">
-		        <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}"/>'">
-			        <svg viewBox="0 0 24 24" width="26" height="24">
-			          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-			        </svg>
-			    </button>
+	    	<!-- 홈 버튼 -->
+		        <button class="home-button" onclick="location.href='<c:url value="/views/club/${clid}"/>'">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="home-icon">
+					    <path
+					        d="M13.1428571,14.5 C13.6571429,14.5 14,14.175507 14,13.6887676 L14,6.38767551 C14,6.14430577 13.9142857,5.90093604 13.6571429,5.73868955 L8.51428571,1.6825273 C8.17142857,1.43915757 7.74285714,1.43915757 7.4,1.6825273 L2.25714286,5.73868955 C2.08571429,5.90093604 2,6.14430577 2,6.38767551 L2,13.6887676 C2,14.175507 2.34285714,14.5 2.85714286,14.5 L13.1428571,14.5 Z M5.42857143,12.8775351 L3.71428571,12.8775351 L3.71428571,6.79329173 L8,3.38611544 L12.2857143,6.79329173 L12.2857143,12.8775351 L10.5714286,12.8775351 L5.42857143,12.8775351 Z">
+					    </path>
+					  </svg>
+				</button>
+			    <!-- 홈 버튼 -->
 		      </div>
 		      <span style= "margin-right: 110px; font-weight: bold; color: white; font-size: 20px;">피드 목록</span>
 		      <div class="right">

@@ -37,30 +37,33 @@
     
     
      .image-slider {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 20px auto; /* Center the slider */
-            overflow: hidden; /* Hide overflow */
-            border-radius: 20px;
-            object-fit: cover;
-        }
-
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-            box-sizing: border-box;
-        }
-
-        .slide img {
-            width: 100%;
-            display: block;
-        }
-
+		    position: relative;
+		    width: 100%;
+		    max-width: 500px;
+		    height: 400px; /* 고정된 높이 */
+		    margin: 20px auto; /* Center the slider */
+		    overflow: hidden; /* Hide overflow */
+		    border-radius: 20px;
+		}
+		
+		.slides {
+		    display: flex;
+		    transition: transform 0.5s ease-in-out;
+		    height: 100%; /* 부모의 높이에 맞춤 */
+		}
+		
+		.slide {
+		    min-width: 100%;
+		    height: 100%; /* 부모의 높이에 맞춤 */
+		    box-sizing: border-box;
+		}
+		
+		.slide img {
+		    width: 100%;
+		    height: 100%;
+		    display: block;
+		    object-fit: cover; /* 이미지가 영역을 넘지 않도록 조정 */
+		}
         .prev, .next {
             position: absolute;
             top: 50%;
@@ -83,6 +86,14 @@
 
         .prev:hover, .next:hover {
             background-color: rgba(0,0,0,0.8);
+        }
+         .slide-number {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -120,6 +131,7 @@
                     </div>
                     <span class="nickname">${feed.writer}</span>
                 </div>
+                
                  <div class="image-slider">
                     <div class="slides">
                         <c:choose>
@@ -148,7 +160,9 @@
                     </div>
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    <div class="slide-number">1/4</div>
                 </div>
+                
                 <div class="content-text">${feed.content}</div>
                 <div class="comments">
                     <c:forEach var="comment" items="${comments}">
@@ -229,24 +243,25 @@
 	    
 	    <!--이미지 슬라이드 스크립트 -->
 	    let slideIndex = 1;
+        showSlides(slideIndex);
 
-	    function showSlides(n) {
-	        let slides = document.querySelectorAll(".slide");
-	        if (n > slides.length) { slideIndex = 1 }
-	        if (n < 1) { slideIndex = slides.length }
-	        for (let i = 0; i < slides.length; i++) {
-	            slides[i].style.display = "none";
-	        }
-	        slides[slideIndex - 1].style.display = "block";
-	    }
+        function showSlides(n) {
+            let slides = document.querySelectorAll(".slide");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
 
-	    function plusSlides(n) {
-	        showSlides(slideIndex += n);
-	    }
+            // Update slide number indicator
+            let slideNumber = document.querySelector(".slide-number");
+            slideNumber.textContent = slideIndex + '/' + slides.length;
+        }
 
-	    document.addEventListener('DOMContentLoaded', function () {
-	        showSlides(slideIndex); // 슬라이드 초기화
-	    });
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
 	</script>
 </body>
 </html>

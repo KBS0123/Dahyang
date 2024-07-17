@@ -89,7 +89,7 @@
 	                            	<a href="<c:url value='/views/club/${club.clid}' />">
 	                                	<strong>${club.title}</strong>
 	                                </a>
-	                                <input type="text" value="공지사항: ${club.notice}" readonly>
+	                                 <input type="text" class="club-notice" value="공지사항: ${club.notice}" readonly>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -118,6 +118,30 @@
         }
 
         window.onload = checkLogin;
+        
+        <!--공지사항-->
+     // 공지사항 문자열 길이 제한
+        document.addEventListener("DOMContentLoaded", function() {
+	    const noticeInputs = document.querySelectorAll('.club-notice');
+	    const maxLength = 10;
+	
+	    noticeInputs.forEach(function(noticeInput) {
+	        const prefix = "공지사항: ";
+	        let noticeText = noticeInput.value;
+	
+	        if (noticeText.startsWith(prefix)) {
+	            let actualNotice = noticeText.substring(prefix.length);
+	
+	            if (actualNotice.length > maxLength) {
+	                actualNotice = actualNotice.substring(0, maxLength) + '...';
+	            }
+	
+	            noticeInput.value = prefix + actualNotice;
+	        }
+	    });
+	});
+
+        <!--공지사항-->
     </script>
     <c:import url="navbar.jsp"></c:import>
     <c:if test="${not empty user}">
