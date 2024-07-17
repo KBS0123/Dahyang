@@ -15,28 +15,31 @@
 }
 </style>
 <body>
-    <div class="container">
-        <div class="navbar">
-        	<a href="<c:url value='/views/club/list'/>">
-            	<!-- 뒤로가기 버튼 -->
-	          <button class="back-button" onclick="history.back()">
-	            <svg viewBox="0 0 24 24">
-	              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-	            </svg>
-	          </button>
-            </a>
-            <span class="group-name">${club.title}</span>
-            <!-- 톱니바퀴 버튼 추가 -->
-            <c:forEach var="m" items="${member}">
-		        <!-- 만약 회원의 uid가 사용자의 uid와 일치한다면 버튼을 표시하지 않음 -->
-		        <c:if test="${m.uid == user.uid}">
-		            <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/setting"/>'">
-	                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
-	            	</button>
-		        </c:if>
-		    </c:forEach>
-        </div>
-        
+	<div id="app">
+
+        	<!-- 상단바 -->
+		    <header>
+		    	<div class="left">
+			        <button class="back-button" onclick="location.href='<c:url value="/views/"/>'">
+				        <svg viewBox="0 0 24 24" width="26" height="24">
+				          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+				        </svg>
+				    </button>
+			      </div>
+			      <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">${club.title}</span>
+			      <div class="right">
+			        <c:forEach var="m" items="${member}">
+				        <!-- 만약 회원의 uid가 사용자의 uid와 일치한다면 버튼을 표시하지 않음 -->
+				        <c:if test="${m.uid == user.uid}">
+				            <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/setting"/>'">
+			                    <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+			            	</button>
+				        </c:if>
+				    </c:forEach>
+		      	  </div>
+		    </header>
+		    <!-- 상단바 -->
+        <div class="page">
         <div class="content">
             <div class="image-placeholder">
             	<c:choose>
@@ -57,9 +60,7 @@
         </div>
         <c:choose>
 	        <c:when test="${empty user}">
-		        <a href="<c:url value='/views/users/profile'/>">
-		        	<button class="apply-button">가입하기</button>
-		        </a>
+		        <button class="apply-button" onclick="location.href='<c:url value="/views/users/profile"/>'">가입하기</button>
 		    </c:when>
 		    <c:otherwise>
 		        <!-- 기본적으로 버튼을 표시하도록 설정 -->
@@ -126,13 +127,14 @@
 		        </c:forEach>
 		    </c:otherwise>
 	    </c:choose>
+	    </div>
 		<c:import url="navbar2.jsp"></c:import>
-    </div>
     <script>
         function toggleParticipants() {
             var box = document.getElementById("participantsBox");
             box.classList.toggle("show");
         }
     </script>
+    </div>
 </body>
 </html>
