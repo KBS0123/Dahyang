@@ -87,20 +87,41 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<div class="container">
-    <div class="navbar">
-        <div class="back-button" onclick="javascript:history.back()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 22">
-                <path fill="#fff" d="M20 11H7.414l3.293-3.293a1 1 0 0 0-1.414-1.414l-5 5a1 1 0 0 0 0 1.414l5 5a1 1 0 0 0 1.414-1.414L7.414 13H20a1 1 0 0 0 0-2z"/>
-            </svg>
-        </div>
-        <span style="margin-left: 10px;">피드</span>
-    </div>
-    
+<div id="app">
+
+    <!-- 상단바 -->
+	<header>
+		<div class="left">
+	     <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}/feed"/>'">
+	        <svg viewBox="0 0 24 24" width="26" height="24">
+	          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+	        </svg>
+	    </button>
+	   </div>
+	   <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">피드</span>
+	   <div class="right">
+	     <c:if test="${user.uid == feed.uid}">
+	         <button class="settings-button" onclick="location.href='<c:url value="/views/club/${clid}/feed/update/${fid}"/>'">
+	              <img src="${pageContext.request.contextPath}/resources/css/setting icon.svg" class="svg-icon">
+	         </button>
+	     </c:if>
+	  	  </div>
+	</header>
+	<!-- 상단바 -->
+<div class="page">
     <div class="content">
         <div class="feed-item">
             <div class="feed-header">
-                <div class="profile-pic"></div>
+                <div class="profile-pic">
+                	<c:choose>
+                        <c:when test="${not empty user.images}">
+                            <img alt="Profile Image" src="${pageContext.request.contextPath}/resources/imgs/${user.images}">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+                        </c:otherwise>
+                    </c:choose>
+                </div>
                 <span class="nickname">${user.nickname}</span>
             </div>
             <form action="<c:url value='/views/club/${clid}/feed/write'/>" method="post" enctype="multipart/form-data">
@@ -125,6 +146,7 @@ $(document).ready(function() {
             </form>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

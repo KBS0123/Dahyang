@@ -1,4 +1,156 @@
 @charset "UTF-8";
+div.page::-webkit-scrollbar {     
+  width: 0 !important;
+}
+
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Sans'), local('DroidSans'), url(https://fonts.gstatic.com/s/droidsans/v6/s-BiyweUPV0v-yRb-cjciL3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Droid Sans Bold'), local('DroidSans-Bold'), url(https://fonts.gstatic.com/s/droidsans/v6/EFpQQyG9GqCrobXxL-KRMXbFhgvWbfSbdVg11QabG8w.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light'), url(https://fonts.gstatic.com/s/lato/v11/kcf5uOXucLcbFOydGU24WALUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v11/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+#app>header div.system-bar {
+  line-height:10pt;
+  font-size:6pt;
+  width:100%;
+  font-family:'Helvetica Neue';
+  font-weight:400;
+  overflow:auto;
+}
+
+p span {
+  font-weight: 600;
+}
+
+
+.left span, .right span {
+font-size:1.5em;
+line-height:1pt;
+}
+
+/*수정*/
+#app > header {
+    font-size: 12pt;
+    font-family: 'Pretendard-Regular';
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 105px;
+    line-height: 75px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.20);
+    background-color: #75b64d;
+    padding: 10pt;
+    color: #fefefe;
+    opacity: 0.9;
+    overflow: hidden;
+}
+
+#app > header .left,
+#app > header .right {
+    width: 20%;
+    height:	20%;
+    font-size: 1.5em;
+    line-height: 1pt;
+}
+
+#app > header .center-text {
+    display: inline-block;
+    width: 70%; /* 텍스트 정렬 */
+    text-align: left;
+    vertical-align: middle;
+    font-size: 1em; /* 텍스트 사이즈 변경 */
+    line-height: 1.5; /* 줄 간격 조정 */
+}
+/*수정*/
+
+#app>footer {
+  text-align: center;
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:24px;
+  line-height:24px;
+  background-color:#fff;
+  padding:8pt 8pt 8pt 8pt;
+  color:#222;
+}
+
+#app>div.page {
+  position:absolute;
+  top:82pt; /*텍스트, 내용이 보이는 페이지 margin. 스크롤 되는 내용 경계*/
+  bottom:34pt;
+  overflow:auto;
+  padding:20pt 25pt;
+  line-height:1.5;/*줄, 요소간격*/
+}
+
+#app * {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+#app /*내부 박스 사이즈 조정*/{
+  width:585px;
+  height:900px;
+  left: 35%;
+  background-color:#fefefe;
+  position:relative;
+  text-align:left;
+  overflow:hidden;
+  font-family:'Pretendard-Regular';
+  font-size:14pt;
+  line-height:1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: 5px;
+   color:#333; /*내부 박스 텍스트 색상*/
+   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -29,23 +181,32 @@ body {
 }
 
 
- .back-button {/*뒤로가기 버튼*/
-      display: inline-block;
-      padding: 10px;
-      cursor: pointer;
-      background-color: #a7e183;
-      border-radius: 50%;
-      transition: background-color 0.3s;
-    }
-    .back-button:hover {
-      background-color: #83e1b7;
-    }
+.back-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #8dd95d;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 25px;
+    left: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button svg {
+    fill: #fff;
+    width: 30px;
+    height: 30px;
+}
 
 
 .content {
     flex: 1;
     overflow-y: auto;
-    padding: 30px 20px;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
@@ -81,6 +242,13 @@ body {
     margin-left: 13px;
     margin-top: 10px;
     overflow: hidden;
+}
+
+.profile-pic img {
+   	width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .comment-pic {
@@ -271,7 +439,7 @@ body {
           width: auto;
           padding: 10px 40px;
           margin-right: 30px;
-          margin-left: 45px;
+          margin-left: 38%;
           background-color: #28a745;
           color: #fff;
           border: none;
