@@ -242,6 +242,9 @@ body {
     color: #555;
     margin-top: 10px;
     margin-left: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 50ch;
 }
 
 .description {
@@ -250,6 +253,9 @@ body {
     font-size: 16px;
     font-weight: bold;
     color: #75b64d;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 50ch;
 }
 
 
@@ -269,7 +275,11 @@ body {
 .notice-content {
     font-size: 14px;
     color: #333;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 50ch;
 }
+
 
 .toggle-box {
     margin-top: 5px;

@@ -298,6 +298,9 @@ body {
     margin-top:5px;
     margin-bottom: 10px;
     min-height: 50px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 50ch;
 }
 
 .comments {
@@ -323,6 +326,9 @@ body {
     font-size: 14px;
     color: #555;
     margin-left: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 50ch;
 }
 /*댓글등록, 삭제버튼*/
 .comment-buttons {

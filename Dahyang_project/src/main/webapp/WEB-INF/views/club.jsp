@@ -56,7 +56,7 @@
 				</c:choose>
             </div>
             <h2 class="group-title">${club.title}</h2>
-            <p class="status">현재 멤버를 모집 중인 모임입니다.</p>
+            <pre class="status">현재 멤버를 모집 중인 모임입니다.</pre>
             
             <div class="description">
                 <span>${club.content}</span>
@@ -92,7 +92,7 @@
 					        <h3 class="notice-title">공지사항</h3>
 					        <div class="notice-content">
 					            <!-- 여기에 공지사항 내용을 동적으로 표시할 부분 -->
-					          <p>${club.notice}</p>
+					          <pre class="notice-content">${club.notice}</pre>
 					        </div>
 					    </div>
 					    <!-- 공지사항 박스 끝 -->
