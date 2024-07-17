@@ -13,7 +13,7 @@
             text-align: center;
         }
 
-        .like-button-container { /* 좋아요 버튼 위치 설정 */
+        .like-button-page { /* 좋아요 버튼 위치 설정 */
             position: absolute;
             right: 40px;
             top: 35px;
@@ -197,7 +197,7 @@
 				    </c:forEach>
                 </div>
             </div>
-        </div>
+
         
         <c:if test="${not empty user}">
         	<!-- 댓글 작성 버튼 -->
@@ -216,7 +216,7 @@
 	        </div>
 	        
 	        <!-- 좋아요 버튼 -->
-	        <div class="like-button-container">
+	        <div class="like-button-page">
 	            <button class="like-button">
 	                <div class="like-wrapper">
 	                    <div class="ripple"></div>
@@ -236,6 +236,7 @@
 	        </div>
 	        <!-- 좋아요 버튼 -->
         </c:if>
+	</div>
     </div>
     </div>
     <!-- 댓글 작성 스크립트 -->

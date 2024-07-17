@@ -391,7 +391,7 @@ body {
 }
 
 /*좋아요 버튼*/
-.like-button-container {
+.like-button-page {
     position: absolute;
     right: 20px;
     top: 720px;
