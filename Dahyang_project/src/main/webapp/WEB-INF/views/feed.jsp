@@ -197,25 +197,8 @@
 				    </c:forEach>
                 </div>
             </div>
-
-        
-        <c:if test="${not empty user}">
-        	<!-- 댓글 작성 버튼 -->
-			<div class="comment-buttons">
-				<button class="btn-add-comment">댓글 작성</button>
-				
-			</div>
-		
-		
-	        <!-- 댓글 작성 폼 -->
-	        <div class="comment-form" style="display: none;">
-	        	<form action="<c:url value='/views/club/${clid}/feed/${fid}/comment/write'/>" method="post">
-	        		<textarea name="content" id="content" rows="3"></textarea>
-	        		<input type="submit" value="작성">
-	        	</form>
-	        </div>
-	        
-	        <!-- 좋아요 버튼 -->
+            <c:if test="${not empty user}">
+            <!-- 좋아요 버튼 -->
 	        <div class="like-button-page">
 	            <button class="like-button">
 	                <div class="like-wrapper">
@@ -235,8 +218,26 @@
 	            </button>
 	        </div>
 	        <!-- 좋아요 버튼 -->
+	        </c:if>
+        </div>
+
+        
+        <c:if test="${not empty user}">
+        	<!-- 댓글 작성 버튼 -->
+			<div class="comment-buttons">
+				<button class="btn-add-comment">댓글 작성</button>
+				
+			</div>
+		
+		
+	        <!-- 댓글 작성 폼 -->
+	        <div class="comment-form" style="display: none;">
+	        	<form action="<c:url value='/views/club/${clid}/feed/${fid}/comment/write'/>" method="post">
+	        		<textarea name="content" id="content" rows="3"></textarea>
+	        		<input type="submit" value="작성">
+	        	</form>
+	        </div>
         </c:if>
-	</div>
     </div>
     </div>
     <!-- 댓글 작성 스크립트 -->
