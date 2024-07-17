@@ -62,7 +62,7 @@
 		    width: 100%;
 		    height: 100%;
 		    display: block;
-		    object-fit: cover; /* 이미지가 영역을 넘지 않도록 조정 */
+		    
 		}
         .prev, .next {
             position: absolute;
