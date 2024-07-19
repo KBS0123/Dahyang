@@ -47,11 +47,20 @@
 </head>
 <body>
      <div id="app">
-    <header>
-        <div class="system-bar">
-            <img src="${pageContext.request.contextPath}/resources/css/Logo.png" height="150" width="130">
-        </div>
-    </header>
+	    <!-- 상단바 -->
+		<header>
+			<div class="left">
+		     <button class="back-button" onclick="history.back()">
+		        <svg viewBox="0 0 24 24" width="26" height="24">
+		          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+		        </svg>
+		    </button>
+		   </div>
+		   <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">${club.title}</span>
+		   <div class="right">
+		  	  </div>
+		</header>
+		<!-- 상단바 -->
     <c:choose>
     	<c:when test="${user.uid == club.uid}">
     		<div id="content">
@@ -80,7 +89,6 @@
 		    </div>
     	</c:otherwise>
     </c:choose>
-    <c:import url="navbar2.jsp"></c:import>
 </div>
 
 </body>

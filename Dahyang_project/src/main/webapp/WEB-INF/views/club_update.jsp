@@ -128,16 +128,24 @@
 </style>
 </head>
 <body>
-    <div class="container">
-        <div class="navbar">
-            <button class="back-button" onclick="history.back()">
-	            <svg viewBox="0 0 24 24">
-	              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-	            </svg>
-	          </button>
-            <span class="group-name">그룹방 관리</span>
-        </div>
+    <div id="app">
+    
+        <!-- 상단바 -->
+		<header>
+			<div class="left">
+		     <button class="back-button" onclick="history.back()">
+		        <svg viewBox="0 0 24 24" width="26" height="24">
+		          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+		        </svg>
+		    </button>
+		   </div>
+		   <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">그룹방 수정</span>
+		   <div class="right">
+		   </div>
+		</header>
+		<!-- 상단바 -->
         
+    <div class="page">
         <div class="content">
             <!-- 그룹방 정보 입력 폼 -->
             <div class="form-container">
@@ -164,6 +172,7 @@
                 </form>
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>

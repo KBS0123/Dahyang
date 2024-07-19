@@ -159,6 +159,9 @@ p span {
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   background: linear-gradient(90deg, #75b64d, #3ed4b9);
   font-family: 'Lato';

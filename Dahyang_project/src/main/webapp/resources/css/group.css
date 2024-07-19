@@ -154,6 +154,9 @@ line-height:1pt;
 }
 
 body {
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
     background: linear-gradient(90deg, #75b64d, #3ed4b9);
     font-family: 'Lato';
     color: #75b64d;
