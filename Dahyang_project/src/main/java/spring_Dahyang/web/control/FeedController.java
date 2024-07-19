@@ -108,6 +108,7 @@ public class FeedController {
 	        // 첫 번째 이미지를 images 테이블에 저장
 	        if (files.length > 0 && !files[0].isEmpty()) {
 	            Images firstImage = new Images();
+	            firstImage.setClid(clid);
 	            firstImage.setFid(fid);
 	            firstImage.setImg(feed.getImg());
 	            imagesMapper.insert(firstImage);
@@ -119,6 +120,8 @@ public class FeedController {
 	            if (!file.isEmpty()) {
 	                String imgFileName = fileService.saveFile(file);
 	                Images image = new Images();
+	                image.setClid(clid);
+	                System.out.println("id= " + image.getClid());
 	                image.setFid(fid);
 	                image.setImg(imgFileName);
 	                imagesMapper.insert(image);
@@ -183,6 +186,8 @@ public class FeedController {
 	                            firstImgFileName = imgFileName;
 	                        }
 	                        Images image = new Images();
+	                        image.setClid(clid);
+	                        System.out.println("id= " + image.getClid());
 	                        image.setFid(feed.getFid());
 	                        image.setImg(imgFileName);
 	                        imagesMapper.insert(image);

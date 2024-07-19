@@ -12,7 +12,9 @@ import javax.persistence.Entity;
 public class Images {
 	
 	private int imgid;
+	private int clid;
 	private int fid;
     private String img;
+    
 
 }

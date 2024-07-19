@@ -6,14 +6,14 @@
 	
 	<resultMap type="Images" id="imagesResultMap">
 		<result property="imgid" column="IMAGE_ID" />
+		<result property="clid" column="CLUB_ID" />
 		<result property="fid" column="PHEED_ID" />
 		<result property="img" column="IMAGES" />
-		<result property="clid" column="CLUB_ID" />
 	</resultMap>
 	
 	<!-- 피드 이미지 등록 -->
 	<insert id="insert" parameterType="Images">
-		insert into dpheed_images values (dpheed_images_seq.nextval, #{fid}, #{img, jdbcType=VARCHAR}, #{clid})
+		insert into dpheed_images values (dpheed_images_seq.nextval, #{clid}, #{fid}, #{img, jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 피드 이미지 수정 -->
