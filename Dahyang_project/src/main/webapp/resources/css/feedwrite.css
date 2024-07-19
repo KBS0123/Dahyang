@@ -119,7 +119,7 @@ line-height:1pt;
   top:82pt; /*텍스트, 내용이 보이는 페이지 margin. 스크롤 되는 내용 경계*/
   bottom:34pt;
   overflow:auto;
-  padding:20pt 25pt;
+  padding:20pt 37pt;
   line-height:1.5;/*줄, 요소간격*/
 }
 
