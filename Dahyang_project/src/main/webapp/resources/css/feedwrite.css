@@ -136,7 +136,6 @@ line-height:1pt;
 #app /*내부 박스 사이즈 조정*/{
   width:585px;
   height:900px;
-  left: 35%;
   background-color:#fefefe;
   position:relative;
   text-align:left;
@@ -154,7 +153,6 @@ line-height:1pt;
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
     background: linear-gradient(90deg, #75b64d, #3ed4b9);
 }
 

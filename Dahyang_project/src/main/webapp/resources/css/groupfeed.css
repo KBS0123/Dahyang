@@ -155,7 +155,6 @@ line-height:1pt;
 
 body {
   text-align:center;
-  padding:0px 339px 20px 632px;
   background: linear-gradient(90deg, #75b64d, #3ed4b9);
   font-family:'Lato';
   color:#f0f0f0;
@@ -240,7 +239,6 @@ body>header>p {
 /*새 피드 작성 버튼*/
 .button {
   padding: 10px 20px;
-  margin-bottom: 50px;
   font-size: 16px;
   cursor: pointer;
   border: none;
@@ -250,9 +248,9 @@ body>header>p {
 }
 
 .button.new-feed {
-  position: fixed;
-  bottom: 50px;
-  right: 700px;
+  position: absolute;
+  bottom: 90px;
+  right: 18px;
 }
 
 .home-button {

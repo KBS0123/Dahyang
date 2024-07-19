@@ -8,11 +8,16 @@
   padding: 0;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 nav {
   position: fixed; /* navbar 위치 고정 */
   bottom: 0; /* 페이지 하단에 정렬 */
-  left: 48.6%; /* 수평 가운데 정렬 */
-  transform: translateX(-50%); /* navbar 정렬을 위한 변형 */
+  transform: translateX; /* navbar 정렬을 위한 변형 */
   width: 556px;
   height: 90px;
   display: grid;

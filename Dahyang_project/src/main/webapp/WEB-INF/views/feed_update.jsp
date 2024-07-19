@@ -76,63 +76,63 @@
 </script>
 </head>
 <body>
-<div id="app">
-    <!-- 상단바 -->
-	<header>
-		<div class="left">
-	     <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}/feed/${fid}"/>'">
-	        <svg viewBox="0 0 24 24" width="26" height="24">
-	          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-	        </svg>
-	    </button>
-	   </div>
-	   <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">피드 수정</span>
-	   <div class="right">
-	   </div>
-	</header>
-	<!-- 상단바 -->
-    
-<div class="page">
-    <div class="content">
-        <div class="feed-item">
-            <div class="feed-header">
-                <div class="profile-pic">
-                    <c:choose>
-                        <c:when test="${not empty feed.uimg}">
-                            <img alt="Profile Image" src="${pageContext.request.contextPath}/resources/imgs/${feed.uimg}">
-                        </c:when>
-                        <c:otherwise>
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-                <span class="nickname">${feed.writer}</span>
-            </div>
-            	<form action="<c:url value='/views/club/${clid}/feed/update'/>" method="post" enctype="multipart/form-data">
-	                <div class="image-placeholder">
-	                    <div class="file-upload-wrapper">
-	                        <input type="file" id="imageUpload" name="img[]" accept="image/*" multiple>
-	                        <label for="imageUpload">+</label>
-	                    </div>
-	                    <div class="slider">
-	                        <div class="inner-slider"></div>
-	                    </div>
-	                </div>
-	                <div class="form-container">
-	                <textarea id="content" name="content" placeholder="내용을 입력하세요">${feed.content}</textarea>
-	                <input type="hidden" id="fid" name="fid" value="${feed.fid}">
-	                <input type="hidden" id="clid" name="clid" value="${feed.clid}">
-	                <input type="hidden" id="uid" name="uid" value="${user.uid}">
-	                <input type="hidden" id="writer" name="writer" value="${feed.writer}">
-	                <input type="hidden" id="uimg" name="uimg" value="${feed.uimg}">
-	                <input type="hidden" id="likes" name="likes" value="0">
-	                <button type="submit">수정하기</button>
-	                <button type="button" onclick="location.href='<c:url value="/views/club/${clid}/feed/delete/${fid}"/>'">삭제하기</button>
-	                </div>
-	            </form>
-        </div> 
-    </div>
-</div>
-</div>
+	<div id="app">
+	    <!-- 상단바 -->
+		<header>
+			<div class="left">
+		     <button class="back-button" onclick="location.href='<c:url value="/views/club/${clid}/feed/${fid}"/>'">
+		        <svg viewBox="0 0 24 24" width="26" height="24">
+		          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+		        </svg>
+		    </button>
+		   </div>
+		   <span style= "margin-left: 10px; font-weight: bold; color: white; font-size: 20px;">피드 수정</span>
+		   <div class="right">
+		   </div>
+		</header>
+		<!-- 상단바 -->
+	    
+		<div class="page">
+		    <div class="content">
+		        <div class="feed-item">
+		            <div class="feed-header">
+		                <div class="profile-pic">
+		                    <c:choose>
+		                        <c:when test="${not empty feed.uimg}">
+		                            <img alt="Profile Image" src="${pageContext.request.contextPath}/resources/imgs/${feed.uimg}">
+		                        </c:when>
+		                        <c:otherwise>
+		                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+		                        </c:otherwise>
+		                    </c:choose>
+		                </div>
+		                <span class="nickname">${feed.writer}</span>
+		            </div>
+		            	<form action="<c:url value='/views/club/${clid}/feed/update'/>" method="post" enctype="multipart/form-data">
+			                <div class="image-placeholder">
+			                    <div class="file-upload-wrapper">
+			                        <input type="file" id="imageUpload" name="img[]" accept="image/*" multiple>
+			                        <label for="imageUpload">+</label>
+			                    </div>
+			                    <div class="slider">
+			                        <div class="inner-slider"></div>
+			                    </div>
+			                </div>
+			                <div class="form-container">
+			                <textarea id="content" name="content" placeholder="내용을 입력하세요">${feed.content}</textarea>
+			                <input type="hidden" id="fid" name="fid" value="${feed.fid}">
+			                <input type="hidden" id="clid" name="clid" value="${feed.clid}">
+			                <input type="hidden" id="uid" name="uid" value="${user.uid}">
+			                <input type="hidden" id="writer" name="writer" value="${feed.writer}">
+			                <input type="hidden" id="uimg" name="uimg" value="${feed.uimg}">
+			                <input type="hidden" id="likes" name="likes" value="0">
+			                <button type="submit">수정하기</button>
+			                <button type="button" onclick="location.href='<c:url value="/views/club/${clid}/feed/delete/${fid}"/>'">삭제하기</button>
+			                </div>
+			            </form>
+		        </div> 
+		    </div>
+		</div>
+	</div>
 </body>
 </html>
