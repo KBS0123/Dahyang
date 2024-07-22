@@ -56,7 +56,6 @@
 				</c:choose>
             </div>
             <h2 class="group-title">${club.title}</h2>
-            <pre class="status">현재 멤버를 모집 중인 모임입니다.</pre>
             
             <div class="description">
                 <span>${club.content}</span>
