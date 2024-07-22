@@ -41,7 +41,7 @@
 	</delete>
 	
 	<select id="selectAll" parameterType="int" resultMap="feedResultMap">
-		select * from dpheed where club_id=#{clid}
+		select * from dpheed where club_id=#{clid} order by pheed_id desc
 	</select>
 	
 	<select id="selectByContent" parameterType="String" resultMap="feedResultMap">
