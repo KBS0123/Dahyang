@@ -32,7 +32,7 @@
 	</select>
 	
 	<select id="findMembers" parameterType="int" resultMap="memberResultMap">
-		select * from dclub_members where club_id=#{clid}
+		select * from dclub_members where club_id=#{clid} order by memeber_level
 	</select>
 	
 </mapper>
