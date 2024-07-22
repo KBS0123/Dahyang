@@ -8,6 +8,7 @@ public interface FeedMapper {
 	
 	public int insert(Feed feed);
 	public int update(Feed feed);
+	public int deleteLikes(int fid);
 	public int deleteImages(int fid);
 	public int deleteComment(int fid);
 	public int deleteFeed(int fid);

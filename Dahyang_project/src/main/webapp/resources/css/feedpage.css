@@ -759,3 +759,15 @@ body {
     height: 24px;
     fill: currentColor;
 }
+
+/* 좋아요 버튼 스타일 */
+.heart-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc; /* 기본 빈 하트 색상 */
+}
+
+.heart-icon.liked {
+    color: red; /* 좋아요 누른 하트 색상 */
+}
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring_Dahyang.feed.repository.LikesMapper">
+	
+	<resultMap type="Likes" id="likesResultMap">
+		<result property="lid" column="LIKE_ID" />
+		<result property="fid" column="PHEED_ID" />
+		<result property="clid" column="CLUB_ID" />
+		<result property="uid" column="USER_ID" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="Likes">
+		insert into dpheed_like values (dpheed_like_seq.nextval, #{fid}, #{clid}, #{uid})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from dpheed_like where like_id=#{lid}
+	</delete>
+	
+	<select id="selectByUserAndFeed" resultMap="likesResultMap" parameterType="map">
+        select * from dpheed_like where USER_ID=#{uid} and PHEED_ID=#{fid}
+    </select>
+	
+</mapper>

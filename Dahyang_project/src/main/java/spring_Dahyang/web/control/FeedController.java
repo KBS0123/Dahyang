@@ -1,7 +1,9 @@
 package spring_Dahyang.web.control;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,13 +14,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import spring_Dahyang.file.FileService;
 import spring_Dahyang.file.FileServiceImpl;
+import spring_Dahyang.likes.service.LikesService;
 import spring_Dahyang.user.model.User;
 import spring_Dahyang.club.model.Member;
 import spring_Dahyang.club.repository.MemberMapper;
@@ -48,6 +53,9 @@ public class FeedController {
 	@Autowired
 	private CommentMapper commentMapper;
 	
+	 @Autowired
+	 private LikesService likesService;
+	
 	@GetMapping()
 	public ModelAndView getFeedView(@PathVariable int clid) {
 		ModelAndView mav = new ModelAndView("feed_list");
@@ -58,6 +66,19 @@ public class FeedController {
 		return mav;
 	}
 	
+	@PostMapping("/like")
+    @ResponseBody
+    public Map<String, Boolean> toggleLike(@RequestBody Map<String, Integer> likeData) {
+        int uid = likeData.get("uid");
+        int fid = likeData.get("fid");
+        int clid = likeData.get("clid");
+        boolean liked = likesService.toggleLike(uid, fid, clid);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("liked", liked);
+        return response;
+    }
+	
 	@GetMapping("/{fid}")
 	public String getFeedView(@PathVariable int clid, @PathVariable int fid, HttpServletRequest request, HttpSession session, Model model) {
 		Feed feed = feedMapper.selectById(fid);
@@ -67,6 +88,14 @@ public class FeedController {
 		model.addAttribute("clid", clid);
 		model.addAttribute("comments", comment);
 		model.addAttribute("images", images);
+		
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			model.addAttribute("isLiked", false);
+	    } else {
+	        boolean isLiked = likesService.isLiked(user.getUid(), fid);
+	        model.addAttribute("isLiked", isLiked);
+	    }
 		
 		return "feed";
 	}
@@ -220,6 +249,7 @@ public class FeedController {
 			Feed feed = feedMapper.selectById(fid);
 			
 			if (user.getUid() == feed.getUid()) {
+				feedMapper.deleteLikes(fid);
 				feedMapper.deleteImages(fid);
 				feedMapper.deleteComment(fid);
 				feedMapper.deleteFeed(fid);

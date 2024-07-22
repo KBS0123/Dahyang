@@ -12,18 +12,22 @@
 		<result property="content" column="CONTENT" />
 		<result property="img" column="IMAGES" />
 		<result property="uimg" column="USER_IMAGES" />
-		<result property="likes" column="LIKE_COUNT" />
 	</resultMap>
 	
 	<!-- 피드 등록 -->
 	<insert id="insert" parameterType="Feed">
-		insert into dpheed values (dpheed_seq.nextval, #{clid}, #{uid}, #{writer}, #{content}, #{img, jdbcType=VARCHAR}, #{uimg, jdbcType=VARCHAR}, #{likes})
+		insert into dpheed values (dpheed_seq.nextval, #{clid}, #{uid}, #{writer}, #{content}, #{img, jdbcType=VARCHAR}, #{uimg, jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 피드 수정 -->
 	<update id="update" parameterType="Feed">
 		update dpheed set content=#{content}, images=#{img, jdbcType=VARCHAR} where pheed_id=#{fid}
 	</update>
+	
+	<!-- 피드 삭제 -->
+	<delete id="deleteLikes" parameterType="int">
+		delete from dpheed_like where pheed_id=#{fid}
+	</delete>
 	
 	<!-- 피드 삭제 -->
 	<delete id="deleteImages" parameterType="int">

@@ -225,6 +225,14 @@
 	            </button>
 	        </div>
 	        <!-- 좋아요 버튼 -->
+	        <c:choose>
+		        <c:when test="${isLiked}">
+		            <button id="likeButton" class="liked" data-fid="${feed.fid}" data-clid="${clid}" data-uid="${user.uid}">❤️ 좋아요 취소</button>
+		        </c:when>
+		        <c:otherwise>
+		            <button id="likeButton" class="not-liked" data-fid="${feed.fid}" data-clid="${clid}" data-uid="${user.uid}">♡ 좋아요</button>
+		        </c:otherwise>
+		    </c:choose>
 	        </c:if>
         </div>
 
@@ -281,5 +289,6 @@
             showSlides(slideIndex += n);
         }
 	</script>
+	<script src="${pageContext.request.contextPath}/resources/js/likebutton.js"></script>
 </body>
 </html>
