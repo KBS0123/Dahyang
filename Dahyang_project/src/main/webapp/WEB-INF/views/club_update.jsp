@@ -9,19 +9,18 @@
 <link href="${pageContext.request.contextPath}/resources/css/group.css" rel="stylesheet" type="text/css">
 <title>그룹방 관리(방장)</title>
 <script type="text/javascript">
-   function readURL(input) {
-      var file = input.files[0]; 
-      console.log(file);
-      if (file !== undefined) {
-         var reader = new FileReader();
-         reader.readAsDataURL(file);
-         reader.onload = function (e) { 
-            console.log(e.target);
-            console.log(e.target.result);
-            $('#preview').attr('src', e.target.result);
-         };
-      }
-  }  
+function readURL(input) {
+    var file = input.files[0];
+    if (file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+            var preview = document.getElementById('preview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+    }
+}
 </script>
 <style>
 
@@ -153,6 +152,7 @@
                 <form action="<c:url value='/views/club/update'/>" method="post" enctype="multipart/form-data">
                 	<!-- 이미지 업로드 부분 -->
 		            <div class="image-placeholder">
+		            	<img id="preview" src="" alt="이미지 미리보기" style="display:none; width: 100%; height: 100%; object-fit: cover;"/>
 		                <div class="file-upload-wrapper">
 		                    <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);">
 		                    <label for="img">+</label>
