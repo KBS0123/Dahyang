@@ -22,7 +22,6 @@
 	    }
 	}
 </script>
-	</script>
 <style type="text/css">
 .content::-webkit-scrollbar{
 	display: none;

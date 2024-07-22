@@ -65,19 +65,18 @@
     
   </style>
   <script type="text/javascript">
-   function readURL(input) {
-      var file = input.files[0]; 
-      console.log(file);
-      if (file !== undefined) {
-         var reader = new FileReader();
-         reader.readAsDataURL(file);
-         reader.onload = function (e) { 
-            console.log(e.target);
-            console.log(e.target.result);
-            $('#preview').attr('src', e.target.result);
-         };
-      }
-  }  
+  function readURL(input) {
+	    var file = input.files[0];
+	    if (file) {
+	        var reader = new FileReader();
+	        reader.readAsDataURL(file);
+	        reader.onload = function (e) {
+	            var preview = document.getElementById('preview');
+	            preview.src = e.target.result;
+	            preview.style.display = 'block';
+	        };
+	    }
+	}
 </script>
 </head>
 <body>
@@ -109,29 +108,29 @@
         <div class="profile-details">
           <form action="<c:url value='/views/users/profile_update'/>" method="post" enctype="multipart/form-data">
           	<c:choose>
-				<c:when test="${not empty user.images}">
-			    	<div class="profile-img">
-			      		<img src="${pageContext.request.contextPath}/resources/imgs/${user.images}">
-			    	</div>
-			    	<input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);" style="display: none;">
-			      	<label for="img" class="custom-file-upload">
-				        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-						    <path d="M12 2C11.45 2 11 2.45 11 3V11H3C2.45 11 2 11.45 2 12C2 12.55 2.45 13 3 13H11V21C11 21.55 11.45 22 12 22C12.55 22 13 21.55 13 21V13H21C21.55 13 22 12.55 22 12C22 11.45 21.55 11 21 11H13V3C13 2.45 12.55 2 12 2Z"/>
-						</svg>
-				    </label>
-		    	</c:when>
-		    	<c:otherwise>
-				    <div class="profile-img">
-				        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
-				    </div>
-				    <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);" style="display: none;">
-				    <label for="img" class="custom-file-upload">
-				        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-						    <path d="M12 2C11.45 2 11 2.45 11 3V11H3C2.45 11 2 11.45 2 12C2 12.55 2.45 13 3 13H11V21C11 21.55 11.45 22 12 22C12.55 22 13 21.55 13 21V13H21C21.55 13 22 12.55 22 12C22 11.45 21.55 11 21 11H13V3C13 2.45 12.55 2 12 2Z"/>
-						</svg>
-				    </label>
-				</c:otherwise>
-		    </c:choose>
+                <c:when test="${not empty user.images}">
+                    <div class="profile-img">
+                        <img src="${pageContext.request.contextPath}/resources/imgs/${user.images}">
+                    </div>
+                    <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);" style="display: none;">
+                    <label for="img" class="custom-file-upload">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 2C11.45 2 11 2.45 11 3V11H3C2.45 11 2 11.45 2 12C2 12.55 2.45 13 3 13H11V21C11 21.55 11.45 22 12 22C12.55 22 13 21.55 13 21V13H21C21.55 13 22 12.55 22 12C22 11.45 21.55 11 21 11H13V3C13 2.45 12.55 2 12 2Z"/>
+                        </svg>
+                    </label>
+                </c:when>
+                <c:otherwise>
+                    <div class="profile-img">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" id="preview">
+                    </div>
+                    <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);" style="display: none;">
+                    <label for="img" class="custom-file-upload">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 2C11.45 2 11 2.45 11 3V11H3C2.45 11 2 11.45 2 12C2 12.55 2.45 13 3 13H11V21C11 21.55 11.45 22 12 22C12.55 22 13 21.55 13 21V13H21C21.55 13 22 12.55 22 12C22 11.45 21.55 11 21 11H13V3C13 2.45 12.55 2 12 2Z"/>
+                        </svg>
+                    </label>
+                </c:otherwise>
+            </c:choose>
             <p>
               <label for="name">닉네임:</label>
               <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요">
