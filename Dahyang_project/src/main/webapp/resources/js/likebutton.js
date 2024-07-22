@@ -16,11 +16,9 @@ document.getElementById('likeButton').addEventListener('click', function() {
 		    if (data.liked) {
 		        this.classList.remove('not-liked');
 		        this.classList.add('liked');
-		        this.innerHTML = '❤️ 좋아요 취소';
 		    } else {
 		        this.classList.remove('liked');
 		        this.classList.add('not-liked');
-		        this.innerHTML = '♡ 좋아요';
 		    }
 		})
 		.catch(error => {
