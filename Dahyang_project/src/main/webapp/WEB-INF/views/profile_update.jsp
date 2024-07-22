@@ -110,7 +110,7 @@
           	<c:choose>
                 <c:when test="${not empty user.images}">
                     <div class="profile-img">
-                        <img src="${pageContext.request.contextPath}/resources/imgs/${user.images}">
+                        <img src="${pageContext.request.contextPath}/resources/imgs/${user.images}" id="preview">
                     </div>
                     <input type="file" id="img" name="img" accept="image/*" onchange="readURL(this);" style="display: none;">
                     <label for="img" class="custom-file-upload">
