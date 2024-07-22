@@ -225,14 +225,16 @@
 	            </button>
 	        </div>
 	        <!-- 좋아요 버튼 -->
-	        <c:choose>
-		        <c:when test="${isLiked}">
-		            <button id="likeButton" class="liked" data-fid="${feed.fid}" data-clid="${clid}" data-uid="${user.uid}">❤️ 좋아요 취소</button>
-		        </c:when>
-		        <c:otherwise>
-		            <button id="likeButton" class="not-liked" data-fid="${feed.fid}" data-clid="${clid}" data-uid="${user.uid}">♡ 좋아요</button>
-		        </c:otherwise>
-		    </c:choose>
+	        <c:if test="${feed.uid ne user.uid}">
+		        <c:choose>
+			        <c:when test="${isLiked}">
+			            <button id="likeButton" class="liked" data-fid="${feed.fid}" data-clid="${clid}" data-uid="${user.uid}">❤️ 좋아요 취소</button>
+			        </c:when>
+			        <c:otherwise>
+			            <button id="likeButton" class="not-liked" data-fid="${feed.fid}" data-clid="${clid}" data-uid="${user.uid}">♡ 좋아요</button>
+			        </c:otherwise>
+			    </c:choose>
+		    </c:if>
 	        </c:if>
         </div>
 
