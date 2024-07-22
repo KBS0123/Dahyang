@@ -74,7 +74,7 @@
 		from dclub c
 		join dclub_members m on c.club_id = m.club_id
 		join duser u on m.user_id = u.user_id
-		where u.user_id=#{uid}
+		where u.user_id=#{uid} order by m.memeber_level desc
 	</select>
 	
 	<!-- 모임방 선택 -->
