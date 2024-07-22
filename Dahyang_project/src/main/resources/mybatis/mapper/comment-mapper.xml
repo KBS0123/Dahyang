@@ -30,7 +30,7 @@
 	</delete>
 	
 	<select id="selectAll" parameterType="int" resultMap="commentResultMap">
-		select * from dpheed_comment where pheed_id=#{fid}
+		select * from dpheed_comment where pheed_id=#{fid} order by pheed_comment_id desc
 	</select>
 	
 	<!-- 피드 댓글 선택 -->

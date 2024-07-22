@@ -27,7 +27,7 @@
     </delete>
     
     <select id="selectAll" parameterType="int" resultMap="chatResultMap">
-        select * from dchat where club_id=#{clid}
+        select * from dchat where club_id=#{clid} order by content_id 
     </select>
     
     <select id="selectById" parameterType="int" resultMap="chatResultMap">
