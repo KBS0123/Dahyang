@@ -15,6 +15,7 @@ public interface FeedMapper {
 	public Feed selectByContent(String content);
 	public List<Feed> selectAll(int clid);
 	public List<Feed> selectAllRandom();
+	public List<Feed> selectAllByLikes();
 	public Feed selectById(int fid);
 	
 }

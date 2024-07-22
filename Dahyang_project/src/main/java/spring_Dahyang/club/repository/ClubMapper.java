@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
 import spring_Dahyang.club.model.Club;
+import spring_Dahyang.feed.model.Feed;
 
 public interface ClubMapper {
 	
@@ -37,6 +38,8 @@ public interface ClubMapper {
 	public Club selectById(int clid);
 	
 	public Club selectByTitle(String title);
+	
+	public List<Club> selectAllByLikes();
 	
 	public Club findUserId(int uid);
 	

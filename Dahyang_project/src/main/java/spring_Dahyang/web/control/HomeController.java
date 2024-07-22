@@ -28,11 +28,11 @@ public class HomeController {
 	@GetMapping
 	public String getHomeView(HttpServletRequest request, Model model) {
 		List<Club> clubs = clubMapper.selectAll();
-		List<Club> randomClubs = clubMapper.selectAllRandom();
-		List<Feed> randomFeeds = feedMapper.selectAllRandom();
+		List<Club> LClubs = clubMapper.selectAllByLikes();
+		List<Feed> Feeds = feedMapper.selectAllByLikes();
 		model.addAttribute("clubs", clubs);
-		model.addAttribute("randomClubs", randomClubs);
-		model.addAttribute("randomFeeds", randomFeeds);
+		model.addAttribute("LClubs", LClubs);
+		model.addAttribute("Feeds", Feeds);
 		
 		return "main";
 	}

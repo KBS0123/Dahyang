@@ -48,6 +48,31 @@
 		select * from dpheed where club_id=#{clid} order by pheed_id desc
 	</select>
 	
+	<select id="selectAllByLikes" parameterType="int" resultMap="feedResultMap">
+	    <![CDATA[ SELECT * 
+	    FROM (
+	        SELECT 
+	            p.PHEED_ID, 
+	            p.CLUB_ID, 
+	            p.USER_ID, 
+	            p.WRITER, 
+	            p.CONTENT, 
+	            p.IMAGES, 
+	            p.USER_IMAGES, 
+	            COALESCE(l.like_count, 0) AS like_count
+	        FROM DPHEED p
+	        LEFT JOIN (
+	            SELECT 
+	                PHEED_ID, 
+	                COUNT(*) AS like_count
+	            FROM DPHEED_LIKE
+	            GROUP BY PHEED_ID
+	        ) l ON p.PHEED_ID = l.PHEED_ID
+	        ORDER BY like_count DESC
+	    )
+	    WHERE ROWNUM <= 10 ]]>
+	</select>
+	
 	<select id="selectByContent" parameterType="String" resultMap="feedResultMap">
 		select * from dpheed where content=#{content}
 	</select>

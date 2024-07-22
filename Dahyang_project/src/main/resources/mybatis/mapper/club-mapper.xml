@@ -70,6 +70,30 @@
 		<![CDATA[ select * from (select * from dclub order by club_id desc) where rownum <= 10 ]]>
 	</select>
 	
+	<select id="selectAllByLikes" parameterType="int" resultMap="clubResultMap">
+	    <![CDATA[ SELECT * 
+	    FROM (
+	        SELECT  
+	            c.CLUB_ID, 
+	            c.USER_ID, 
+	            c.TITLE, 
+	            c.CONTENT, 
+	            c.NOTICE, 
+	            c.IMAGES, 
+	            COALESCE(l.like_count, 0) AS like_count
+	        FROM DCLUB c
+	        LEFT JOIN (
+	            SELECT 
+	                CLUB_ID, 
+	                COUNT(*) AS like_count
+	            FROM DPHEED_LIKE
+	            GROUP BY CLUB_ID
+	        ) l ON c.CLUB_ID = l.CLUB_ID
+	        ORDER BY like_count DESC
+	    )
+	    WHERE ROWNUM <= 10 ]]>
+	</select>
+	
 	<select id="selectAllRandom" resultMap="clubResultMap">
 		<![CDATA[ select * from (select * from dclub order by dbms_random.value) where rownum <= 10 ]]>
 	</select>

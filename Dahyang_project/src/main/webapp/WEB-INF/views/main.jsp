@@ -83,7 +83,7 @@
       <div class="owl-wrapper">
         <div class="loop owl-carousel owl-theme">
           
-          <c:forEach var="club" items="${randomClubs}">
+          <c:forEach var="club" items="${LClubs}">
 	          <article class="card" onclick="location.href='<c:url value="/views/club/${club.clid}"/>'">
 	            <div class="card__content">
 	              <c:choose>
@@ -110,7 +110,7 @@
       <div class="owl-wrapper">
         <div class="loop owl-carousel owl-theme">
           
-          <c:forEach var="feed" items="${randomFeeds}">
+          <c:forEach var="feed" items="${Feeds}">
 	          <article class="card" onclick="location.href='<c:url value="/views/club/${feed.clid}/feed/${feed.fid}"/>'">
 	            <div class="card__content">
 	              <c:choose>
