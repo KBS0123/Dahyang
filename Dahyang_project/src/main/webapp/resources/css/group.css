@@ -252,10 +252,10 @@ body {
 .description {
 	margin-top: 20px;
     margin-left: 20px;
+    margin-bottom: 20px;
     font-size: 16px;
     font-weight: bold;
     color: #75b64d;
-    white-space: pre-wrap;
     word-wrap: break-word;
     max-width: 50ch;
 }
