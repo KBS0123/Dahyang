@@ -1,9 +1,16 @@
 @charset "UTF-8";
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
 .chat-icon {
   position: fixed;
   bottom: 110px; /* 화면 하단과의 거리 */
-  right: 710px; /* 화면 우측과의 거리 */
+  margin-left: 500px;
   z-index: 1000;
   background-color: #4db679;
   width: 56px;
