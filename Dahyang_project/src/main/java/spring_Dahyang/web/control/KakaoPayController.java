@@ -99,6 +99,8 @@ public class KakaoPayController {
                 e.printStackTrace();
             }
         }
+        
+        Club clubs = clubMapper.selectByTitle(title);
 
         // 세션에서 모임 정보 삭제
         session.removeAttribute("img");
@@ -106,6 +108,6 @@ public class KakaoPayController {
         session.removeAttribute("content");
         session.removeAttribute("notice");
 
-        return "redirect:/views/";
+        return "redirect:/views/club/" + clubs.getClid();
     }
 }
