@@ -35,7 +35,7 @@
         </div>
         <img src="${pageContext.request.contextPath}/resources/css/Logo.png"
              height="150" width="130">
-        <div class="center-text">프로필</div>
+        <div class="center-text">다양한 사람들과 다양한 취미를 향유하다</div>
       </header>
       <!-- 상단바 -->
     
