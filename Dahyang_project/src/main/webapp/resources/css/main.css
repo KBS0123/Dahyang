@@ -320,3 +320,30 @@ body>header>p {
   width:20%;
   text-align:right;
 }
+
+.search {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+.search input {
+  width: 60%;
+  height: 30px;
+  font-size: 18px;
+  border: none;
+  border-bottom: 1px black solid;
+}
+
+input[type="search"]::placeholder {
+    font-size: 14px; /* 크기를 작게 설정 */
+    color: #cccccc; /* 연한 회색으로 설정 */
+  }
+
+.search button {
+  font-size: 18px;
+  border: none;
+  background-color: white;
+  width: 50px;
+  height: 30px;
+  cursor: pointer;
+}
