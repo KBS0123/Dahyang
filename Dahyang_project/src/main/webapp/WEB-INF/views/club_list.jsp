@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>그룹방(로그인시)</title>
+    <title>그룹방 리스트</title>
     <link href="${pageContext.request.contextPath}/resources/css/grouplist.css" rel="stylesheet" type="text/css">
     <style>
         /* 중앙 정렬을 위한 CSS 추가 */

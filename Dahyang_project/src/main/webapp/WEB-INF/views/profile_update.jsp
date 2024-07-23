@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MyPage(user profile)</title>
+<title>프로필 수정</title>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet" type="text/css">
   <style>
   #app > header .center-text {

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>피드 페이지</title>
+    <title>그룹방 검색</title>
     <link href="${pageContext.request.contextPath}/resources/css/groupfeed.css" rel="stylesheet" type="text/css">
 	<!-- 폰트 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,7 @@
 				</button>
 			    <!-- 홈 버튼 -->
 		      </div>
-		      <span style= "margin-right: 110px; font-weight: bold; color: white; font-size: 20px;">'${keyword}'</span>
+		      <span style= "margin-right: 110px; font-weight: bold; color: white; font-size: 20px;">그룹방 검색</span>
 		      <div class="right">
 		        <span class="ion-navicon"></span>
 	      	</div>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>채팅 페이지</title>
+    <title>채팅</title>
     <link href="${pageContext.request.contextPath}/resources/css/chat.css" rel="stylesheet" type="text/css">
     <style type="text/css">
         body, html {

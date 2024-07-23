@@ -69,11 +69,11 @@
 		        </div>
 		
 		        <div class="button-container">
-		            <button class="button" onclick="location.href='<c:url value="/views/club/update/${clid}"/>'">모임 수정</button>
+		            <button class="button" onclick="location.href='<c:url value="/views/club/update/${clid}"/>'">그룹방 수정</button>
 		        </div>
 		
 		        <div class="button-container">
-		            <button class="button" onclick="location.href='<c:url value="/views/club/delete/${clid}"/>'">모임 삭제</button>
+		            <button class="button" onclick="location.href='<c:url value="/views/club/delete/${clid}"/>'">그룹방 삭제</button>
 		        </div>
 		    </div>
     	</c:when>
@@ -84,7 +84,7 @@
 		        </div>
 		
 		        <div class="button-container">
-		            <button class="button" onclick="location.href='<c:url value="/views/club/${clid}/remove/${user.uid}"/>'">모임 나가기</button>
+		            <button class="button" onclick="location.href='<c:url value="/views/club/${clid}/remove/${user.uid}"/>'">그룹방 나가기</button>
 		        </div>
 		    </div>
     	</c:otherwise>

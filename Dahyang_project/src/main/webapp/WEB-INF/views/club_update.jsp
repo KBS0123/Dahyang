@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="${pageContext.request.contextPath}/resources/css/group.css" rel="stylesheet" type="text/css">
-<title>그룹방 관리(방장)</title>
+<title>그룹방 수정</title>
 <script type="text/javascript">
 function readURL(input) {
     var file = input.files[0];

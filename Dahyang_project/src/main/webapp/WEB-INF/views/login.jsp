@@ -1,23 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" type="text/css">
-<meta charset="EUC-KR">
-<title>Login</title>
+<meta charset="UTF-8">
+<title>로그인</title>
 </head>
 <body>
 	<div class="container">
 	
   <div class="screen">
-  	<!-- �ڷΰ��� ��ư(�����ڵ�) -->
+  	<!-- 뒤로가기 버튼(유니코드) -->
 	<a href="<c:url value='/views/users/profile'/>" class="previous round">&#8249;</a>
-	<!-- �ڷΰ��� ��ư(�����ڵ�) -->
+	<!-- 뒤로가기 버튼(유니코드) -->
     <div class="screen__content">
       <form class="login" action="<c:url value='/views/login'/>" method="post">
-       <h3>�پ��� ���, �پ��� ����.</h3>
+       <h3>다양한 취미, 다양한 만남.</h3>
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
           <input type="email" class="login__input" name="email" id="email" placeholder="Email">

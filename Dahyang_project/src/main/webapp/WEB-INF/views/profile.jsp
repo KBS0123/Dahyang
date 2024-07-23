@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MyPage(user profile)</title>
+<title>프로필</title>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css?after" rel="stylesheet" type="text/css">
 
 

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>피드 페이지</title>
+    <title>피드 리스트</title>
     <link href="${pageContext.request.contextPath}/resources/css/groupfeed.css" rel="stylesheet" type="text/css">
 	<!-- 폰트 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">

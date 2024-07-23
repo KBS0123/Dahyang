@@ -6,7 +6,7 @@
 <head>
 <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
-<title>signup</title>
+<title>회원가입</title>
 </head>
 <body>
 	<div class="container">
