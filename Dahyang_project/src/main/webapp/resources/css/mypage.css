@@ -190,8 +190,10 @@ p span {
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  min-height: 100vh;
   background: linear-gradient(90deg, #75b64d, #3ed4b9);
   font-family: 'Lato';
   color: #f0f0f0;

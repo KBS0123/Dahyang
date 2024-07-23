@@ -157,6 +157,5 @@
     </div>
     <!--페이지 내용-->
   </div>
-  <jsp:include page="/views/navbar.jsp" />
 </body>
 </html>
