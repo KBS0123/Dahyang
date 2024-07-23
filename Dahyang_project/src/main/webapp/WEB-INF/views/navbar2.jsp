@@ -115,7 +115,7 @@
 
 <script>
     function findGroup() {
-      alert("모임방에 가입해주세요!");
+      alert("그룹방에 가입해주세요!");
       window.location.href = "<c:url value='/views/club/${clid}'/>";
     }
   </script>

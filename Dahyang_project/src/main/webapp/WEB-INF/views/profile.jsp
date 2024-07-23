@@ -46,7 +46,6 @@
         <div class="profile-img">
           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
         </div>
-        <h2>User Name</h2>
         <p>회원가입하고 편하게 찾으세요 :)</p>
     
         <div id="container">
