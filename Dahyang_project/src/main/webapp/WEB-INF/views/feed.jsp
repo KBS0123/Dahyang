@@ -216,6 +216,7 @@
 									</svg>
 				                </div>
 				            </button>
+				            <span class="like-count">좋아요: ${likeCount}개</span>
 				        </c:when>
 				        <c:otherwise>
 				        	<button id="likeButton" class="like-button not-liked" data-fid="${feed.fid}" data-clid="${clid}" data-uid="${user.uid}">
@@ -225,6 +226,7 @@
 				                    </svg>
 				                </div>
 				            </button>
+				            <span class="like-count">좋아요: ${likeCount}개</span>
 				        </c:otherwise>
 				    </c:choose>
 		        </div>
@@ -239,6 +241,7 @@
 				            </svg>
 				        </div>
 				    </button>
+				    <span class="like-count">좋아요: ${likeCount}개</span>
 	        	</div>
 	        </c:if>
         </div>

@@ -91,7 +91,7 @@
 					        <h3 class="notice-title">공지사항</h3>
 					        <div class="notice-content">
 					            <!-- 여기에 공지사항 내용을 동적으로 표시할 부분 -->
-					          <span class="notice-content">${club.notice}</span>
+					          <pre class="notice-content">${club.notice}</pre>
 					        </div>
 					    </div>
 					    <!-- 공지사항 박스 끝 -->

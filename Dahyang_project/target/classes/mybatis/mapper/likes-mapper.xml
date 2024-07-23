@@ -22,5 +22,9 @@
 	<select id="selectByUserAndFeed" resultMap="likesResultMap" parameterType="map">
         select * from dpheed_like where USER_ID=#{uid} and PHEED_ID=#{fid}
     </select>
+    
+    <select id="likeCount" parameterType="int" resultType="int">
+        select count(like_id) as like_count from dpheed_like where PHEED_ID=#{fid}
+    </select>
 	
 </mapper>

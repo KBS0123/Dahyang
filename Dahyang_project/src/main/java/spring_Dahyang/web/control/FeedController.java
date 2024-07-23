@@ -33,6 +33,7 @@ import spring_Dahyang.feed.model.Images;
 import spring_Dahyang.feed.repository.CommentMapper;
 import spring_Dahyang.feed.repository.FeedMapper;
 import spring_Dahyang.feed.repository.ImagesMapper;
+import spring_Dahyang.feed.repository.LikesMapper;
 
 @Controller
 @RequestMapping("/views/club/{clid}/feed")
@@ -53,8 +54,11 @@ public class FeedController {
 	@Autowired
 	private CommentMapper commentMapper;
 	
-	 @Autowired
-	 private LikesService likesService;
+	@Autowired
+	private LikesMapper likesMapper;
+	
+	@Autowired
+	private LikesService likesService;
 	
 	@GetMapping()
 	public ModelAndView getFeedView(@PathVariable int clid) {
@@ -84,10 +88,12 @@ public class FeedController {
 		Feed feed = feedMapper.selectById(fid);
 		List<Comment> comment = commentMapper.selectAll(fid);
 		List<Images> images = imagesMapper.selectAll(fid);
+		int likeCount = likesMapper.likeCount(fid);
 		model.addAttribute("feed", feed);
 		model.addAttribute("clid", clid);
 		model.addAttribute("comments", comment);
 		model.addAttribute("images", images);
+		model.addAttribute("likeCount", likeCount);
 		
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
