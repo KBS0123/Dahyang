@@ -47,4 +47,6 @@ public interface ClubMapper {
 	
 	public Optional<Club> findById(int clid);
 	
+	public List<Club> searchTitle(String title);
+	
 }

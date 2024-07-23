@@ -205,5 +205,16 @@ public class ClubController {
 		
 		return session.getServletContext().getContextPath() + "/views/test";
 	}
+	
+	@PostMapping("/search")
+	public ModelAndView getSearchResult(HttpServletRequest request, HttpSession session, Model model) {
+		String keyword= request.getParameter("search");
+		
+		ModelAndView mav = new ModelAndView("search");
+	    mav.addObject("clubs", clubMapper.searchTitle(keyword));
+	    mav.addObject("keyword", keyword);
+		return mav;
+		
+	}
 
 }

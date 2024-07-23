@@ -126,4 +126,8 @@
 		select * from dclub where club_id=#{clid}
 	</select>
 	
+	<select id="searchTitle" parameterType="String" resultMap="clubResultMap">
+	    select * from dclub where title like '%' || #{title} || '%'
+	</select>
+	
 </mapper>
