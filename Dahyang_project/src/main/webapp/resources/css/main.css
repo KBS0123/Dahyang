@@ -343,7 +343,7 @@ input[type="search"]::placeholder {
   font-size: 18px;
   border: none;
   background-color: white;
-  width: 50px;
+  width: 30px;
   height: 30px;
   cursor: pointer;
 }

@@ -159,7 +159,7 @@
 												<img src="${pageContext.request.contextPath}/resources/imgs/${chat.uimg}">
 											</c:when>
 											<c:otherwise>
-												<img src="${pageContext.request.contextPath}/resources/css/group.png">
+												<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
 											</c:otherwise>
 										</c:choose>
 										${chat.nickname}
