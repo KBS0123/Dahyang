@@ -24,6 +24,11 @@
 	</update>
 	
 	<!-- 모임방 삭제 -->
+	<delete id="deleteChat" parameterType="int">
+		delete from dchat where club_id=#{clid}
+	</delete>
+	
+	<!-- 모임방 삭제 -->
 	<delete id="deleteLikes" parameterType="int">
 		delete from dpheed_like where club_id=#{clid}
 	</delete>

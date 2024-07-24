@@ -13,6 +13,7 @@ public interface ClubMapper {
 	
 	public int insert(Club club);
 	public int update(Club club);
+	public int deleteChat(int clid);
 	public int deleteLikes(int clid);
 	public int deleteImages(int clid);
 	public int deleteMembers(int clid);
