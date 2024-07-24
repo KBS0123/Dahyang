@@ -34,6 +34,7 @@ document.getElementById('likeButton').addEventListener('click', function() {
 		        this.classList.add('not-liked');
 		        this.innerHTML = notLikedIcon;
 		    }
+		    location.reload();
 		})
 		.catch(error => {
 		    console.error('Error:', error);
